@@ -1,0 +1,26 @@
+parameters:
+
+    vendor_security.authentication_handler: Fridge\UserBundle\Handler\AuthenticationHandler
+    fridge.user.manager.user_manager.class: Fridge\UserBundle\Manager\UserManager
+    fridge.user.entity.user.class: Fridge\UserBundle\Entity\User
+    fridge.listener.before_controller_listener.class: Fridge\UserBundle\EventListener\BeforeControllerListener
+
+services:
+
+    authentication_handler:
+        class:  %vendor_security.authentication_handler%
+        arguments:  [@fos_rest.view_handler]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    fridge.user.manager.user_manager:
+        class: %fridge.user.manager.user_manager.class%
+        parent: fridge.subscription.manager.base_manager
+        arguments: [%fridge.user.entity.user.class%]
+
+    fridge.listener.before_controller_listener:
+        class: %fridge.listener.before_controller_listener.class%
+        scope: request
+        tags:
+            - { name:'kernel.event_listener', event: 'kernel.controller', method: 'onKernelController' }
+        arguments: [ @security.context ]
