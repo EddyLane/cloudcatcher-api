@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
 
 framework:
+    test: ~
     #esi:             ~
     #translator:      { fallback: "%locale%" }
     secret:          "%secret%"

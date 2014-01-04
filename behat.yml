@@ -1,0 +1,21 @@
+default:
+    filters:
+        tags: "~@ignore"
+    context:
+        parameters:
+            base_url: 'http://app.angular-symfony-stripe.local:8080/app_dev.php'
+            stripe_pk: pk_test_xf2bcw46zdJHzYC8sgwRfASh
+        class: Acceptance\Context\MainContext
+    extensions:
+        Behat\Symfony2Extension\Extension:
+            mink_driver: true
+            kernel:
+                env: dev
+                debug: false
+        Behat\MinkExtension\Extension:
+            default_session: symfony2
+            base_url: http://app.angular-symfony-stripe.local:8080/app_dev.php/
+
+ci:
+    formatter:
+        name:       progress

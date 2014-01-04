@@ -4,7 +4,10 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+            "": "src/" ,
+            "Acceptance": "features/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -26,6 +29,16 @@
         "nelmio/cors-bundle": "~1.0",
         "doctrine/data-fixtures":              "@dev",
         "doctrine/doctrine-fixtures-bundle":   "dev-master@dev"
+    },
+    "require-dev": {
+        "behat/behat": "~2.5",
+        "behat/symfony2-extension": "*",
+        "behat/common-contexts": "dev-master",
+        "behat/mink-extension": "*@dev",
+        "behat/mink-browserkit-driver": "*@dev",
+        "kriswallsmith/buzz": "dev-master",
+        "phpunit/phpunit": "3.7.*@dev",
+        "phpspec/phpspec": "2.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

@@ -30,59 +30,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WebhookListener.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/WebhookListener.php">
+      <file leaf-file-name="post-login_check.feature" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/post-login_check.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="0" selection-start="3453" selection-end="3453" vertical-scroll-proportion="-21.375" vertical-offset="1227" max-vertical-offset="1980">
+            <state line="24" column="58" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataContext.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/Acceptance/Context/Data/DataContext.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="40" selection-start="1483" selection-end="1483" vertical-scroll-proportion="-5.1836734" vertical-offset="721" max-vertical-offset="2400">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StripeProfileInterface.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/StripeProfileInterface.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="7" selection-start="397" selection-end="397" vertical-scroll-proportion="6.7755103" vertical-offset="557" max-vertical-offset="1185">
               <folding>
-                <element signature="e#146#210#0" expanded="true" />
+                <element signature="e#137#187#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BeforeControllerListener.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Fridge/UserBundle/EventListener/BeforeControllerListener.php">
+      <file leaf-file-name="behat.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="76" selection-start="884" selection-end="884" vertical-scroll-proportion="-13.875" vertical-offset="117" max-vertical-offset="870">
-              <folding>
-                <element signature="e#138#197#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="10" selection-start="2763" selection-end="2763" vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="1785">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StripeProfileListener.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/StripeProfileListener.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="39" selection-start="958" selection-end="958" vertical-scroll-proportion="-13.125" vertical-offset="90" max-vertical-offset="945">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubscriptionListener.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/SubscriptionListener.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="43" selection-start="715" selection-end="715" vertical-scroll-proportion="0.2988048" vertical-offset="120" max-vertical-offset="975">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Resources/config/services.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="49" selection-start="5507" selection-end="5507" vertical-scroll-proportion="-19.96" vertical-offset="1046" max-vertical-offset="1785">
+            <state line="5" column="67" selection-start="147" selection-end="147" vertical-scroll-proportion="0.11078287" vertical-offset="0" max-vertical-offset="677">
               <folding />
             </state>
           </provider>
@@ -98,22 +78,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/CardListener.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/CreatePlanOperation.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/RemovePlanOperation.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Command/AddPlanCommand.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Event/StripeWebhookEventInterface.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Event/StripeWebhookEvent.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Proxy/StripeEvent.php" />
-        <option value="$PROJECT_DIR$/src/Fridge/UserBundle/EventListener/BeforeControllerListener.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Controller/WebhookController.php" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Factory/OperationFactory.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/RemoveSubscriptionOperation.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Manager/StripeProfileManager.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/StripeProfileListener.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/WebhookListener.php" />
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/SubscriptionListener.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/SubscriptionInterface.php" />
+        <option value="$PROJECT_DIR$/src/Fridge/UserBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/Subscription.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/Card.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Entity/Card.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Entity/Subscription.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Entity/StripeProfile.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/StripeProfile.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/config/config_test.yml" />
+        <option value="$PROJECT_DIR$/app/config/config_dev.yml" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/features/Acceptance/Context/Data/DataContext.php" />
+        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/StripeProfileInterface.php" />
+        <option value="$PROJECT_DIR$/behat.yml" />
       </list>
     </option>
   </component>
@@ -168,12 +148,30 @@
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/nelmio/alice" />
       <path value="$PROJECT_DIR$/vendor/nelmio/cors-bundle" />
+      <path value="$PROJECT_DIR$/vendor/behat/common-contexts" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink" />
+      <path value="$PROJECT_DIR$/vendor/behat/behat" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink-extension" />
+      <path value="$PROJECT_DIR$/vendor/behat/mink-browserkit-driver" />
+      <path value="$PROJECT_DIR$/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/vendor/behat/symfony2-extension" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/phpspec" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/buzz" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="874" />
+    <option name="width" value="1280" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -201,7 +199,20 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="FridgeSubscriptionDemo">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -230,7 +241,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
+              <option name="myItemId" value="vendor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,6 +256,128 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendsofsymfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendsofsymfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendsofsymfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="friendsofsymfony" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user-bundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FOS" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="UserBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -356,7 +489,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Exception" />
+              <option name="myItemId" value="Tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Operation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,7 +531,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="EventListener" />
+              <option name="myItemId" value="Tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -432,7 +569,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
+              <option name="myItemId" value="Model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -460,15 +597,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Fridge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
+              <option name="myItemId" value="features" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -482,19 +611,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="features" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Fridge" />
+              <option name="myItemId" value="Acceptance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Handler" />
+              <option name="myItemId" value="Context" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -508,71 +633,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="features" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Fridge" />
+              <option name="myItemId" value="Acceptance" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
+              <option name="myItemId" value="Context" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="EventListener" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FridgeSubscriptionDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FridgeSubscriptionDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Fridge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FridgeSubscriptionDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FridgeSubscriptionDemo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Fridge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="UserBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
+              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -615,13 +688,13 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="preferences.sourceCode.JavaScript" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/phpunit.xml.dist" />
+    <property name="options.lastSelected" value="preferences.sourceCode.JavaScript" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../angular-symfony-stripe" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -636,11 +709,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Tests" />
       <recent name="$PROJECT_DIR$/vendor/fridge/subscription-bundle" />
       <recent name="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src" />
       <recent name="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Controller" />
-      <recent name="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle" />
     </key>
   </component>
   <component name="RunManager">
@@ -695,24 +768,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
+    <frame x="0" y="22" width="1280" height="774" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2576389" sideWeight="0.87826085" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2576389" sideWeight="0.12173913" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2671875" sideWeight="0.15460993" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2671875" sideWeight="0.8439716" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -728,124 +802,131 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Proxy/StripePlan.php">
+    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Entity/Subscription.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="7" selection-start="210" selection-end="210" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/CardListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="36" selection-start="146" selection-end="183" vertical-scroll-proportion="0.0996016" vertical-offset="0" max-vertical-offset="960">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Proxy/StripeEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="1" selection-start="424" selection-end="424" vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Factory/OperationFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="40" selection-start="992" selection-end="992" vertical-scroll-proportion="-10.416667" vertical-offset="290" max-vertical-offset="1050">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/UpdateSubscriptionOperation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="341" selection-end="955" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/RemoveSubscriptionOperation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="59" selection-start="201" selection-end="201" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="510">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Manager/StripeProfileManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="325" selection-end="325" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Controller/WebhookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="352" selection-end="352" vertical-scroll-proportion="-2.7551022" vertical-offset="0" max-vertical-offset="615">
+        <state line="16" column="7" selection-start="374" selection-end="374" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="585">
           <folding>
-            <element signature="e#141#196#0" expanded="true" />
+            <element signature="e#52#84#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/RemovePlanOperation.php">
+    <entry file="file://$PROJECT_DIR$/features/Acceptance/Context/Web/WebContext.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="46" selection-start="140" selection-end="140" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="345">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/WebhookListener.php">
+    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Entity/StripeProfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="0" selection-start="3453" selection-end="3453" vertical-scroll-proportion="-21.375" vertical-offset="1227" max-vertical-offset="1980">
+        <state line="21" column="1" selection-start="478" selection-end="478" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="600">
           <folding>
-            <element signature="e#146#210#0" expanded="true" />
+            <element signature="e#139#171#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Resources/config/services.yml">
+    <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="49" selection-start="5507" selection-end="5507" vertical-scroll-proportion="-19.96" vertical-offset="1046" max-vertical-offset="1785">
+        <state line="5" column="0" selection-start="64" selection-end="64" vertical-scroll-proportion="0.11078287" vertical-offset="0" max-vertical-offset="677">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Exception/HttpException.php">
+    <entry file="file://$PROJECT_DIR$/app/config/config_test.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="44" selection-start="358" selection-end="358" vertical-scroll-proportion="0.17928287" vertical-offset="0" max-vertical-offset="753">
+        <state line="4" column="11" selection-start="56" selection-end="68" vertical-scroll-proportion="0.088626295" vertical-offset="0" max-vertical-offset="677">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Fridge/UserBundle/EventListener/BeforeControllerListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="76" selection-start="884" selection-end="884" vertical-scroll-proportion="-13.875" vertical-offset="117" max-vertical-offset="870">
-          <folding>
-            <element signature="e#138#197#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="10" selection-start="2763" selection-end="2763" vertical-scroll-proportion="0.0" vertical-offset="1008" max-vertical-offset="1785">
+        <state line="28" column="5" selection-start="759" selection-end="759" vertical-scroll-proportion="0.62038404" vertical-offset="0" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/StripeProfileListener.php">
+    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/StripeProfile.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="39" selection-start="958" selection-end="958" vertical-scroll-proportion="-13.125" vertical-offset="90" max-vertical-offset="945">
+        <state line="158" column="23" selection-start="3256" selection-end="3259" vertical-scroll-proportion="-7.755102" vertical-offset="1990" max-vertical-offset="2595">
+          <folding>
+            <element signature="e#6#92#0" expanded="true" />
+            <element signature="e#138#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/Card.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="10" selection-start="2470" selection-end="2473" vertical-scroll-proportion="0.32006368" vertical-offset="1509" max-vertical-offset="3885">
+          <folding>
+            <element signature="e#51#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/Acceptance/Context/MainContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="38" selection-end="38" vertical-scroll-proportion="0.091883615" vertical-offset="0" max-vertical-offset="1125">
+          <folding>
+            <element signature="e#38#76#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="25" selection-start="324" selection-end="324" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="1215">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/SubscriptionListener.php">
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Tests/Model/UserTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="43" selection-start="715" selection-end="715" vertical-scroll-proportion="0.2988048" vertical-offset="120" max-vertical-offset="975">
+        <state line="84" column="5" selection-start="2416" selection-end="2416" vertical-scroll-proportion="1.7488514" vertical-offset="13" max-vertical-offset="1305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Model/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="3" selection-start="391" selection-end="391" vertical-scroll-proportion="-3.4226646" vertical-offset="2355" max-vertical-offset="8790">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/post-login_check.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="58" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/Acceptance/Context/Data/DataContext.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="40" selection-start="1483" selection-end="1483" vertical-scroll-proportion="-5.1836734" vertical-offset="721" max-vertical-offset="2400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Model/StripeProfileInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="7" selection-start="397" selection-end="397" vertical-scroll-proportion="6.7755103" vertical-offset="557" max-vertical-offset="1185">
+          <folding>
+            <element signature="e#137#187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/behat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="67" selection-start="147" selection-end="147" vertical-scroll-proportion="0.11078287" vertical-offset="0" max-vertical-offset="677">
           <folding />
         </state>
       </provider>
