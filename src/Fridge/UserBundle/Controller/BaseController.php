@@ -35,4 +35,12 @@ class BaseController extends FOSRestController {
         return $this->getUser()->getStripeProfile();
     }
 
+    /**
+     * @return object
+     */
+    protected function getUserManager()
+    {
+        return $this->container->get('fos_user.user_manager');
+    }
+
 }

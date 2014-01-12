@@ -8,63 +8,144 @@
 
 namespace Fridge\UserBundle\Controller;
 
-
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\View;
+use Fridge\SubscriptionBundle\Exception\InvalidTokenException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class CardController extends BaseController
 {
-
-
     /**
+     * Delete card
+     *
      * @param $username
      * @param $id
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @return bool
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
      */
     public function deleteCardAction($username, $id)
     {
-        $cardManager = $this->container->get('fridge.subscription.manager.card_manager');
+        $user = $this->getUserManager()->findUserByUsername($username);
 
-        $card = $cardManager->find($id);
+        if (!$user) {
+            throw new ResourceNotFoundException();
+        }
 
-        if(!$card || !$card->belongsTo($this->getStripeProfile())) {
-            throw new HttpException(403, 'Forbidden');
+        $cardManager = $this->getCardManager();
+        $card  = $cardManager->find($id);
+
+        if (!$card || !$card->belongsTo($user->getStripeProfile())) {
+            throw new ResourceNotFoundException();
+        }
+
+        if (($this->getUser()->getId() !== $user->getId()) && !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
         }
 
         $cardManager->remove($card, true);
+
+        return true;
     }
 
     /**
+     * Read cards
+     *
      * @param $username
      * @return mixed
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
      */
     public function getCardsAction($username)
     {
-        return $this->getUser()->getStripeProfile()->getCards();
+        $user = $this->getUserManager()->findUserByUsername($username);
+
+        if (!$user) {
+            throw new ResourceNotFoundException();
+        }
+
+        if (($this->getUser()->getId() !== $user->getId()) && !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        return $user->getStripeProfile()->getCards();
     }
 
     /**
+     * Read card
+     *
+     * @param $username
+     * @param $id
+     * @return \Fridge\SubscriptionBundle\Entity\Card
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     */
+    public function getCardAction($username, $id)
+    {
+        $user = $this->getUserManager()->findUserByUsername($username);
+
+        if (!$user) {
+            throw new ResourceNotFoundException();
+        }
+
+        $card  = $this->getCardManager()->find($id);
+
+        if (!$card || !$card->belongsTo($user->getStripeProfile())) {
+            throw new ResourceNotFoundException();
+        }
+
+        if (($this->getUser()->getId() !== $user->getId()) && !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        return $card;
+    }
+
+    /**
+     * @return \Fridge\SubscriptionBundle\Manager\CardManager
+     */
+    protected function getCardManager()
+    {
+        return $this->container->get('fridge.subscription.manager.card_manager');
+    }
+
+    /**
+     * Create card
+     *
      * @RequestParam(name="token", description="Stripe token.")
      * @View(statusCode=201)
+     *
+     * @param $username
+     * @param ParamFetcher $paramFetcher
+     * @return \Fridge\SubscriptionBundle\Entity\Card
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     * @throws \Fridge\SubscriptionBundle\Exception\InvalidTokenException
      */
     public function postCardAction($username, ParamFetcher $paramFetcher)
     {
-        $cardManager = $this->container->get('fridge.subscription.manager.card_manager');
-        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $this->getUserManager()->findUserByUsername($username);
 
-        $card = $cardManager->create($paramFetcher->get('token'));
-
-        $user = $userManager->findUserByUsername($username);
-
-        if(!$user) {
-            throw new \HttpException(404, 'No user');
+        if (!$user) {
+            throw new ResourceNotFoundException();
         }
+
+        if (($this->getUser()->getId() !== $user->getId()) && !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        if ($this->getCardManager()->findOneBy(['token' => $paramFetcher->get('token')])) {
+            throw new InvalidTokenException('Token already used');
+        }
+
+        $card = $this->getCardManager()->create($paramFetcher->get('token'));
 
         $user->getStripeProfile()->addCard($card);
 
-        $userManager->updateUser($user, true);
+        $this->getUserManager()->updateUser($user, true);
 
         return $card;
     }

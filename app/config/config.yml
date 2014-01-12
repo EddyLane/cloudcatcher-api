@@ -29,6 +29,7 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
 # Assetic Configuration
 assetic:
@@ -83,6 +84,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Fridge\UserBundle\Entity\User
+    group:
+        group_class: Fridge\UserBundle\Entity\Group
 
 sensio_framework_extra:
     view:    { annotations: false }
@@ -122,8 +125,10 @@ fos_rest:
     exception:
         codes:
             'Fridge\SubscriptionBundle\Exception\FridgeCardDeclinedException': 402
+            'Fridge\SubscriptionBundle\Exception\InvalidTokenException': 402
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
             'Symfony\Component\Security\Core\Exception\AccessDeniedException': 403
             'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
         messages:
+            'Symfony\Component\HttpKernel\Exception\HttpException': true
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true

@@ -80,6 +80,11 @@ class DataContext extends BehatContext implements KernelAwareInterface
         return $this->getKernel()->getContainer()->get('fos_user.user_manager');
     }
 
+    public function getCardManager()
+    {
+        return $this->getKernel()->getContainer()->get('fridge.subscription.manager.card_manager');
+    }
+
     /**
      * @Given /^no payments should exist in the system$/
      */
@@ -138,6 +143,17 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
+     * @Given /^the user "([^"]*)" is an admin$/
+     */
+    public function theUserIsAnAdmin($username)
+    {
+        $userManager = $this->getUserManager();
+        $user = $userManager->findUserByUsername($username);
+        $user->addRole('ROLE_ADMIN');
+        $userManager->updateUser($user, true);
+    }
+
+    /**
      * @Given /^a stripe id should be set for the user with username "([^"]*)"$/
      */
     public function aStripeIdShouldBeSetForTheUserWithUsername($username)
@@ -158,6 +174,33 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
+     * @Given /^the following cards exist for user "([^"]*)":$/
+     */
+    public function theFollowingCardsExistForUserBob($username, TableNode $table)
+    {
+        $user = $this->getUserManager()->findUserByUsername($username);
+        $stripeProfile = $user->getStripeProfile();
+        $cardManager = $this->getCardManager();
+
+        foreach($table->getHash() as $cardData) {
+
+            $card = $cardManager->create();
+
+            $card
+                ->setNumber($cardData['number'])
+                ->setExpMonth($cardData['expMonth'])
+                ->setExpYear($cardData['expYear'])
+                ->setCardType($cardData['cardType'])
+                ->setToken($cardData['stripeId'])
+            ;
+
+            $stripeProfile->addCard($card);
+        }
+
+        $this->getUserManager()->updateUser($user, true);
+    }
+
+    /**
      * @Given /^the following cards should exist for user "([^"]*)":$/
      */
     public function theFollowingCardsShouldExistForUserBob($username, TableNode $table)
@@ -174,4 +217,17 @@ class DataContext extends BehatContext implements KernelAwareInterface
             ];
         }, $cards->toArray()));
     }
+
+    /**
+     * @Given /^exactly (\d+) stripe profile should have been created for user "([^"]*)"$/
+     */
+    public function exactlyStripeProfileShouldHaveBeenCreatedForUser($profileAmount, $username)
+    {
+        $user = $this->getUserManager()->findUserByUsername($username);
+        assertNotNull($user->getStripeProfile()->getStripeId());
+        $profiles = $this->getEntityManager()->getRepository('FridgeSubscriptionBundle:StripeProfile')->findAll();
+        assertEquals($profileAmount, count($profiles));
+    }
+
 }
+

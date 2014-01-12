@@ -64,8 +64,12 @@ class WebContext extends WebApiContext
      */
     public function theCardWithIdShouldHaveBeen($id, $username)
     {
-        $user = $this->getMainContext()->getSubcontext('datacontext')->getUserManager()->findUserByUsername($username);
+        $dataContext =  $this->getMainContext()->getSubcontext('datacontext');
+        $user = $dataContext->getUserManager()->findUserByUsername($username);
         $stripeProfile = $user->getStripeProfile();
+
+        $dataContext->getEntityManager()->refresh($stripeProfile);
+
         $cards = $stripeProfile->getCards();
 
         $card = current(array_filter($cards->toArray(), function($card) use ($id) {
@@ -100,5 +104,13 @@ class WebContext extends WebApiContext
         $this->getBrowser()->call($url, 'POST', $this->getHeaders(), json_encode([
             'token' => $this->stripeToken
         ]));
+    }
+
+    /**
+     * @Given /^wait for (\d+) seconds$/
+     */
+    public function waitForSeconds($seconds)
+    {
+        sleep($seconds);
     }
 }

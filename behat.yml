@@ -4,7 +4,8 @@ default:
     context:
         parameters:
             base_url: 'http://angular-symfony-stripe.local/app_dev.php'
-
+            stripe_pk: pk_test_xf2bcw46zdJHzYC8sgwRfASh
+            stripe_sk: sk_test_gtIKKjQPTpWLVM2hi1XxoH1B
         class: Acceptance\Context\MainContext
     extensions:
         Behat\Symfony2Extension\Extension:
