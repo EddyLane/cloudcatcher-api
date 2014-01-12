@@ -27,10 +27,7 @@ Feature: POST login_check
     _username=bob&_password=ooo&_remember_me=1
     """
     And the response code should be 403
-    And the response should contain json:
-    """
-    {}
-    """
+    And the response should contain "Bad credentials"
 
   Scenario: Will return a 403 when the username is incorrect
     And I set header "Content-Type" with value "application/x-www-form-urlencoded"
@@ -39,10 +36,7 @@ Feature: POST login_check
     _username=ooo&_password=bob&_remember_me=1
     """
     And the response code should be 403
-    And the response should contain json:
-    """
-    {}
-    """
+    And the response should contain "Bad credentials"
 
   Scenario: Will return a 403 when the username and password is incorrect
     And I set header "Content-Type" with value "application/x-www-form-urlencoded"
@@ -51,7 +45,4 @@ Feature: POST login_check
     _username=ooo&_password=ooo&_remember_me=1
     """
     And the response code should be 403
-    And the response should contain json:
-    """
-    {}
-    """
+    And the response should contain "Bad credentials"

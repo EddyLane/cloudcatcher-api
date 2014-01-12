@@ -23,8 +23,8 @@ class AppKernel extends Kernel
             //for the demo
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             ////src
             new Fridge\UserBundle\FridgeUserBundle()

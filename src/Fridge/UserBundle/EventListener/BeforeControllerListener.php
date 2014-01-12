@@ -9,9 +9,11 @@
 namespace Fridge\UserBundle\EventListener;
 
 use Fridge\SubscriptionBundle\Controller\WebhookController;
+use Fridge\UserBundle\Controller\SubscriptionController;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Fridge\UserBundle\Controller\BaseController;
 
 /**
  * @author Matt Drollette <matt@drollette.com>
@@ -33,7 +35,7 @@ class BeforeControllerListener
     }
 
     /**
-     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @param FilterControllerEvent $event
      */
     public function onKernelController(FilterControllerEvent $event)
     {
@@ -46,13 +48,10 @@ class BeforeControllerListener
 
         $controllerObject = $controller[0];
 
-        if ($controllerObject instanceof WebhookController) {
-            return;
-        }
 
-        if (!$this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            throw new HttpException(403, 'User not logged in');
+        if ($controllerObject instanceof BaseController) {
+            // this method is the one that is part of the interface.
+            $controllerObject->initialize($event->getRequest(), $this->securityContext);
         }
-
     }
 }

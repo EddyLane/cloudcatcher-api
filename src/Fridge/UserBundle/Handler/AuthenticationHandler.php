@@ -43,7 +43,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
-        $view = View::create([]);
+        $view = View::create($exception->getMessage());
         $view->setStatusCode(403);
         return $this->viewHandler->handle($view);
     }

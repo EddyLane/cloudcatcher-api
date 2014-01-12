@@ -12,17 +12,18 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+
         main:
             pattern: ^/
             form_login:
-                check_path: /security/login
                 require_previous_session: false
                 provider: fos_userbundle
+                check_path: /security/login
                 success_handler: authentication_handler
                 failure_handler: authentication_handler
             logout:
                 path: /security/logout
-            anonymous:  true
+            anonymous:    true
             http_basic: true
 
     access_control:

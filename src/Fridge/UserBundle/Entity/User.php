@@ -23,8 +23,8 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Fridge\SubscriptionBundle\Entity\StripeProfile", cascade={"all"})
-     * @ORM\JoinColumn(name="stripe_profile_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Fridge\SubscriptionBundle\Entity\StripeProfile", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\JoinColumn(name="stripe_profile_id", referencedColumnName="id", onDelete="CASCADE")
      * @Serializer\Expose()
      */
     protected $stripeProfile;

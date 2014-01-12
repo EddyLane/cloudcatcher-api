@@ -1,16 +1,14 @@
 fridge_subscription_routing:
     resource: "@FridgeSubscriptionBundle/Resources/config/routing.yml"
     type: rest
-    requirements:
-        _format:  json
-user:
-    resource: Fridge\UserBundle\Controller\UserController
-    type:     rest
-    prefix:   /security
 
-fos_user_security_check:
+fridge_user_routing:
+    resource: "@FridgeUserBundle/Resources/config/routing.yml"
+    type: rest
+
+login_check:
     path: /security/login
     defaults: { _controller: FOSUserBundle:Security:check, _format: json }
-    methods: [GET, POST]
+    methods: [POST]
     requirements:
         _format:  json

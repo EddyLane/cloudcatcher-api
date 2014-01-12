@@ -1,0 +1,5 @@
+FOS\UserBundle\Entity\Group:
+    type: mappedSuperclass
+    table: Group
+    id: {  }
+    lifecycleCallbacks: {  }

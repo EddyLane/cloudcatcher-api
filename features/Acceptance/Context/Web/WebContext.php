@@ -17,11 +17,12 @@ class WebContext extends WebApiContext
     private $parameters;
     public $stripeToken;
     protected $stripePk;
-
+    protected $stripeSk;
 
     public function __construct($parameters)
     {
         $this->stripePk = $parameters['stripe_pk'];
+        $this->stripeSk = $parameters['stripe_sk'];
         $this->parameters = $parameters;
         parent::__construct($parameters['base_url']);
     }
@@ -42,6 +43,8 @@ class WebContext extends WebApiContext
             '_method' => 'POST'
         ];
 
+
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -57,6 +60,37 @@ class WebContext extends WebApiContext
     }
 
     /**
+     * @Given /^the card with id (\d+) should have been persisted to stripe for user "([^"]*)"$/
+     */
+    public function theCardWithIdShouldHaveBeen($id, $username)
+    {
+        $user = $this->getMainContext()->getSubcontext('datacontext')->getUserManager()->findUserByUsername($username);
+        $stripeProfile = $user->getStripeProfile();
+        $cards = $stripeProfile->getCards();
+
+        $card = current(array_filter($cards->toArray(), function($card) use ($id) {
+            return $card->getId() === (int) $id;
+        }));
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_USERPWD, urlencode($this->stripeSk));
+
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => sprintf('https://api.stripe.com/v1/customers/%s/cards/%s', $stripeProfile->getStripeId(), $card->getToken()),
+            CURLOPT_USERAGENT => 'Stripe CURL',
+        ));
+
+        $resp = curl_exec($curl);
+        curl_close($curl);
+
+        $stripeResponse = json_decode($resp, true);
+
+        assertEquals($card->getToken(), $stripeResponse['id']);
+    }
+
+    /**
      * @When /^I send a POST request to "([^"]*)" with the generated token$/
      */
     public function iSendAPostRequestToWithTheGeneratedToken($url)
@@ -67,6 +101,4 @@ class WebContext extends WebApiContext
             'token' => $this->stripeToken
         ]));
     }
-
-
-} 
+}

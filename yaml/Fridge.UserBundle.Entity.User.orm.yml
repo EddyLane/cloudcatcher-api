@@ -1,0 +1,26 @@
+Fridge\UserBundle\Entity\User:
+    type: entity
+    table: fridge_user_user
+    id:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+    oneToOne:
+        stripeProfile:
+            targetEntity: Fridge\SubscriptionBundle\Entity\StripeProfile
+            cascade:
+                - all
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                stripe_profile_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -7,7 +7,7 @@ Feature: POST post_pay
       | bob      | bob   | bob      |
     And I set header "Content-type" with value "application/json"
 
-  Scenario: Will return a 403 when not logged in
+  Scenario: CARD Will return a 403 when not logged in
    Given I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 12        | 2013     |

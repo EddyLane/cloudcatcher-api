@@ -1,0 +1,15 @@
+fridge_demo_users:
+    resource: Fridge\UserBundle\Controller\UserController
+    type:     rest
+    prefix:   /
+
+fridge_demo_subscriptions:
+    resource: Fridge\UserBundle\Controller\SubscriptionController
+    type:     rest
+    prefix:   /
+
+fridge_demo_cards:
+    resource: Fridge\UserBundle\Controller\CardController
+    parent:   fridge_demo_users
+    type:     rest
+    prefix:   /

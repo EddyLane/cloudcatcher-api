@@ -1,0 +1,18 @@
+Fridge\SubscriptionBundle\Model\Card:
+    exclusion_policy: ALL
+    properties:
+        number:
+            expose: true
+            accessor:
+                getter: getNumber
+        cardType:
+            expose: true
+            accessor:
+                getter: getCardType
+        expMonth:
+            expose: true
+        expYear:
+            expose: true
+    virtual_properties:
+        getCardTypeName:
+            serialized_name: card_type_name

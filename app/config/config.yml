@@ -75,6 +75,9 @@ jms_serializer:
             FOSUB:
                 namespace_prefix: "FOS\\UserBundle"
                 path: "%kernel.root_dir%/serializer/FOSUB"
+            FRIDGESB:
+                namespace_prefix: "Fridge\\SubscriptionBundle"
+                path: "%kernel.root_dir%/serializer/FRIDGESB"
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
@@ -105,6 +108,17 @@ nelmio_cors:
             max_age: 3600
 
 fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+    routing_loader:
+        default_format:       json
+        include_format:       false
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: false
     exception:
         codes:
             'Fridge\SubscriptionBundle\Exception\FridgeCardDeclinedException': 402

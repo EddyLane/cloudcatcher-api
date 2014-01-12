@@ -1,0 +1,11 @@
+Fridge\SubscriptionBundle\Model\Subscription:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        price:
+            expose: true
+        description:
+            expose: true

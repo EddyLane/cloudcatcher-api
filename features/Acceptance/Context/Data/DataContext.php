@@ -54,7 +54,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
      *
      * @return \Doctrine\ORM\EntityManager
      */
-    private function getEntityManager()
+    public function getEntityManager()
     {
         return $this
             ->getKernel()
@@ -65,36 +65,20 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
 
-    protected function removeAllUsers()
+    protected function removeAll($entity)
     {
         $em = $this->getEntityManager();
         $em
-            ->createQuery('DELETE FridgeUserBundle:User')
+            ->createQuery('DELETE ' . $entity)
             ->execute()
         ;
         $em->flush();
     }
 
-    protected function getUserManager()
+    public function getUserManager()
     {
         return $this->getKernel()->getContainer()->get('fos_user.user_manager');
     }
-
-    /**
-     * @return array
-     */
-    protected function getAllPayments()
-    {
-        return $this
-            ->getEntityManager()
-            ->createQueryBuilder()
-            ->select('p.id, p.token, p.completed')
-            ->from('UVdPaymentBundle:Payment', 'p')
-            ->getQuery()
-            ->getResult(Query::HYDRATE_ARRAY)
-        ;
-    }
-
 
     /**
      * @Given /^no payments should exist in the system$/
@@ -128,9 +112,16 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function theFollowingUsersExistInTheSystem(TableNode $userTable)
     {
-        $this->removeAllUsers();
+        $this->removeAll('FridgeUserBundle:User');
+        $this->removeAll('FridgeSubscriptionBundle:Card');
+        $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
 
         $userManager = $this->getUserManager();
+
+        $em = $this->getEntityManager();
+
+        $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
+        $em->flush();
 
         foreach($userTable->getHash() as $userHash) {
             $user = $userManager->createUser();
@@ -156,4 +147,31 @@ class DataContext extends BehatContext implements KernelAwareInterface
         assertNotNull($user->getStripeId());
     }
 
+
+    /**
+     * @Given /^no cards should exist in the system$/
+     */
+    public function noCardsShouldExistInTheSystem()
+    {
+        $cards = $this->getEntityManager()->getRepository('FridgeSubscriptionBundle:Card')->findAll();
+        assertEmpty($cards);
+    }
+
+    /**
+     * @Given /^the following cards should exist for user "([^"]*)":$/
+     */
+    public function theFollowingCardsShouldExistForUserBob($username, TableNode $table)
+    {
+        $cards = $this->getUserManager()->findUserByUsername($username)->getStripeProfile()->getCards();
+
+        assertEquals($table->getHash(), array_map(function($card) {
+            return [
+                'id' => $card->getId(),
+                'cardType' => $card->getCardType(),
+                'expMonth' => $card->getExpMonth(),
+                'expYear' => $card->getExpYear(),
+                'number' => $card->getNumber()
+            ];
+        }, $cards->toArray()));
+    }
 }

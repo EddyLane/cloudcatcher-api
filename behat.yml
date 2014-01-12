@@ -3,8 +3,8 @@ default:
         tags: "~@ignore"
     context:
         parameters:
-            base_url: 'http://app.angular-symfony-stripe.local:8080/app_dev.php'
-            stripe_pk: pk_test_xf2bcw46zdJHzYC8sgwRfASh
+            base_url: 'http://angular-symfony-stripe.local/app_dev.php'
+
         class: Acceptance\Context\MainContext
     extensions:
         Behat\Symfony2Extension\Extension:
@@ -14,7 +14,7 @@ default:
                 debug: false
         Behat\MinkExtension\Extension:
             default_session: symfony2
-            base_url: http://app.angular-symfony-stripe.local:8080/app_dev.php/
+            base_url: 'http://angular-symfony-stripe.local/app_dev.php'
 
 ci:
     formatter:
