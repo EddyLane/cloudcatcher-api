@@ -75,7 +75,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"Visa",
         "number":"**** **** **** 4242",
-        "card_type":1,
         "exp_month":7,
         "exp_year":2014,
         "id":1
@@ -148,7 +147,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"Visa",
         "number":"**** **** **** 4242",
-        "card_type":1,
         "exp_month":8,
         "exp_year":2014,
         "id":1
@@ -180,7 +178,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"MasterCard",
         "number":"**** **** **** 4444",
-        "card_type":2,
         "exp_month":3,
         "exp_year":2014,
         "id":2
@@ -206,7 +203,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"Visa",
         "number":"**** **** **** 4242",
-        "card_type":1,
         "exp_month":8,
         "exp_year":2014,
         "id":1
@@ -226,7 +222,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"MasterCard",
         "number":"**** **** **** 4444",
-        "card_type":2,
         "exp_month":8,
         "exp_year":2014,
         "id":1
@@ -247,7 +242,6 @@ Feature: POST post_user_card
     {
         "card_type_name":"American Express",
         "number":"**** ****** *0005",
-        "card_type":3,
         "exp_month":8,
         "exp_year":2014,
         "id":1
@@ -306,3 +300,80 @@ Feature: POST post_user_card
     }
     """
     And no cards should exist in the system
+
+
+  Scenario: Will return a 403 when the user card fails (Card Declined)
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4000 0000 0000 0341 | 123 | 07        | 2014     |
+    When I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 402
+    Then the response should contain json:
+    """
+    {
+        "code":402,
+        "message":"Your card was declined."
+    }
+    """
+
+  Scenario: Will return a 403 when the user card fails (Card Declined)
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4000 0000 0000 0002 | 123 | 07        | 2014     |
+    When I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 402
+    Then the response should contain json:
+    """
+    {
+        "code":402,
+        "message":"Your card was declined."
+    }
+    """
+
+  Scenario: Will return a 403 when the user card fails (Card Declined)
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4000 0000 0000 0127 | 123 | 07        | 2014     |
+    When I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 402
+    Then the response should contain json:
+    """
+    {
+        "code":402,
+        "message":"Your card's security code is incorrect."
+    }
+    """
+
+  Scenario: Will return a 403 when the user card fails (Card Declined)
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4000 0000 0000 0069	| 123 | 07        | 2014     |
+    When I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 402
+    Then the response should contain json:
+    """
+    {
+        "code":402,
+        "message":"Your card's expiration date is incorrect."
+    }
+    """
+
+
+  Scenario: Will return a 403 when the user card fails (Card Declined)
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4000 0000 0000 0119	| 123 | 07        | 2014     |
+    When I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 402
+    Then the response should contain json:
+    """
+    {
+        "code":402,
+        "message":"An error occurred while processing your card. Try again in a little bit."
+    }
+    """

@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-class CardController extends BaseController
+class UserCardController extends BaseController
 {
     /**
      * Delete card
@@ -143,11 +143,17 @@ class CardController extends BaseController
 
         $card = $this->getCardManager()->create($paramFetcher->get('token'));
 
-        $user->getStripeProfile()->addCard($card);
+        $user
+            ->getStripeProfile()
+            ->addCard($card)
+            ->setDefaultCard($card)
+        ;
+
 
         $this->getUserManager()->updateUser($user, true);
 
         return $card;
     }
+
 
 }

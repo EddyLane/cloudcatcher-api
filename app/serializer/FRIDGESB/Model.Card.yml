@@ -5,10 +5,6 @@ Fridge\SubscriptionBundle\Model\Card:
             expose: true
             accessor:
                 getter: getNumber
-        cardType:
-            expose: true
-            accessor:
-                getter: getCardType
         expMonth:
             expose: true
         expYear:

@@ -8,8 +8,8 @@ fridge_demo_subscriptions:
     type:     rest
     prefix:   /
 
-fridge_demo_cards:
-    resource: Fridge\UserBundle\Controller\CardController
+fridge_demo_users_cards:
+    resource: Fridge\UserBundle\Controller\UserCardController
     parent:   fridge_demo_users
     type:     rest
     prefix:   /

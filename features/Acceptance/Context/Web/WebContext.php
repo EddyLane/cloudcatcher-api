@@ -11,6 +11,7 @@ namespace Acceptance\Context\Web;
 use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
 use Buzz\Browser;
+use Behat\Gherkin\Node\PyStringNode;
 
 class WebContext extends WebApiContext
 {
@@ -33,7 +34,6 @@ class WebContext extends WebApiContext
     public function iGenerateAStripeTokenFromTheFollowingCardDetails(TableNode $paymentDetailsTable)
     {
         $paymentDetailsHash = $paymentDetailsTable->getHash()[0];
-
         $stripeCurlParams = [
             'card[number]' => $paymentDetailsHash['number'],
             'card[exp_month]' => $paymentDetailsHash['exp_month'],
@@ -42,8 +42,6 @@ class WebContext extends WebApiContext
             'key' => $this->stripePk,
             '_method' => 'POST'
         ];
-
-
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -104,6 +102,42 @@ class WebContext extends WebApiContext
         $this->getBrowser()->call($url, 'POST', $this->getHeaders(), json_encode([
             'token' => $this->stripeToken
         ]));
+    }
+
+    /**
+     * @Given /^the response should contain json \(with subscription_start and subscription_end replaced with todays date\):$/
+     */
+    public function theResponseShouldContainJsonWithSubscriptionStartAndSubscriptionEndReplacedWithTodaysDate(PyStringNode $jsonString)
+    {
+        $etalon = json_decode($this->replacePlaceHolder($jsonString->getRaw()), true);
+        $actual = json_decode($this->getBrowser()->getLastResponse()->getContent(), true);
+
+        if (null === $etalon) {
+            throw new \RuntimeException(
+                "Can not convert etalon to json:\n".$this->replacePlaceHolder($jsonString->getRaw())
+            );
+        }
+
+        $actualSubscriptionStart = new \DateTime($actual['stripe_profile']['subscription_start']);
+        $expectedSubscriptionStart = new \DateTime();
+
+        $actualSubscriptionEnd = new \DateTime($actual['stripe_profile']['subscription_end']);
+        $expectedSubscriptionEnd = new \DateTime();
+        $expectedSubscriptionEnd->add(new \DateInterval('P1M'));
+
+        assertEquals($actualSubscriptionStart->format('Y-m-d H'), $expectedSubscriptionStart->format('Y-m-d H'));
+        assertEquals($actualSubscriptionEnd->format('Y-m-d H'), $expectedSubscriptionEnd->format('Y-m-d H'));
+
+        $etalon['stripe_profile']['subscription_start'] = true;
+        $actual['stripe_profile']['subscription_start'] = true;
+        $etalon['stripe_profile']['subscription_end'] = true;
+        $actual['stripe_profile']['subscription_end'] = true;
+
+        assertCount(count($etalon), $actual);
+        foreach ($actual as $key => $needle) {
+            assertArrayHasKey($key, $etalon);
+            assertEquals($etalon[$key], $actual[$key]);
+        }
     }
 
     /**

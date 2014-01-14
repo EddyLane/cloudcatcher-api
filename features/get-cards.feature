@@ -24,7 +24,6 @@ Feature: GET get_user_cards
             {
                 "card_type_name":"Visa",
                 "number":"**** **** **** 4242",
-                "card_type":1,
                 "exp_month":7,
                 "exp_year":2014,
                 "id":1

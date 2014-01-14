@@ -124,6 +124,7 @@ fos_rest:
         json: false
     exception:
         codes:
+            'Fridge\SubscriptionBundle\Exception\NoCardsException': 403
             'Fridge\SubscriptionBundle\Exception\FridgeCardDeclinedException': 402
             'Fridge\SubscriptionBundle\Exception\InvalidTokenException': 402
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404

@@ -85,6 +85,11 @@ class DataContext extends BehatContext implements KernelAwareInterface
         return $this->getKernel()->getContainer()->get('fridge.subscription.manager.card_manager');
     }
 
+    public function getSubscriptionManager()
+    {
+        return $this->getKernel()->getContainer()->get('fridge.subscription.manager.subscription_manager');
+    }
+
     /**
      * @Given /^no payments should exist in the system$/
      */
@@ -227,6 +232,34 @@ class DataContext extends BehatContext implements KernelAwareInterface
         assertNotNull($user->getStripeProfile()->getStripeId());
         $profiles = $this->getEntityManager()->getRepository('FridgeSubscriptionBundle:StripeProfile')->findAll();
         assertEquals($profileAmount, count($profiles));
+    }
+
+    /**
+     * @Given /^the following subscriptions exist:$/
+     */
+    public function theFollowingSubscriptionsExist(TableNode $table)
+    {
+        $subscriptionManager  = $this->getSubscriptionManager();
+
+        foreach($subscriptionManager->findAll() as $subscription) {
+            $subscriptionManager->remove($subscription, true);
+        }
+
+
+        $em = $this->getEntityManager();
+
+        $em->getConnection()->exec("ALTER TABLE fridge_subscription AUTO_INCREMENT = 1; ");
+        $em->flush();
+
+        foreach($table->getHash() as $subscriptionData) {
+            $subscription = $subscriptionManager->create();
+            $subscription
+                ->setName($subscriptionData['name'])
+                ->setDescription($subscriptionData['description'])
+                ->setPrice($subscriptionData['price'])
+            ;
+            $subscriptionManager->save($subscription, true);
+        }
     }
 
 }

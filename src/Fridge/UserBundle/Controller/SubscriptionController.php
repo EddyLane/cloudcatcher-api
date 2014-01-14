@@ -8,13 +8,14 @@
 
 namespace Fridge\UserBundle\Controller;
 
-class SubscriptionController extends BaseController
+use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+
+class SubscriptionController extends FOSRestController
 {
 
     /**
-     * Query all Subscription entities
-     *
-     * @return View
+     * @return array An array/ArrayCollection of subscription entities
      */
     public function getSubscriptionsAction()
     {
@@ -23,6 +24,24 @@ class SubscriptionController extends BaseController
         $subscriptions = $manager->findAll();
 
         return $subscriptions;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     */
+    public function getSubscriptionAction($id)
+    {
+        $manager = $this->container->get('fridge.subscription.manager.subscription_manager');
+
+        $subscription = $manager->find($id);
+
+        if (!$subscription) {
+            throw new ResourceNotFoundException();
+        }
+
+        return $subscription;
     }
 
 } 

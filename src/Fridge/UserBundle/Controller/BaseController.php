@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class BaseController extends FOSRestController {
+abstract class BaseController extends FOSRestController {
 
     /**
      * @param Request $request
@@ -28,7 +28,7 @@ class BaseController extends FOSRestController {
     }
 
     /**
-     * @return mixed
+     * @return \Fridge\SubscriptionBundle\Entity\StripeProfile
      */
     protected function getStripeProfile()
     {
@@ -36,7 +36,23 @@ class BaseController extends FOSRestController {
     }
 
     /**
-     * @return object
+     * @return \Fridge\SubscriptionBundle\Manager\SubscriptionManager
+     */
+    protected function getSubscriptionManager()
+    {
+        return $this->container->get('fridge.subscription.manager.subscription_manager');
+    }
+
+    /**
+     * @return \Fridge\SubscriptionBundle\Manager\CardManager
+     */
+    protected function getCardManager()
+    {
+        return $this->container->get('fridge.subscription.manager.card_manager');
+    }
+
+    /**
+     * @return \FOS\UserBundle\Model\UserManager
      */
     protected function getUserManager()
     {
