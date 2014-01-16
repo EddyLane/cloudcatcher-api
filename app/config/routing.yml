@@ -12,3 +12,9 @@ login_check:
     methods: [POST]
     requirements:
         _format:  json
+
+homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: "FridgeUserBundle:Default:homepage.html.twig"

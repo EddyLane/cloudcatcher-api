@@ -46,9 +46,9 @@ class UserCardController extends BaseController
             throw new AccessDeniedException();
         }
 
-        $cardManager->remove($card, true);
+        $this->getCardManager()->remove($card, true);
 
-        return true;
+        return $card;
     }
 
     /**
@@ -105,6 +105,40 @@ class UserCardController extends BaseController
     }
 
     /**
+     * @RequestParam(name="default", description="Make this card the default card")
+     *
+     * @param $username
+     * @param $id
+     * @return mixed
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     */
+    public function putCardAction($username, $id)
+    {
+        $user = $this->getUserManager()->findUserByUsername($username);
+
+        if (!$user) {
+            throw new ResourceNotFoundException();
+        }
+
+        $card  = $this->getCardManager()->find($id);
+
+        if (!$card || !$card->belongsTo($user->getStripeProfile())) {
+            throw new ResourceNotFoundException();
+        }
+
+        if (($this->getUser()->getId() !== $user->getId()) && !$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException();
+        }
+
+        $user->getStripeProfile()->setDefaultCard($card);
+
+        $this->getUserManager()->updateUser($user);
+
+        return $card;
+    }
+
+    /**
      * @return \Fridge\SubscriptionBundle\Manager\CardManager
      */
     protected function getCardManager()
@@ -149,11 +183,9 @@ class UserCardController extends BaseController
             ->setDefaultCard($card)
         ;
 
-
         $this->getUserManager()->updateUser($user, true);
 
         return $card;
     }
-
 
 }

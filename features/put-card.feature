@@ -1,0 +1,36 @@
+@card
+Feature: PUT put_user_card
+
+  Background:
+    Given the following users exist in the system:
+      | username | email | password |
+      | bob      | bob   | bob      |
+      | john     | john  | john     |
+      | fridge   | fridge | fridge   |
+    And the user "fridge" is an admin
+    And I set header "Content-type" with value "application/json"
+
+  Scenario: Will return a 201 when a card is successfully made default
+
+    Given I am authenticating as "bob" with "bob" password
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4242 4242 4242 4242 | 123 | 08        | 2014     |
+    And I send a POST request to "/users/bob/cards" with the generated token
+    Then the response code should be 201
+    And I generate a stripe token from the following card details:
+      | number              | cvc | exp_month | exp_year |
+      | 4242 4242 4242 4242 | 123 | 08        | 2014     |
+    And I send a POST request to "/users/bob/cards" with the generated token
+    When I send a PUT request to "/users/bob/cards/1" with body:
+    """
+    {
+        "card_type_name": "Visa",
+        "default": true,
+        "exp_month": 12,
+        "exp_year": 2015,
+        "id": 8,
+        "number": "**** **** **** 4242"
+    }
+    """
+    Then print response

@@ -1,5 +1,0 @@
-FOS\UserBundle\Entity\User:
-    type: mappedSuperclass
-    table: User
-    id: {  }
-    lifecycleCallbacks: {  }

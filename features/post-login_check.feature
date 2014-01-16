@@ -5,6 +5,25 @@ Feature: POST login_check
     | username | email | password |
     | bob      | bob   | bob      |
 
+  Scenario: Will return a 200 when user successfully logs in with json
+    And I set header "Content-Type" with value "application/x-www-form-urlencoded"
+    When I send a POST request to "/security/login" with body:
+    """
+    {
+        "_username": "bob",
+        "_password": "bob"
+    }
+    """
+    Then print response
+    And the response code should be 200
+    And the response should contain json:
+    """
+    {
+      "username": "bob",
+      "email": "bob"
+    }
+    """
+
   Scenario: Will return a 200 when user successfully logs in
     And I set header "Content-Type" with value "application/x-www-form-urlencoded"
     When I send a POST request to "/security/login" with form data:
