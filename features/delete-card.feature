@@ -10,7 +10,7 @@ Feature: DELETE delete_user_card single
     And the user "fridge" is an admin
     And I set header "Content-type" with value "application/json"
 
-  Scenario: Will return 200 when successful
+  Scenario: Will return 200 when successful delete
     Given I am authenticating as "bob" with "bob" password
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
@@ -22,6 +22,7 @@ Feature: DELETE delete_user_card single
       | 1  | **** **** **** 4242 | 1         | 2014     | 7         |
     And the card with id 1 should have been persisted to stripe for user "bob"
     When I send a DELETE request to "/users/bob/cards/1"
+    Then print response
     Then the response code should be 200
     And the response should contain json:
     """

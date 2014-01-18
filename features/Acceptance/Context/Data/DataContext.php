@@ -123,14 +123,15 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function theFollowingUsersExistInTheSystem(TableNode $userTable)
     {
-        $this->removeAll('FridgeUserBundle:User');
-        $this->removeAll('FridgeSubscriptionBundle:Card');
-        $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
-
         $userManager = $this->getUserManager();
-
         $em = $this->getEntityManager();
 
+        foreach($em->getRepository('FridgeUserBundle:User')->findAll() as $user) {
+            $em->remove($user);
+            $em->flush();
+        }
+
+        $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
         $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
         $em->flush();
 
@@ -258,8 +259,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
 
         $em = $this->getEntityManager();
         $em->getConnection()->exec("ALTER TABLE fridge_subscription AUTO_INCREMENT = 1; ");
-        $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
-        $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
+
 
         $em->flush();
 
