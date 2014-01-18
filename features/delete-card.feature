@@ -22,7 +22,6 @@ Feature: DELETE delete_user_card single
       | 1  | **** **** **** 4242 | 1         | 2014     | 7         |
     And the card with id 1 should have been persisted to stripe for user "bob"
     When I send a DELETE request to "/users/bob/cards/1"
-    Then print response
     Then the response code should be 200
     And the response should contain json:
     """

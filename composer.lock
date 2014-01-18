@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b5c7c59f8c170e2500c65df53906f102",
+    "hash": "90d6b8d200800a8e6b4d600315b9f581",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -742,12 +742,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/EddyLane/SubscriptionBundle.git",
-                "reference": "3782853ade305fee5aea5e43baa7ff9aa0ad918a"
+                "reference": "689dbb0db5cc4a072efafe57b01f0ff1d5ae38cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EddyLane/SubscriptionBundle/zipball/3782853ade305fee5aea5e43baa7ff9aa0ad918a",
-                "reference": "3782853ade305fee5aea5e43baa7ff9aa0ad918a",
+                "url": "https://api.github.com/repos/EddyLane/SubscriptionBundle/zipball/689dbb0db5cc4a072efafe57b01f0ff1d5ae38cd",
+                "reference": "689dbb0db5cc4a072efafe57b01f0ff1d5ae38cd",
                 "shasum": ""
             },
             "require": {
@@ -755,8 +755,8 @@
                 "jms/serializer-bundle": "*",
                 "php": ">=5.5.0",
                 "stof/doctrine-extensions-bundle": "~1.1@dev",
-                "stripe/stripe-php": "dev-master",
-                "symfony/framework-bundle": "~2.1"
+                "symfony/framework-bundle": "~2.1",
+                "zfr/zfr-stripe": "1.2"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -778,7 +778,7 @@
                 "source": "https://github.com/EddyLane/SubscriptionBundle/tree/master",
                 "issues": "https://github.com/EddyLane/SubscriptionBundle/issues"
             },
-            "time": "2014-01-05 00:48:50"
+            "time": "2014-01-18 20:01:24"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -863,12 +863,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "c66cb666ea98d101c3650279c545081a94e47d3e"
+                "reference": "673a905395b391d9fa945d55a4434b3a5434ef6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/c66cb666ea98d101c3650279c545081a94e47d3e",
-                "reference": "c66cb666ea98d101c3650279c545081a94e47d3e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/673a905395b391d9fa945d55a4434b3a5434ef6f",
+                "reference": "673a905395b391d9fa945d55a4434b3a5434ef6f",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +923,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-12-30 08:57:49"
+            "time": "2014-01-17 22:23:44"
         },
         {
             "name": "fzaninotto/faker",
@@ -973,16 +973,16 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.3.8",
+            "version": "v2.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "d2bef940268e4dc5f0f050e80458169a7267813a"
+                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/d2bef940268e4dc5f0f050e80458169a7267813a",
-                "reference": "d2bef940268e4dc5f0f050e80458169a7267813a",
+                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
+                "reference": "35adcaae1a3f50d0d5b73aa50ed8fd28ee35ce54",
                 "shasum": ""
             },
             "require": {
@@ -1049,7 +1049,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2013-11-09 21:23:13"
+            "time": "2014-01-12 16:34:06"
         },
         {
             "name": "guzzle/guzzle",
@@ -1197,16 +1197,16 @@
         },
         {
             "name": "jdorn/sql-formatter",
-            "version": "v1.2.16",
+            "version": "v1.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "8859d664737492d313c34796731b35eca851b362"
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/8859d664737492d313c34796731b35eca851b362",
-                "reference": "8859d664737492d313c34796731b35eca851b362",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/64990d96e0959dff8e059dfcdc1af130728d92bc",
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc",
                 "shasum": ""
             },
             "require": {
@@ -1243,7 +1243,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2013-11-27 22:51:13"
+            "time": "2014-01-12 16:20:24"
         },
         {
             "name": "jms/metadata",
@@ -2067,54 +2067,6 @@
             "time": "2013-06-23 16:53:41"
         },
         {
-            "name": "stripe/stripe-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "ca02fbe5cb15a8c22eba205751a17ceb293c59ec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ca02fbe5cb15a8c22eba205751a17ceb293c59ec",
-                "reference": "ca02fbe5cb15a8c22eba205751a17ceb293c59ec",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": ">=5.2"
-            },
-            "require-dev": {
-                "vierbergenlars/simpletest": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "lib/Stripe/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stripe and contributors",
-                    "homepage": "https://github.com/stripe/stripe-php/contributors"
-                }
-            ],
-            "description": "Stripe PHP Library",
-            "homepage": "https://stripe.com/",
-            "keywords": [
-                "api",
-                "payment processing",
-                "stripe"
-            ],
-            "time": "2013-12-02 20:01:33"
-        },
-        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.0.3",
             "source": {
@@ -2228,20 +2180,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.0.0",
+            "version": "v1.2.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783"
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
                 "shasum": ""
             },
             "require": {
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -2271,7 +2224,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:07"
+            "time": "2013-06-03 18:32:58"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2649,16 +2602,16 @@
         },
         {
             "name": "zfr/zfr-stripe",
-            "version": "v1.2.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zf-fr/zfr-stripe.git",
-                "reference": "77a770987a6f9b12fb475dea6b13ce8ba655ea5a"
+                "reference": "c1d08103e508f9d095bbd27f788171755a1b6a04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zf-fr/zfr-stripe/zipball/77a770987a6f9b12fb475dea6b13ce8ba655ea5a",
-                "reference": "77a770987a6f9b12fb475dea6b13ce8ba655ea5a",
+                "url": "https://api.github.com/repos/zf-fr/zfr-stripe/zipball/c1d08103e508f9d095bbd27f788171755a1b6a04",
+                "reference": "c1d08103e508f9d095bbd27f788171755a1b6a04",
                 "shasum": ""
             },
             "require": {
@@ -2694,7 +2647,7 @@
                 "payment",
                 "stripe"
             ],
-            "time": "2014-01-06 09:44:08"
+            "time": "2014-01-03 10:11:20"
         }
     ],
     "packages-dev": [
@@ -3197,12 +3150,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "c1cff1c0dac5c9936e2419d69af57978e2a6d043"
+                "reference": "ebcd2691e16929614134cc146e8aad6d7782716b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/c1cff1c0dac5c9936e2419d69af57978e2a6d043",
-                "reference": "c1cff1c0dac5c9936e2419d69af57978e2a6d043",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/ebcd2691e16929614134cc146e8aad6d7782716b",
+                "reference": "ebcd2691e16929614134cc146e8aad6d7782716b",
                 "shasum": ""
             },
             "require": {
@@ -3261,20 +3214,20 @@
                 "testing",
                 "tests"
             ],
-            "time": "2014-01-05 12:17:59"
+            "time": "2014-01-17 14:23:47"
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.1.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "119b07de9c592a0286cd584d6e961903ba096d8a"
+                "reference": "fc5ddee4879dfcee788d9cb4b92af9028bc3d7e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/119b07de9c592a0286cd584d6e961903ba096d8a",
-                "reference": "119b07de9c592a0286cd584d6e961903ba096d8a",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/fc5ddee4879dfcee788d9cb4b92af9028bc3d7e8",
+                "reference": "fc5ddee4879dfcee788d9cb4b92af9028bc3d7e8",
                 "shasum": ""
             },
             "require-dev": {
@@ -3316,7 +3269,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2014-01-01 21:15:36"
+            "time": "2014-01-15 15:06:06"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3568,12 +3521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "92e8faf88773fa173b0ab2425ba4ade434c58c5d"
+                "reference": "0a32f059e6e66cdfdd0d7c757646fdcbf822b0ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/92e8faf88773fa173b0ab2425ba4ade434c58c5d",
-                "reference": "92e8faf88773fa173b0ab2425ba4ade434c58c5d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0a32f059e6e66cdfdd0d7c757646fdcbf822b0ca",
+                "reference": "0a32f059e6e66cdfdd0d7c757646fdcbf822b0ca",
                 "shasum": ""
             },
             "require": {
@@ -3634,7 +3587,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-12-29 07:28:17"
+            "time": "2014-01-15 07:18:27"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3692,7 +3645,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20,
-        "stripe/stripe-php": 20,
         "fridge/subscription-bundle": 20,
         "nelmio/alice": 20,
         "doctrine/data-fixtures": 20,
