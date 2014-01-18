@@ -26,7 +26,8 @@ Feature: GET get_user_cards
                 "number":"**** **** **** 4242",
                 "exp_month":7,
                 "exp_year":2014,
-                "id":1
+                "id":1,
+                "default": true
             }
         ]
     """

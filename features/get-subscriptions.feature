@@ -15,19 +15,16 @@ Feature: GET get_subscriptions
             {
                 "name":"small",
                 "price":"100",
-                "description":"smallest",
-                "id":1
+                "description":"smallest"
             },
             {   "name":"middle",
                 "price":"200",
-                "description":"middlest",
-                "id":2
+                "description":"middlest"
             },
             {
                 "name":"large",
                 "price":"300",
-                "description":"largest",
-                "id":3
+                "description":"largest"
             }
         ]
     """

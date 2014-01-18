@@ -77,7 +77,8 @@ Feature: POST post_user_card
         "number":"**** **** **** 4242",
         "exp_month":7,
         "exp_year":2014,
-        "id":1
+        "id":1,
+        "default": true
     }
     """
     And the following cards should exist for user "bob":
@@ -121,9 +122,9 @@ Feature: POST post_user_card
     Given I am authenticating as "bob" with "bob" password
     When I send a POST request to "/users/bob/cards" with body:
     """
-        {
-        "token": 199
-        }
+    {
+       "token": 199
+    }
     """
     Then the response code should be 402
     And the response should contain json:
@@ -149,7 +150,8 @@ Feature: POST post_user_card
         "number":"**** **** **** 4242",
         "exp_month":8,
         "exp_year":2014,
-        "id":1
+        "id":1,
+        "default": true
     }
     """
     And exactly 1 stripe profile should have been created for user "bob"
@@ -180,7 +182,8 @@ Feature: POST post_user_card
         "number":"**** **** **** 4444",
         "exp_month":3,
         "exp_year":2014,
-        "id":2
+        "id":2,
+        "default": true
     }
     """
     And exactly 1 stripe profile should have been created for user "bob"
@@ -205,7 +208,8 @@ Feature: POST post_user_card
         "number":"**** **** **** 4242",
         "exp_month":8,
         "exp_year":2014,
-        "id":1
+        "id":1,
+        "default": true
     }
     """
 
@@ -224,7 +228,8 @@ Feature: POST post_user_card
         "number":"**** **** **** 4444",
         "exp_month":8,
         "exp_year":2014,
-        "id":1
+        "id":1,
+        "default": true
     }
     """
 
@@ -235,7 +240,6 @@ Feature: POST post_user_card
       | number              | cvc | exp_month | exp_year |
       | 378282246310005     | 123 | 08        | 2014     |
     And I send a POST request to "/users/bob/cards" with the generated token
-    Then print response
     Then the response code should be 201
     Then the response should contain json:
     """
@@ -244,7 +248,8 @@ Feature: POST post_user_card
         "number":"**** ****** *0005",
         "exp_month":8,
         "exp_year":2014,
-        "id":1
+        "id":1,
+        "default": true
     }
     """
 
@@ -306,7 +311,7 @@ Feature: POST post_user_card
     Given I am authenticating as "bob" with "bob" password
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
-      | 4000 0000 0000 0341 | 123 | 07        | 2014     |
+      | 4000 0000 0000 0002 | 123 | 07        | 2014     |
     When I send a POST request to "/users/bob/cards" with the generated token
     Then the response code should be 402
     Then the response should contain json:

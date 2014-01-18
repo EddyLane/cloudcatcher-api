@@ -35,7 +35,6 @@ Feature: POST post_user_subscription
         "stripe_profile":{
             "subscription_start":"REPLACED",
             "subscription_end":"REPLACED",
-            "default_card_id":1,
             "subscription":{
                 "name":"small",
                 "price":"100",
@@ -46,7 +45,8 @@ Feature: POST post_user_subscription
                 "number":"**** **** **** 4242",
                 "exp_month":7,
                 "exp_year":2014,
-                "id":1
+                "id":1,
+                "default": true
             }]
         }
     }

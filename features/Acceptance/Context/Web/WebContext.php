@@ -125,8 +125,8 @@ class WebContext extends WebApiContext
         $expectedSubscriptionEnd = new \DateTime();
         $expectedSubscriptionEnd->add(new \DateInterval('P1M'));
 
-        assertEquals($actualSubscriptionStart->format('Y-m-d H'), $expectedSubscriptionStart->format('Y-m-d H'));
-        assertEquals($actualSubscriptionEnd->format('Y-m-d H'), $expectedSubscriptionEnd->format('Y-m-d H'));
+        assertEquals($actualSubscriptionStart->format('Y-m-d'), $expectedSubscriptionStart->format('Y-m-d'));
+        assertEquals($actualSubscriptionEnd->format('Y-m-d'), $expectedSubscriptionEnd->format('Y-m-d'));
 
         $etalon['stripe_profile']['subscription_start'] = true;
         $actual['stripe_profile']['subscription_start'] = true;

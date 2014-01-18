@@ -23,7 +23,6 @@
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "stripe/stripe-php": "dev-master@dev",
         "fridge/subscription-bundle": "dev-master",
         "nelmio/alice":                         "1.4.*@dev",
         "nelmio/cors-bundle": "~1.0",

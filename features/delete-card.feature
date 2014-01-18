@@ -18,15 +18,20 @@ Feature: DELETE delete_user_card single
     When I send a POST request to "/users/bob/cards" with the generated token
     Then the response code should be 201
     And the following cards should exist for user "bob":
-    | id | number              | cardType  | expYear  | expMonth  |
-    | 1  | **** **** **** 4242 | 1         | 2014     | 7         |
+      | id | number              | cardType  | expYear  | expMonth  |
+      | 1  | **** **** **** 4242 | 1         | 2014     | 7         |
     And the card with id 1 should have been persisted to stripe for user "bob"
-    And wait for 5 seconds
     When I send a DELETE request to "/users/bob/cards/1"
     Then the response code should be 200
     And the response should contain json:
     """
-    true
+    {
+        "card_type_name":"Visa",
+        "number":"**** **** **** 4242"
+        ,"exp_month":7,
+        "exp_year":2014,
+        "default":true
+    }
     """
     And no cards should exist in the system
 
@@ -58,7 +63,13 @@ Feature: DELETE delete_user_card single
     Then the response code should be 200
     And the response should contain json:
     """
-    true
+    {
+        "card_type_name":"Visa",
+        "number":"**** **** **** 4242"
+        ,"exp_month":7,
+        "exp_year":2014,
+        "default":true
+    }
     """
 
 

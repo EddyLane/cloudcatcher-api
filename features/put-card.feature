@@ -11,7 +11,6 @@ Feature: PUT put_user_card
     And I set header "Content-type" with value "application/json"
 
   Scenario: Will return a 201 when a card is successfully made default
-
     Given I am authenticating as "bob" with "bob" password
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
@@ -29,8 +28,19 @@ Feature: PUT put_user_card
         "default": true,
         "exp_month": 12,
         "exp_year": 2015,
-        "id": 8,
+        "id": 1,
         "number": "**** **** **** 4242"
     }
     """
-    Then print response
+    Then the response code should be 200
+    And the response should contain json:
+    """
+    {
+        "card_type_name":"Visa",
+        "number":"**** **** **** 4242",
+        "exp_month":8,
+        "exp_year":2014,
+        "id":1,
+        "default": true
+    }
+    """

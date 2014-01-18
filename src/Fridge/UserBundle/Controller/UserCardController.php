@@ -133,7 +133,7 @@ class UserCardController extends BaseController
 
         $user->getStripeProfile()->setDefaultCard($card);
 
-        $this->getUserManager()->updateUser($user);
+        $this->getUserManager()->updateUser($user, true);
 
         return $card;
     }

@@ -12,8 +12,7 @@ Feature: GET get_subscription
     {
         "name":"small",
         "price":"100",
-        "description":"smallest",
-        "id":1
+        "description":"smallest"
     }
     """
 

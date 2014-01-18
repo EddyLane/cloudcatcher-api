@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\Query;
+use ZfrStripe\Exception\NotFoundException;
 
 /**
  * Data context.
@@ -210,7 +211,11 @@ class DataContext extends BehatContext implements KernelAwareInterface
      */
     public function theFollowingCardsShouldExistForUserBob($username, TableNode $table)
     {
-        $cards = $this->getUserManager()->findUserByUsername($username)->getStripeProfile()->getCards();
+        $profile = $this->getUserManager()->findUserByUsername($username)->getStripeProfile();
+
+        $this->getEntityManager()->refresh($profile);
+
+        $cards = $profile->getCards();
 
         assertEquals($table->getHash(), array_map(function($card) {
             return [
@@ -241,14 +246,21 @@ class DataContext extends BehatContext implements KernelAwareInterface
     {
         $subscriptionManager  = $this->getSubscriptionManager();
 
+
         foreach($subscriptionManager->findAll() as $subscription) {
-            $subscriptionManager->remove($subscription, true);
+
+            try {
+                $subscriptionManager->remove($subscription, true);
+            }
+            catch(\Exception $e) {}
+
         }
 
-
         $em = $this->getEntityManager();
-
         $em->getConnection()->exec("ALTER TABLE fridge_subscription AUTO_INCREMENT = 1; ");
+        $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
+        $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
+
         $em->flush();
 
         foreach($table->getHash() as $subscriptionData) {
