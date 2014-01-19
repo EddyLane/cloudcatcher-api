@@ -127,9 +127,31 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $em = $this->getEntityManager();
 
         foreach($em->getRepository('FridgeUserBundle:User')->findAll() as $user) {
-            $em->remove($user);
-            $em->flush();
+            try {
+                $em->remove($user);
+                $em->flush();
+            }
+            catch(\Exception $e) {}
         }
+
+        foreach($em->getRepository('FridgeSubscriptionBundle:StripeProfile')->findAll() as $user) {
+            try {
+                $em->remove($user);
+                $em->flush();
+            }
+            catch(\Exception $e) {}
+        }
+        foreach($em->getRepository('FridgeSubscriptionBundle:Card')->findAll() as $user) {
+            try {
+                $em->remove($user);
+                $em->flush();
+            }
+            catch(\Exception $e) {}
+        }
+
+        $this->removeAll('FridgeUserBundle:User');
+        $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
+        $this->removeAll('FridgeSubscriptionBundle:Card');
 
         $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
         $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
@@ -259,8 +281,6 @@ class DataContext extends BehatContext implements KernelAwareInterface
 
         $em = $this->getEntityManager();
         $em->getConnection()->exec("ALTER TABLE fridge_subscription AUTO_INCREMENT = 1; ");
-
-
         $em->flush();
 
         foreach($table->getHash() as $subscriptionData) {

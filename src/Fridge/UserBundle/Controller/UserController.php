@@ -104,4 +104,16 @@ class UserController extends BaseController
         return $user;
     }
 
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function getUserPaymentsAction($username)
+    {
+        $profile = $this->getUserManager()->findUserByUsername($username)->getStripeProfile();
+
+        return $this->container->get('fridge.subscription.factory.operation_factory')->get('customer.charges.get')->getResult($profile);
+    }
+
 }

@@ -94,6 +94,7 @@ sensio_framework_extra:
 fridge_subscription:
     user_class: Fridge\UserBundle\Entity\User
     stripe_sk: "%stripe_test_secret_key%"
+    enable_listeners: true
 
 nelmio_cors:
     defaults:

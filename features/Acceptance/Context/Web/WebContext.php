@@ -19,12 +19,16 @@ class WebContext extends WebApiContext
     public $stripeToken;
     protected $stripePk;
     protected $stripeSk;
+    protected $stripeClient;
 
     public function __construct($parameters)
     {
         $this->stripePk = $parameters['stripe_pk'];
         $this->stripeSk = $parameters['stripe_sk'];
         $this->parameters = $parameters;
+
+        $this->stripeClient = new \ZfrStripe\Client\StripeClient($this->stripeSk);
+
         parent::__construct($parameters['base_url']);
     }
 
@@ -74,22 +78,32 @@ class WebContext extends WebApiContext
             return $card->getId() === (int) $id;
         }));
 
-        $curl = curl_init();
-
-        curl_setopt($curl, CURLOPT_USERPWD, urlencode($this->stripeSk));
-
-        curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => sprintf('https://api.stripe.com/v1/customers/%s/cards/%s', $stripeProfile->getStripeId(), $card->getToken()),
-            CURLOPT_USERAGENT => 'Stripe CURL',
-        ));
-
-        $resp = curl_exec($curl);
-        curl_close($curl);
-
-        $stripeResponse = json_decode($resp, true);
+        $stripeResponse = $this->stripeClient->getCard([
+            'id' => $card->getToken(),
+            'customer' => $card->getStripeProfile()->getStripeId()
+        ]);
 
         assertEquals($card->getToken(), $stripeResponse['id']);
+    }
+
+    /**
+     * @Given /^the user "([^"]*)" should have a stripe subscription for "([^"]*)"$/
+     */
+    public function theUserShouldHaveAStripeSubscriptionFor($username, $subscriptionName)
+    {
+        $dataContext =  $this->getMainContext()->getSubcontext('datacontext');
+        $user = $dataContext->getUserManager()->findUserByUsername($username);
+        $stripeProfile = $user->getStripeProfile();
+
+        $subscription = $dataContext->getSubscriptionManager()->findOneBy([
+            'name' => $subscriptionName
+        ]);
+
+        $customerData = $this->stripeClient->getCustomer([
+            'id' => $stripeProfile->getStripeId()
+        ]);
+
+        assertEquals($customerData['subscription']['plan']['id'], $subscription->getId());
     }
 
     /**

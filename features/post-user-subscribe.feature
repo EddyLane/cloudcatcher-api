@@ -51,6 +51,7 @@ Feature: POST post_user_subscription
         }
     }
     """
+    And the user "bob" should have a stripe subscription for "small"
 
   Scenario: Will return a 403 when the user has no cards
     Given I am authenticating as "tom" with "tom" password

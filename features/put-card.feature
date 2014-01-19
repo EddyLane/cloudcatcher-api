@@ -21,6 +21,28 @@ Feature: PUT put_user_card
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 08        | 2014     |
     And I send a POST request to "/users/bob/cards" with the generated token
+    And I send a GET request to "/users/bob/cards"
+    Then the response should contain json:
+    """
+    [
+        {
+            "card_type_name":"Visa",
+            "number":"**** **** **** 4242",
+            "exp_month":8,
+            "exp_year":2014,
+            "id":2,
+            "default": true
+        },
+        {
+            "card_type_name":"MasterCard",
+            "number":"**** **** **** 4444",
+            "exp_month":8,
+            "exp_year":2014,
+            "id":1,
+            "default": false
+        }
+    ]
+    """
     When I send a PUT request to "/users/bob/cards/1" with body:
     """
     {
