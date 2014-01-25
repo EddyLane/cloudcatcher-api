@@ -42,14 +42,17 @@ Feature: GET get_user
     [
         {
             "username":"bob",
+            "username_canonical":"bob",
             "email":"bob"
         },
         {
             "username":"tom",
+            "username_canonical":"tom",
             "email":"tom"
         },
         {
             "username":"fridge",
+            "username_canonical":"fridge",
             "email":"fridge"
         }
     ]

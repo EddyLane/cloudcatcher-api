@@ -31,6 +31,7 @@ Feature: POST post_user_subscription
     """
     {
         "username":"bob",
+        "username_canonical":"bob",
         "email":"bob",
         "stripe_profile":{
             "subscription_start":"REPLACED",

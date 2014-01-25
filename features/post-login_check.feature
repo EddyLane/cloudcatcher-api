@@ -16,6 +16,7 @@ Feature: POST login_check
     """
     {
       "username": "bob",
+      "username_canonical":"bob",
       "email": "bob"
     }
     """

@@ -40,6 +40,7 @@ Feature: GET get_user
     """
     {
         "username":"bob",
+        "username_canonical":"bob",
         "email":"bob"
     }
     """
@@ -52,6 +53,7 @@ Feature: GET get_user
     """
     {
         "username":"bob",
+        "username_canonical":"bob",
         "email":"bob"
     }
     """
