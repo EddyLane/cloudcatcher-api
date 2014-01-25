@@ -2,6 +2,12 @@
 Feature: GET get_subscriptions
 
   Scenario: Will return 200 and subscription collection
+    Given the following users exist in the system:
+      | username | email | password |
+      | bob      | bob   | bob      |
+      | john     | john  | john     |
+      | fridge   | fridge | fridge  |
+    And the user "fridge" is an admin
     Given the following subscriptions exist:
       | name   | description | price |
       | small  | smallest    | 100   |

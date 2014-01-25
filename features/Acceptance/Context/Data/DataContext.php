@@ -62,12 +62,14 @@ class DataContext extends BehatContext implements KernelAwareInterface
             ->getContainer()
             ->get('doctrine')
             ->getManager()
-            ;
+        ;
     }
 
 
     protected function removeAll($entity)
     {
+        $this->getKernel()->getContainer()->set('doctrine', null);
+
         $em = $this->getEntityManager();
         $em
             ->createQuery('DELETE ' . $entity)
@@ -276,8 +278,10 @@ class DataContext extends BehatContext implements KernelAwareInterface
                 $subscriptionManager->remove($subscription, true);
             }
             catch(\Exception $e) {}
-
         }
+
+        $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
+        $this->removeAll('FridgeSubscriptionBundle:Subscription');
 
         $em = $this->getEntityManager();
         $em->getConnection()->exec("ALTER TABLE fridge_subscription AUTO_INCREMENT = 1; ");

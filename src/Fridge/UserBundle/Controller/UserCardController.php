@@ -16,6 +16,10 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+/**
+ * Class UserCardController
+ * @package Fridge\UserBundle\Controller
+ */
 class UserCardController extends BaseController
 {
     /**

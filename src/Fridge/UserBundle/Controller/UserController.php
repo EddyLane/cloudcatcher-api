@@ -10,6 +10,10 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use Fridge\SubscriptionBundle\Exception\NoCardsException;
 use FOS\RestBundle\Request\ParamFetcher;
 
+/**
+ * Class UserController
+ * @package Fridge\UserBundle\Controller
+ */
 class UserController extends BaseController
 {
     /**
@@ -20,7 +24,6 @@ class UserController extends BaseController
     public function getMeAction()
     {
         return $this->getUser();
-
     }
 
     /**
@@ -43,7 +46,7 @@ class UserController extends BaseController
      * Get a specific user
      *
      * @param $username
-     * @return mixed
+     * @return \FOS\UserBundle\Model\UserInterface
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
      */
@@ -67,10 +70,10 @@ class UserController extends BaseController
      *
      * @param $username
      * @param ParamFetcher $paramFetcher
-     * @return mixed
+     * @return \FOS\UserBundle\Model\UserInterface
+     * @throws \Fridge\SubscriptionBundle\Exception\NoCardsException
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \Symfony\Component\Security\Core\Exception\InvalidArgumentException
      *
      * @RequestParam(name="subscription", description="Name of the subscription you wish to subscribe to")
@@ -114,6 +117,17 @@ class UserController extends BaseController
         $profile = $this->getUserManager()->findUserByUsername($username)->getStripeProfile();
 
         return $this->container->get('fridge.subscription.factory.operation_factory')->get('customer.charges.get')->getResult($profile);
+    }
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function getUserInvoicesAction($username)
+    {
+        $profile = $this->getUserManager()->findUserByUsername($username)->getStripeProfile();
+
+        return $this->container->get('fridge.subscription.factory.operation_factory')->get('customer.invoices.get')->getResult($profile);
     }
 
 }

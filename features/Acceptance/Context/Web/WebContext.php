@@ -119,6 +119,35 @@ class WebContext extends WebApiContext
     }
 
     /**
+     * @Given /^the response should contain json with created_at replaced with todays date:$/
+     */
+    public function theResponseShouldContainJsonWithCreatedAtReplacedWithTodaysDate(PyStringNode $jsonString)
+    {
+        $etalon = json_decode($this->replacePlaceHolder($jsonString->getRaw()), true);
+        $actual = json_decode($this->getBrowser()->getLastResponse()->getContent(), true);
+
+        if (null === $etalon) {
+            throw new \RuntimeException(
+                "Can not convert etalon to json:\n".$this->replacePlaceHolder($jsonString->getRaw())
+            );
+        }
+
+        $actualSubscriptionStart = new \DateTime($actual[0]['created_at']);
+        $expectedSubscriptionStart = new \DateTime();
+
+        assertEquals($actualSubscriptionStart->format('Y-m-d'), $expectedSubscriptionStart->format('Y-m-d'));
+
+        $etalon[0]['created_at'] = true;
+        $actual[0]['created_at'] = true;
+
+        assertCount(count($etalon), $actual);
+        foreach ($actual as $key => $needle) {
+            assertArrayHasKey($key, $etalon);
+            assertEquals($etalon[$key], $actual[$key]);
+        }
+    }
+
+    /**
      * @Given /^the response should contain json \(with subscription_start and subscription_end replaced with todays date\):$/
      */
     public function theResponseShouldContainJsonWithSubscriptionStartAndSubscriptionEndReplacedWithTodaysDate(PyStringNode $jsonString)

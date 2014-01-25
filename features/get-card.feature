@@ -6,7 +6,7 @@ Feature: GET get_user_card single
       | username | email | password |
       | bob      | bob   | bob      |
       | john     | john  | john     |
-      | fridge   | fridge | fridge   |
+      | fridge   | fridge | fridge  |
     And the user "fridge" is an admin
     And I set header "Content-type" with value "application/json"
 
