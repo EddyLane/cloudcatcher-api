@@ -16,6 +16,7 @@ before_script:
   - composer update
   - app/console doc:database:create
   - app/console doc:schema:update --force
+  - app/console cache:warm
 
   - sudo service nginx restart
   - sudo service php5-fpm restart
