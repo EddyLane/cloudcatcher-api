@@ -30,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="behat.yml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="behat.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+            <state line="11" column="29" selection-start="400" selection-end="400" vertical-scroll-proportion="0.21235521" vertical-offset="0" max-vertical-offset="777">
               <folding />
             </state>
           </provider>
@@ -57,10 +57,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".travis.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="2" selection-start="670" selection-end="670" vertical-scroll-proportion="0.43193716" vertical-offset="0" max-vertical-offset="764">
+            <state line="22" column="0" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
               <folding />
             </state>
           </provider>
@@ -97,10 +97,10 @@
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/composer.lock" />
         <option value="$PROJECT_DIR$/vhost.template" />
-        <option value="$PROJECT_DIR$/behat.yml" />
         <option value="$PROJECT_DIR$/features/delete-card.feature" />
         <option value="$PROJECT_DIR$/features/get-card.feature" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/behat.yml" />
       </list>
     </option>
   </component>
@@ -707,13 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/behat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/delete-card.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state line="98" column="0" selection-start="3623" selection-end="3623" vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="1665">
@@ -730,7 +723,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="2" selection-start="670" selection-end="670" vertical-scroll-proportion="0.43193716" vertical-offset="0" max-vertical-offset="764">
+        <state line="22" column="0" selection-start="668" selection-end="668" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/behat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="29" selection-start="400" selection-end="400" vertical-scroll-proportion="0.21235521" vertical-offset="0" max-vertical-offset="777">
           <folding />
         </state>
       </provider>
