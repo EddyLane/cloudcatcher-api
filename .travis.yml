@@ -1,6 +1,7 @@
 language: php
 
 php:
+
   - 5.5
 
 before_script:
@@ -22,6 +23,8 @@ before_script:
 
   - sudo service nginx restart
   - sudo service php5-fpm restart
+
+  - echo $TRAVIS_PHP_VERSION
 
 script:
   - ./bin/behat --config behat.yml
