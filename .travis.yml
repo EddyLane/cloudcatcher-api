@@ -19,3 +19,7 @@ before_script:
 
 script:
   - ./bin/behat --config behat.yml
+
+addons:
+  hosts:
+    - fridge-subscription-demo.local

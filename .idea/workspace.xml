@@ -39,13 +39,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composer.lock" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="composer.lock" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.lock">
           <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-6.827731" vertical-offset="4875" max-vertical-offset="55065">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="55140">
               <folding />
             </state>
           </provider>
@@ -105,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="behat.yml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="behat.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="28" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0596817" vertical-offset="0" max-vertical-offset="754">
               <folding />
             </state>
           </provider>
@@ -117,7 +117,7 @@
       <file leaf-file-name=".travis.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+            <state line="24" column="6" selection-start="630" selection-end="660" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -133,7 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Fridge/UserBundle/Controller/UserCardController.php" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/GetCustomerInvoicesOperation.php" />
         <option value="$PROJECT_DIR$/features/get-invoices.feature" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Tests/Factory/OperationFactoryTest.php" />
@@ -146,8 +145,9 @@
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-        <option value="$PROJECT_DIR$/behat.yml" />
         <option value="$PROJECT_DIR$/vhost.template" />
+        <option value="$PROJECT_DIR$/composer.lock" />
+        <option value="$PROJECT_DIR$/behat.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
@@ -604,7 +604,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Framework" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30625" sideWeight="0.84347826" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30625" sideWeight="0.84347826" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30625" sideWeight="0.15652174" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -730,20 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/behat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="607" selection-end="607" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="43" selection-start="400" selection-end="444" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="1200">
@@ -756,7 +742,21 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-6.827731" vertical-offset="4875" max-vertical-offset="55065">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="55140">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="6" selection-start="630" selection-end="660" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/behat.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0596817" vertical-offset="0" max-vertical-offset="754">
           <folding />
         </state>
       </provider>
