@@ -7,18 +7,17 @@ before_script: composer install
 
 services:
   - mysql
+  - nginx
+  - php5-fpm
 
 before_script:
 
-  - apt-get install nginx
-  - apt-get install php5-fpm
   - cp .vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo
   - /etc/init.d/nginx restart
 
   # db setup
   - app/console doc:database:create
   - app/console doc:schema:update --force
-  - app/consol
 
 
 script:
