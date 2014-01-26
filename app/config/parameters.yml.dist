@@ -15,5 +15,5 @@ parameters:
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-    stripe_test_secret_key: ~
+    stripe_test_secret_key: sk_test_EvKWOrdwqjnVKwmrZB4dEqfE
     stripe_prod_secret_key: ~

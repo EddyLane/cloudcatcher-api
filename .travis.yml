@@ -1,10 +1,25 @@
 language: php
 
 php:
-  - 5.3.3
-  - 5.3
-  - 5.4
+  - 5.5
 
-before_script: composer install -n
+before_script: composer install
 
-script: phpunit -c app
+services:
+  - mysql
+
+before_script:
+
+  - apt-get install nginx
+  - apt-get install php5-fpm
+  - cp .vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo
+  - /etc/init.d/nginx restart
+
+  # db setup
+  - app/console doc:database:create
+  - app/console doc:schema:update --force
+  - app/consol
+
+
+script:
+  - ./bin/behat --config behat.yml
