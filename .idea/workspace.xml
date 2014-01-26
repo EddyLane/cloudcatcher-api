@@ -30,19 +30,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="behat.yml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="behat.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.057915058" vertical-offset="0" max-vertical-offset="777">
+            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="delete-card.feature" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/delete-card.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="0" selection-start="3623" selection-end="3623" vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="1665">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get-card.feature" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/get-card.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="77" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="20" selection-start="207" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state line="22" column="2" selection-start="670" selection-end="670" vertical-scroll-proportion="0.43193716" vertical-offset="0" max-vertical-offset="764">
               <folding />
             </state>
           </provider>
@@ -67,12 +85,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/GetCustomerInvoicesOperation.php" />
         <option value="$PROJECT_DIR$/features/get-invoices.feature" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Tests/Factory/OperationFactoryTest.php" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Tests/Operation/GetCustomerInvoicesOperationTest.php" />
         <option value="$PROJECT_DIR$/features/Acceptance/Context/Data/DataContext.php" />
-        <option value="$PROJECT_DIR$/features/get-card.feature" />
         <option value="$PROJECT_DIR$/features/get-subscription.feature" />
         <option value="$PROJECT_DIR$/features/get-subscriptions.feature" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/.travis.yml" />
@@ -80,9 +96,11 @@
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/composer.lock" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/vhost.template" />
         <option value="$PROJECT_DIR$/behat.yml" />
+        <option value="$PROJECT_DIR$/features/delete-card.feature" />
+        <option value="$PROJECT_DIR$/features/get-card.feature" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -415,6 +433,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="features" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Acceptance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Context" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FridgeSubscriptionDemo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -580,20 +620,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/phpunit.xml.dist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/EventListener/CardListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="42" selection-start="225" selection-end="225" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="840">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="60" selection-start="438" selection-end="470" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
@@ -674,13 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="207" selection-end="237" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vhost.template">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="0" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
@@ -690,7 +709,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/behat.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.057915058" vertical-offset="0" max-vertical-offset="777">
+        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/delete-card.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="0" selection-start="3623" selection-end="3623" vertical-scroll-proportion="0.0" vertical-offset="858" max-vertical-offset="1665">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/get-card.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="77" selection-start="727" selection-end="727" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="2" selection-start="670" selection-end="670" vertical-scroll-proportion="0.43193716" vertical-offset="0" max-vertical-offset="764">
           <folding />
         </state>
       </provider>
