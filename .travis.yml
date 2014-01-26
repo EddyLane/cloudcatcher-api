@@ -27,8 +27,10 @@ before_script:
   - echo $TRAVIS_PHP_VERSION
 
 script:
+
   - ./bin/behat --config behat.yml
 
 addons:
+
   hosts:
     - fridge-subscription-demo.local
