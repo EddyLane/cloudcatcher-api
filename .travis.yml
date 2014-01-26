@@ -8,7 +8,7 @@ before_script:
   - sudo apt-get install nginx
   - sudo apt-get install php5-fpm
   - sudo cp vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo
-  - sed s|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|$TRAVIS_BUILD_DIR|g;s|APP_NAME|fridge-subscription-demo|g /etc/nginx/sites-enabled/fridge-subscription-demo
+  - sed 's|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|$TRAVIS_BUILD_DIR|g;s|APP_NAME|fridge-subscription-demo|g' /etc/nginx/sites-enabled/fridge-subscription-demo
   - sudo service nginx restart
 
   # db setup
