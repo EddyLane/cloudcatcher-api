@@ -51,15 +51,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="32" selection-start="2360" selection-end="2360" vertical-scroll-proportion="0.0" vertical-offset="896" max-vertical-offset="2115">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Configuration.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Fridge/UserBundle/DependencyInjection/Configuration.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -105,10 +96,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="behat.yml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="behat.yml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/behat.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0596817" vertical-offset="0" max-vertical-offset="754">
+            <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vhost.template" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vhost.template">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="32" selection-start="630" selection-end="630" vertical-scroll-proportion="0.5769231" vertical-offset="0" max-vertical-offset="754">
               <folding />
             </state>
           </provider>
@@ -145,10 +145,10 @@
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-        <option value="$PROJECT_DIR$/vhost.template" />
         <option value="$PROJECT_DIR$/composer.lock" />
         <option value="$PROJECT_DIR$/behat.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/vhost.template" />
       </list>
     </option>
   </component>
@@ -681,13 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vhost.template">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="32" selection-start="2360" selection-end="2360" vertical-scroll-proportion="0.0" vertical-offset="896" max-vertical-offset="2115">
@@ -756,7 +749,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/behat.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0596817" vertical-offset="0" max-vertical-offset="754">
+        <state line="3" column="12" selection-start="59" selection-end="59" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vhost.template">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="32" selection-start="630" selection-end="630" vertical-scroll-proportion="0.5769231" vertical-offset="0" max-vertical-offset="754">
           <folding />
         </state>
       </provider>
