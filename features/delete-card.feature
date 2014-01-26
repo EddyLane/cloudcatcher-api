@@ -16,6 +16,7 @@ Feature: DELETE delete_user_card single
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
     When I send a POST request to "/users/bob/cards" with the generated token
+    Then print response
     Then the response code should be 201
     And the following cards should exist for user "bob":
       | id | number              | cardType  | expYear  | expMonth  |
@@ -42,6 +43,7 @@ Feature: DELETE delete_user_card single
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
     When I send a POST request to "/users/john/cards" with the generated token
+    Then print response
     Given I am authenticating as "bob" with "bob" password
     And I send a DELETE request to "/users/john/cards/1"
     Then the response code should be 403
@@ -79,6 +81,7 @@ Feature: DELETE delete_user_card single
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
     When I send a POST request to "/users/bob/cards" with the generated token
+    Then print response
     And I send a DELETE request to "/users/missing/cards/1"
     Then the response code should be 404
     And the response should contain json:
@@ -92,6 +95,7 @@ Feature: DELETE delete_user_card single
   Scenario: Will return 404 when no card exists
     Given I am authenticating as "bob" with "bob" password
     And I send a DELETE request to "/users/bob/cards/1"
+    Then print response
     Then the response code should be 404
     And the response should contain json:
     """
