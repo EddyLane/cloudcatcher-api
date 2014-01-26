@@ -18,6 +18,9 @@ before_script:
   - app/console doc:schema:update --force
   - app/console cache:warm
 
+  - sudo chmod -R 0777 $TRAVIS_BUILD_DIR/app/cache
+  - sudo chmod -R 0777 $TRAVIS_BUILD_DIR/app/logs
+
   - sudo service nginx restart
   - sudo service php5-fpm restart
 
