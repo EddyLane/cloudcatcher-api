@@ -78,7 +78,7 @@
       <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.travis.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="389" selection-end="389" vertical-scroll-proportion="0.4376658" vertical-offset="0" max-vertical-offset="754">
+            <state line="10" column="120" selection-start="307" selection-end="307" vertical-scroll-proportion="0.20242915" vertical-offset="0" max-vertical-offset="741">
               <folding />
             </state>
           </provider>
@@ -87,7 +87,7 @@
       <file leaf-file-name="vhost.template" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vhost.template">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+            <state line="37" column="0" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
               <folding />
             </state>
           </provider>
@@ -130,7 +130,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Fridge/UserBundle/Controller/UserController.php" />
         <option value="$PROJECT_DIR$/src/Fridge/UserBundle/Controller/UserCardController.php" />
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/Operation/GetCustomerInvoicesOperation.php" />
         <option value="$PROJECT_DIR$/features/get-invoices.feature" />
@@ -145,6 +144,7 @@
         <option value="$PROJECT_DIR$/vendor/fridge/subscription-bundle/src/Fridge/SubscriptionBundle/phpunit.xml.dist" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
         <option value="$PROJECT_DIR$/behat.yml" />
+        <option value="$PROJECT_DIR$/vhost.template" />
         <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
@@ -613,14 +613,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vhost.template">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+        <state line="37" column="0" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="389" selection-end="389" vertical-scroll-proportion="0.4376658" vertical-offset="0" max-vertical-offset="754">
+        <state line="10" column="120" selection-start="307" selection-end="307" vertical-scroll-proportion="0.20242915" vertical-offset="0" max-vertical-offset="741">
           <folding />
         </state>
       </provider>
