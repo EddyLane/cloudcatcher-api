@@ -6,14 +6,16 @@ php:
 before_script: composer install
 
 services:
-  - mysql
+
   - nginx
   - php5-fpm
 
 before_script:
 
-  - cp .vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo
-  - /etc/init.d/nginx restart
+  - sudo apt-get install nginx
+  - sudo apt-get install php5-fpm
+  - cp vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo
+  - sudo service nginx restart
 
   # db setup
   - app/console doc:database:create
