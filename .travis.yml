@@ -9,7 +9,7 @@ before_script:
   - pwd
   - cat vhost.template
   - sudo cp $TRAVIS_BUILD_DIR/vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo.local
-  - sed 's|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|$TRAVIS_BUILD_DIR|g;s|APP_NAME|fridge-subscription-demo.local|g' /etc/nginx/sites-enabled/fridge-subscription-demo.local
+  - sed 's|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|/home/travis/build/EddyLane/DemoSubscriptionBundle|g;s|APP_NAME|fridge-subscription-demo.local|g' --in-place /etc/nginx/sites-enabled/fridge-subscription-demo.local
   - cat /etc/nginx/sites-enabled/fridge-subscription-demo.local
 
   - composer update
