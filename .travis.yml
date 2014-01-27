@@ -7,7 +7,7 @@ before_script:
 
   - sudo apt-get install nginx
   - sudo add-apt-repository ppa:ondrej/php5 -y
-  - sudo apt-get install --no-interaction
+  - sudo apt-get update
   - sudo apt-get install python-software-properties
   - sudo apt-get install php5-fpm
   - sudo apt-get install php5-cli
@@ -16,7 +16,7 @@ before_script:
   - sudo cp $TRAVIS_BUILD_DIR/vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo.local
   - sudo sed 's|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|/home/travis/build/EddyLane/DemoSubscriptionBundle|g;s|APP_NAME|fridge-subscription-demo.local|g' /etc/nginx/sites-enabled/fridge-subscription-demo.local --in-place
 
-  - composer update
+  - composer update -n
   - app/console doc:database:create
   - app/console doc:schema:update --force
   - app/console cache:warm
