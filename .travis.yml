@@ -7,6 +7,9 @@ php:
 before_script:
 
   - sudo apt-get install nginx
+  - sudo add-apt-repository ppa:ondrej/php5
+  - sudo apt-get update
+  - sudo apt-get install python-software-properties
   - sudo apt-get install php5-fpm
   - sudo apt-get install php5-cli
 
