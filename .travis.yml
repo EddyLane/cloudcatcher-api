@@ -5,29 +5,34 @@ php:
 
 before_script:
 
-  - sudo apt-get install nginx
+  - sudo apt-get install python-software-properties
   - sudo add-apt-repository ppa:ondrej/php5 -y
   - sudo apt-get update
-  - sudo apt-get install python-software-properties
+  - sudo apt-get install nginx
   - sudo apt-get install php5-fpm
   - sudo apt-get install php5-cli
   - sudo apt-get install php5-curl
+  - sudo apt-get install php5-mysql
 
   - sudo cp $TRAVIS_BUILD_DIR/vhost.template /etc/nginx/sites-enabled/fridge-subscription-demo.local
   - sudo sed 's|APP_URLS|fridge-subscription-demo.local|g;s|APP_PATH|/home/travis/build/EddyLane/DemoSubscriptionBundle|g;s|APP_NAME|fridge-subscription-demo.local|g' /etc/nginx/sites-enabled/fridge-subscription-demo.local --in-place
 
-  - composer update -n
+  - composer install -n
   - app/console doc:database:create
   - app/console doc:schema:update --force
-  - app/console cache:warm
 
-  - sudo chmod -R 0777 $TRAVIS_BUILD_DIR/app/cache
-  - sudo chmod -R 0777 $TRAVIS_BUILD_DIR/app/logs
+  - sudo chmod -R 0777 app/cache app/logs
+  - app/console --env=test cache:warmup
+  - sudo chmod -R 0777 app/cache app/logs
 
   - sudo service nginx restart
   - sudo service php5-fpm restart
+  - sudo service mysql restart
 
-  - echo $TRAVIS_PHP_VERSION
+  - app/console router:debug
+
+  - cat /etc/hosts
+  - cat /etc/nginx/sites-enabled/fridge-subscription-demo.local
 
 script:
 
