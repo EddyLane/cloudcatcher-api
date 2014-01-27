@@ -3,7 +3,7 @@ server {
   set $app_path APP_PATH;
   set $app_name APP_NAME;
 
-  listen 80;
+  listen 8080;
 
   server_name APP_URLS;
   root $app_path/web;

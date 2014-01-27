@@ -3,7 +3,7 @@ default:
         tags: "~@ignore"
     context:
         parameters:
-            base_url: 'http://fridge-subscription-demo.local/app_dev.php'
+            base_url: 'http://fridge-subscription-demo.local:8080/app_dev.php'
             stripe_pk: pk_test_NxXwZdz2dHWIJzud9Hs4GwAv
             stripe_sk: sk_test_EvKWOrdwqjnVKwmrZB4dEqfE
         class: Acceptance\Context\MainContext
