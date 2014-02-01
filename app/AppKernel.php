@@ -27,7 +27,8 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             ////src
-            new Fridge\UserBundle\FridgeUserBundle()
+            new Fridge\UserBundle\FridgeUserBundle(),
+            new Fridge\ApiBundle\FridgeApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

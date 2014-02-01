@@ -27,7 +27,8 @@
         "nelmio/alice":                         "1.4.*@dev",
         "nelmio/cors-bundle": "~1.0",
         "doctrine/data-fixtures":              "@dev",
-        "doctrine/doctrine-fixtures-bundle":   "dev-master@dev"
+        "doctrine/doctrine-fixtures-bundle":   "dev-master@dev",
+        "friendsofsymfony/oauth-server-bundle": "dev-master"
     },
     "require-dev": {
         "behat/behat": "~2.5",

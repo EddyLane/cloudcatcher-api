@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "90d6b8d200800a8e6b4d600315b9f581",
+    "hash": "545375945cec5fbf2cd8d753cf909d5a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -742,12 +742,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/EddyLane/SubscriptionBundle.git",
-                "reference": "63eed888fae18cf377ec9e8dfa8524bd7202b904"
+                "reference": "6ee42ca3ac4f1580f982b84e9bd075508222b650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EddyLane/SubscriptionBundle/zipball/63eed888fae18cf377ec9e8dfa8524bd7202b904",
-                "reference": "63eed888fae18cf377ec9e8dfa8524bd7202b904",
+                "url": "https://api.github.com/repos/EddyLane/SubscriptionBundle/zipball/6ee42ca3ac4f1580f982b84e9bd075508222b650",
+                "reference": "6ee42ca3ac4f1580f982b84e9bd075508222b650",
                 "shasum": ""
             },
             "require": {
@@ -783,7 +783,127 @@
                 "source": "https://github.com/EddyLane/SubscriptionBundle/tree/master",
                 "issues": "https://github.com/EddyLane/SubscriptionBundle/issues"
             },
-            "time": "2014-01-26 00:27:20"
+            "time": "2014-01-26 15:40:06"
+        },
+        {
+            "name": "friendsofsymfony/oauth-server-bundle",
+            "version": "dev-master",
+            "target-dir": "FOS/OAuthServerBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSOAuthServerBundle.git",
+                "reference": "29fe331e12c11ae33511715d686f2a2d5d01e92b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/29fe331e12c11ae33511715d686f2a2d5d01e92b",
+                "reference": "29fe331e12c11ae33511715d686f2a2d5d01e92b",
+                "shasum": ""
+            },
+            "require": {
+                "friendsofsymfony/oauth2-php": "~1.1.0",
+                "php": ">=5.3.3",
+                "symfony/framework-bundle": "~2.1",
+                "symfony/security-bundle": "~2.1"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "~1.0",
+                "doctrine/mongodb-odm": "1.0.*@dev",
+                "doctrine/orm": ">=2.2,<2.5-dev",
+                "symfony/class-loader": "~2.1",
+                "symfony/yaml": "~2.1",
+                "willdurand/propel-typehintable-behavior": "1.0.*"
+            },
+            "suggest": {
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/mongodb-odm-bundle": "*",
+                "propel/propel-bundle": "If you want to use Propel with Symfony2, then you will have to install the PropelBundle",
+                "willdurand/propel-typehintable-behavior": "The Typehintable behavior is useful to add type hints on generated methods, to be compliant with interfaces"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\OAuthServerBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arnaud Le Blanc",
+                    "email": "arnaud.lb@gmail.com"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/FriendsOfSymfony/FOSOAuthServerBundle/contributors"
+                }
+            ],
+            "description": "Symfony2 OAuth Server Bundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "oauth",
+                "oauth2",
+                "server"
+            ],
+            "time": "2014-01-21 16:22:11"
+        },
+        {
+            "name": "friendsofsymfony/oauth2-php",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/oauth2-php.git",
+                "reference": "33127b1093f74ae937a2a93c1681db8e4bb84964"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/oauth2-php/zipball/33127b1093f74ae937a2a93c1681db8e4bb84964",
+                "reference": "33127b1093f74ae937a2a93c1681db8e4bb84964",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/http-foundation": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "OAuth2": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arnaud Le Blanc",
+                    "email": "arnaud.lb@gmail.com"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/FriendsOfSymfony/oauth2-php/contributors"
+                }
+            ],
+            "description": "OAuth2 library",
+            "homepage": "https://github.com/FriendsOfSymfony/oauth2-php",
+            "keywords": [
+                "oauth",
+                "oauth2"
+            ],
+            "time": "2013-10-30 00:01:17"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -868,12 +988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd"
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/da9a97314884275c77a741205bda9f86afe23ffd",
-                "reference": "da9a97314884275c77a741205bda9f86afe23ffd",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/23d15ad680fe5b695df1565e7854342e608bc483",
+                "reference": "23d15ad680fe5b695df1565e7854342e608bc483",
                 "shasum": ""
             },
             "require": {
@@ -928,7 +1048,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-01-22 08:58:14"
+            "time": "2014-01-26 23:20:11"
         },
         {
             "name": "fzaninotto/faker",
@@ -1058,16 +1178,16 @@
         },
         {
             "name": "guzzle/guzzle",
-            "version": "v3.8.0",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69"
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
-                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
                 "shasum": ""
             },
             "require": {
@@ -1105,8 +1225,8 @@
                 "phpunit/phpunit": "3.7.*",
                 "psr/log": "1.0.*",
                 "symfony/class-loader": "*",
-                "zendframework/zend-cache": "2.0.*",
-                "zendframework/zend-log": "2.0.*"
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
             },
             "type": "library",
             "extra": {
@@ -1116,8 +1236,8 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Guzzle\\Tests": "tests/",
-                    "Guzzle": "src/"
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1146,7 +1266,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-12-05 23:39:20"
+            "time": "2014-01-28 22:29:15"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2293,17 +2413,17 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "target-dir": "Symfony/Bundle/SwiftmailerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/SwiftmailerBundle.git",
-                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93"
+                "reference": "fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/f5e5d12629c26a835c7aa1d74e2e041486b92d93",
-                "reference": "f5e5d12629c26a835c7aa1d74e2e041486b92d93",
+                "url": "https://api.github.com/repos/symfony/SwiftmailerBundle/zipball/fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321",
+                "reference": "fcefa9dbd5a1ed20547b0f8a2afd5ad6837ea321",
                 "shasum": ""
             },
             "require": {
@@ -2344,7 +2464,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2013-08-22 13:32:58"
+            "time": "2013-11-21 12:29:01"
         },
         {
             "name": "symfony/symfony",
@@ -2913,12 +3033,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkBrowserKitDriver.git",
-                "reference": "c61ef01fe755e88fb2b819f55897e82f591ec61d"
+                "reference": "aca8d88b6a13e9be1d9929f023d1d6229e68c3bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/c61ef01fe755e88fb2b819f55897e82f591ec61d",
-                "reference": "c61ef01fe755e88fb2b819f55897e82f591ec61d",
+                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/aca8d88b6a13e9be1d9929f023d1d6229e68c3bd",
+                "reference": "aca8d88b6a13e9be1d9929f023d1d6229e68c3bd",
                 "shasum": ""
             },
             "require": {
@@ -2960,7 +3080,7 @@
                 "browser",
                 "testing"
             ],
-            "time": "2014-01-20 00:35:34"
+            "time": "2014-01-30 22:24:15"
         },
         {
             "name": "behat/mink-extension",
@@ -2968,12 +3088,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkExtension.git",
-                "reference": "bade18bc89df04eb2203d76d50c978a7232c96f1"
+                "reference": "a6c0b091539a20bcbcec8160748a6e28625846b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/bade18bc89df04eb2203d76d50c978a7232c96f1",
-                "reference": "bade18bc89df04eb2203d76d50c978a7232c96f1",
+                "url": "https://api.github.com/repos/Behat/MinkExtension/zipball/a6c0b091539a20bcbcec8160748a6e28625846b3",
+                "reference": "a6c0b091539a20bcbcec8160748a6e28625846b3",
                 "shasum": ""
             },
             "require": {
@@ -3010,7 +3130,7 @@
                 "test",
                 "web"
             ],
-            "time": "2014-01-25 00:24:29"
+            "time": "2014-01-30 23:06:00"
         },
         {
             "name": "behat/symfony2-extension",
@@ -3278,22 +3398,22 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "1.2.13",
+            "version": "1.2.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "466e7cd2554b4e264c9e3f31216d25ac0e5f3d94"
+                "reference": "d4b3bc1c4b905cd0b3b356e8608857f26a041c1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/466e7cd2554b4e264c9e3f31216d25ac0e5f3d94",
-                "reference": "466e7cd2554b4e264c9e3f31216d25ac0e5f3d94",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d4b3bc1c4b905cd0b3b356e8608857f26a041c1b",
+                "reference": "d4b3bc1c4b905cd0b3b356e8608857f26a041c1b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
                 "phpunit/php-file-iterator": ">=1.3.0@stable",
-                "phpunit/php-text-template": ">=1.1.1@stable",
+                "phpunit/php-text-template": ">=1.2.0@stable",
                 "phpunit/php-token-stream": ">=1.1.3@stable"
             },
             "require-dev": {
@@ -3335,7 +3455,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-09-10 08:14:32"
+            "time": "2014-01-31 08:51:59"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3384,16 +3504,16 @@
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "1.1.4",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23"
+                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/5180896f51c5b3648ac946b05f9ec02be78a0b23",
-                "reference": "5180896f51c5b3648ac946b05f9ec02be78a0b23",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
+                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
                 "shasum": ""
             },
             "require": {
@@ -3424,7 +3544,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2012-10-31 18:15:28"
+            "time": "2014-01-30 17:20:04"
         },
         {
             "name": "phpunit/php-timer",
@@ -3526,12 +3646,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "641cd682a2cdd8c7dd7b018741f33b44d5b2ce0f"
+                "reference": "2f33258fa5a0c330515b7deba2bc040fa5c3953b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/641cd682a2cdd8c7dd7b018741f33b44d5b2ce0f",
-                "reference": "641cd682a2cdd8c7dd7b018741f33b44d5b2ce0f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2f33258fa5a0c330515b7deba2bc040fa5c3953b",
+                "reference": "2f33258fa5a0c330515b7deba2bc040fa5c3953b",
                 "shasum": ""
             },
             "require": {
@@ -3592,7 +3712,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-01-25 07:51:18"
+            "time": "2014-01-31 08:54:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3654,6 +3774,7 @@
         "nelmio/alice": 20,
         "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
+        "friendsofsymfony/oauth-server-bundle": 20,
         "behat/common-contexts": 20,
         "behat/mink-extension": 20,
         "behat/mink-browserkit-driver": 20,
