@@ -31,7 +31,7 @@ class User extends BaseUser
 
     /**
      * @ORM\ManyToMany(targetEntity="Fridge\UserBundle\Entity\Group")
-     * @ORM\JoinTable(name="fos_user_user_group",
+     * @ORM\JoinTable(name="fridge_user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )

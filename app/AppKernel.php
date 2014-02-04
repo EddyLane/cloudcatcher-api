@@ -9,7 +9,7 @@ class AppKernel extends Kernel
     {
         $bundles = array(
             ////vendor
-            //symfony
+            //framework
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
@@ -20,11 +20,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             //fridge
             new Fridge\SubscriptionBundle\FridgeSubscriptionBundle(),
-            //for the demo
+            //dependencies
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),

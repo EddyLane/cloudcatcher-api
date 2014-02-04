@@ -1,20 +1,24 @@
 fridge_subscription_routing:
     resource: "@FridgeSubscriptionBundle/Resources/config/routing.yml"
     type: rest
+    prefix: /api/v1/
+
 
 fridge_user_routing:
     resource: "@FridgeUserBundle/Resources/config/routing.yml"
     type: rest
+    prefix: /api/v1/
 
 login_check:
-    path: /security/login
+    path: /api/v1/security/login
     defaults: { _controller: FOSUserBundle:Security:check, _format: json }
     methods: [POST]
     requirements:
         _format:  json
 
-homepage:
-    path: /
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template: "FridgeUserBundle:Default:homepage.html.twig"
+# app/config/routing.yml
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"

@@ -121,6 +121,23 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
+     * @Given /^no users exist in the system$/
+     * @Given /^No users exist in the system$/
+     */
+    public function noUsersExistInTheSystem()
+    {
+        $em = $this->getEntityManager();
+
+        foreach($em->getRepository('FridgeUserBundle:User')->findAll() as $user) {
+            try {
+                $em->remove($user);
+                $em->flush();
+            }
+            catch(\Exception $e) {}
+        }
+    }
+
+    /**
      * @Given /^the following users exist in the system:$/
      */
     public function theFollowingUsersExistInTheSystem(TableNode $userTable)

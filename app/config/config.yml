@@ -11,7 +11,10 @@ framework:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
     form:            ~
-    csrf_protection: ~
+    csrf_protection: false
+    form:
+        csrf_protection:
+            enabled: false
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
@@ -111,6 +114,15 @@ nelmio_cors:
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE', 'OPTIONS']
             max_age: 3600
 
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Fridge\ApiBundle\Entity\Client
+    access_token_class:  Fridge\ApiBundle\Entity\AccessToken
+    refresh_token_class: Fridge\ApiBundle\Entity\RefreshToken
+    auth_code_class:     Fridge\ApiBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager
+
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
@@ -134,3 +146,4 @@ fos_rest:
         messages:
             'Symfony\Component\HttpKernel\Exception\HttpException': true
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+

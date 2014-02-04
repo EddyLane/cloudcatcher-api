@@ -13,7 +13,8 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-abstract class BaseController extends FOSRestController {
+abstract class BaseController extends FOSRestController
+{
 
     /**
      * @param Request $request
@@ -22,7 +23,7 @@ abstract class BaseController extends FOSRestController {
      */
     public function initialize(Request $request, SecurityContextInterface $securityContext)
     {
-        if(!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        if (!$securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw new HttpException(403, 'Not authenticated');
         }
     }

@@ -12,24 +12,37 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-
+#
+#        oauth_token:
+#            pattern:    ^/oauth/v2/token
+#            security:   false
+#
+#        oauth_authorize:
+#            pattern:    ^/oauth/v2/auth
+#            form_login:
+#                require_previous_session: false
+#                provider: fos_userbundle
+#                check_path: /oauth/v2/auth
+#                success_handler: authentication_handler
+#                failure_handler: authentication_handler
+#            # Add your favorite authentication process here
+#
+#        api:
+#            pattern:    ^/api
+#            fos_oauth:  true
+#            stateless:  true
+#            anonymous:  true
+#            http_basic: true
+##
         main:
-            pattern: ^/
+            pattern: ^/api
             form_login:
                 require_previous_session: false
                 provider: fos_userbundle
-                check_path: /security/login
+                check_path: /api/v1/security/login
                 success_handler: authentication_handler
                 failure_handler: authentication_handler
             logout:
                 path: /security/logout
             anonymous:    true
             http_basic: true
-
-    access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/security/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/security/logout, role: IS_AUTHENTICATED_REMEMBERED }
-        - { path: ^/admin/, role: ROLE_ADMIN }
