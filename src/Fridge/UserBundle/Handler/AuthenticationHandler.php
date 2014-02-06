@@ -9,6 +9,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerI
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;
+use JWT;
+
 class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, AuthenticationFailureHandlerInterface
 {
     /**
@@ -31,7 +33,14 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        $view = View::create($token->getUser());
+
+        $key = "cHDKObhqKrq2vURpyrjAgkk8v18Z6MP1yWmGw5ox";
+        $jwt = JWT::encode([
+            'username' => $token->getUser()->getUsername()
+        ], $key);
+        $user = $token->getUser();
+        $user->setFirebaseToken($jwt);
+        $view = View::create($user);
         $view->setStatusCode(200);
         return $this->viewHandler->handle($view);
     }

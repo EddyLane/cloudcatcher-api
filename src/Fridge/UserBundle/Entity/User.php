@@ -39,6 +39,30 @@ class User extends BaseUser
     protected $groups;
 
     /**
+     * @Serializer\Expose()
+     */
+    protected $firebaseToken;
+
+    /**
+     * @param $firebaseToken
+     * @return $this
+     */
+    public function setFirebaseToken($firebaseToken)
+    {
+        $this->firebaseToken = $firebaseToken;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirebaseToken()
+    {
+        return $this->firebaseToken;
+    }
+
+    /**
      * @param StripeProfile $stripeProfile
      * @return $this
      */

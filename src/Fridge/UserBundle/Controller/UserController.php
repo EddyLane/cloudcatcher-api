@@ -5,47 +5,60 @@ namespace Fridge\UserBundle\Controller;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
-use FOS\RestBundle\Controller\Annotations\RequestParam;
 use Fridge\SubscriptionBundle\Exception\NoCardsException;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Event\UserEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use FOS\UserBundle\Model\UserInterface;
-use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Component\Security\Core\SecurityContextInterface;
+use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\View\View;
+use JWT;
+
 /**
  * Class UserController
  * @package Fridge\UserBundle\Controller
  */
 class UserController extends BaseController
 {
-
+    /**
+     * @var \Symfony\Component\Security\Core\SecurityContextInterface $securityContext
+     */
     protected $securityContext;
 
+    /**
+     * @param Request $request
+     * @param SecurityContextInterface $securityContext
+     */
     public function initialize(Request $request, SecurityContextInterface $securityContext)
     {
         $this->securityContext = $securityContext;
     }
+
     /**
-     * Get currently authenticated user
-     *
-     * @return mixed
+     * @return \Fridge\UserBundle\Entity\User
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getUsersMeAction()
     {
         if (!$this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw new HttpException(403, 'Not authenticated');
         }
-
-        return $this->getUser();
+        $user = $this->getUser();
+        $key = "cHDKObhqKrq2vURpyrjAgkk8v18Z6MP1yWmGw5ox";
+        $jwt = JWT::encode([
+            "iat" => time(),
+            'id' => $user->getUsername(),
+            "auth" => [
+                'id' => $user->getUsername(),
+                'username' => $user->getUsername()
+            ]
+        ], $key);
+        $user->setFirebaseToken($jwt);
+        return $user;
     }
 
     /**
@@ -61,7 +74,6 @@ class UserController extends BaseController
         }
 
         return $this->container->get('fridge.user.manager.user_manager')->findAll();
-
     }
 
     /**
@@ -71,6 +83,7 @@ class UserController extends BaseController
      * @return \FOS\UserBundle\Model\UserInterface
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getUserAction($username)
     {
@@ -93,6 +106,7 @@ class UserController extends BaseController
 
     /**
      * Subscribe to a subscription
+     * @RequestParam(name="subscription", description="Name of the subscription you wish to subscribe to")
      *
      * @param $username
      * @param ParamFetcher $paramFetcher
@@ -100,9 +114,8 @@ class UserController extends BaseController
      * @throws \Fridge\SubscriptionBundle\Exception\NoCardsException
      * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
      * @throws \Symfony\Component\Routing\Exception\ResourceNotFoundException
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \Symfony\Component\Security\Core\Exception\InvalidArgumentException
-     *
-     * @RequestParam(name="subscription", description="Name of the subscription you wish to subscribe to")
      */
     public function postUserSubscriptionAction($username, ParamFetcher $paramFetcher)
     {
@@ -138,10 +151,9 @@ class UserController extends BaseController
         return $user;
     }
 
-
     /**
-     * @return \FOS\UserBundle\Model\UserInterface
-     * @View(statusCode=201)
+     * @param Request $request
+     * @return \FOS\UserBundle\Model\UserInterface|null|\Symfony\Component\Form\FormInterface|\Symfony\Component\HttpFoundation\Response
      */
     public function postUserAction(Request $request)
     {
@@ -189,10 +201,10 @@ class UserController extends BaseController
         return $form;
     }
 
-
     /**
      * @param $username
      * @return mixed
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getUserPaymentsAction($username)
     {
@@ -208,6 +220,7 @@ class UserController extends BaseController
     /**
      * @param $username
      * @return mixed
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      */
     public function getUserInvoicesAction($username)
     {

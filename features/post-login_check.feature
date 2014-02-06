@@ -11,6 +11,7 @@ Feature: POST login_check
     """
     _username=bob&_password=bob&_remember_me=1
     """
+    And print response
     And the response code should be 200
     And the response should contain json:
     """
