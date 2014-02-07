@@ -2,6 +2,7 @@
 
 namespace Fridge\UserBundle\Handler;
 
+use Fridge\FirebaseBundle\Generator\TokenGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
@@ -11,6 +12,10 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandler;
 use JWT;
 
+/**
+ * Class AuthenticationHandler
+ * @package Fridge\UserBundle\Handler
+ */
 class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, AuthenticationFailureHandlerInterface
 {
     /**
@@ -19,11 +24,18 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     protected $viewHandler;
 
     /**
-     * @param $viewHandler
+     * @var \Fridge\FirebaseBundle\Generator\TokenGeneratorInterface
      */
-    public function __construct(ViewHandler $viewHandler)
+    protected $tokenGenerator;
+
+    /**
+     * @param ViewHandler $viewHandler
+     * @param TokenGeneratorInterface $tokenGenerator
+     */
+    public function __construct(ViewHandler $viewHandler, TokenGeneratorInterface $tokenGenerator)
     {
         $this->viewHandler = $viewHandler;
+        $this->tokenGenerator = $tokenGenerator;
     }
 
     /**
@@ -33,13 +45,8 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-
-        $key = "cHDKObhqKrq2vURpyrjAgkk8v18Z6MP1yWmGw5ox";
-        $jwt = JWT::encode([
-            'username' => $token->getUser()->getUsername()
-        ], $key);
         $user = $token->getUser();
-        $user->setFirebaseToken($jwt);
+        $user->setFirebaseToken($this->tokenGenerator->generate($user));
         $view = View::create($user);
         $view->setStatusCode(200);
         return $this->viewHandler->handle($view);

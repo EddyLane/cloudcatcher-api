@@ -1,0 +1,7 @@
+parameters:
+    fridge.firebase.generator.token_generator.class: Fridge\FirebaseBundle\Generator\TokenGenerator
+
+services:
+    fridge.firebase.generator.token_generator:
+        class: %fridge.firebase.generator.token_generator.class%
+        arguments: [%firebase_secret_key%]

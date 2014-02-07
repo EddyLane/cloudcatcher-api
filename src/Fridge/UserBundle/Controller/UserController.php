@@ -47,17 +47,15 @@ class UserController extends BaseController
         if (!$this->securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             throw new HttpException(403, 'Not authenticated');
         }
+
+        /** @var \Fridge\FirebaseBundle\Generator\TokenGenerator $firebaseGenerator */
+        $firebaseGenerator = $this->get('fridge.firebase.generator.token_generator');
+
+        /** @var \Fridge\UserBundle\Entity\User $user */
         $user = $this->getUser();
-        $key = "cHDKObhqKrq2vURpyrjAgkk8v18Z6MP1yWmGw5ox";
-        $jwt = JWT::encode([
-            "iat" => time(),
-            'id' => $user->getUsername(),
-            "auth" => [
-                'id' => $user->getUsername(),
-                'username' => $user->getUsername()
-            ]
-        ], $key);
-        $user->setFirebaseToken($jwt);
+
+        $user->setFirebaseToken($firebaseGenerator->generate($user));
+
         return $user;
     }
 
