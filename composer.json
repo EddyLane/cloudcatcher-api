@@ -79,7 +79,9 @@
                 "database_name"         : "CLOUDCATCHER_DATABASE_NAME",
                 "database_user"         : "CLOUDCATCHER_DATABASE_USER",
                 "database_password"     : "CLOUDCATCHER_DATABASE_PASSWORD",
-                "database_driver"       : "CLOUDCATCHER_DATABASE_DRIVER"
+                "database_driver"       : "CLOUDCATCHER_DATABASE_DRIVER",
+                "database_port"         : "CLOUDCATCHER_DATABASE_PORT"
+
             }
         },
         "branch-alias": {
