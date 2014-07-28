@@ -9,7 +9,10 @@ services:
 
     authentication_handler:
         class:  %vendor_security.authentication_handler%
-        arguments:  [@fos_rest.view_handler, @fridge.firebase.generator.token_generator]
+        arguments:
+            - @fos_rest.view_handler
+            - @fridge.firebase.generator.token_generator
+            - @fridge.firebase.task.refresh_podcast
         tags:
             - { name: 'monolog.logger', channel: 'security' }
 

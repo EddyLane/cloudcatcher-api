@@ -3,6 +3,7 @@
 namespace Fridge\UserBundle\Handler;
 
 use Fridge\FirebaseBundle\Generator\TokenGeneratorInterface;
+use Fridge\FirebaseBundle\Task\RefreshPodcast;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
@@ -29,13 +30,20 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
     protected $tokenGenerator;
 
     /**
+     * @var \Fridge\FirebaseBundle\Task\RefreshPodcast
+     */
+    protected $task;
+
+    /**
      * @param ViewHandler $viewHandler
      * @param TokenGeneratorInterface $tokenGenerator
+     * @param RefreshPodcast $task
      */
-    public function __construct(ViewHandler $viewHandler, TokenGeneratorInterface $tokenGenerator)
+    public function __construct(ViewHandler $viewHandler, TokenGeneratorInterface $tokenGenerator, RefreshPodcast $task)
     {
         $this->viewHandler = $viewHandler;
         $this->tokenGenerator = $tokenGenerator;
+        $this->task = $task;
     }
 
     /**
@@ -49,6 +57,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
         $user->setFirebaseToken($this->tokenGenerator->generate($user));
         $view = View::create($user);
         $view->setStatusCode(200);
+        $this->task->process($user);
         return $this->viewHandler->handle($view);
     }
 

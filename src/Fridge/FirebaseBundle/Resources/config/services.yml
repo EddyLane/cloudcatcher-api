@@ -1,7 +1,19 @@
 parameters:
     fridge.firebase.generator.token_generator.class: Fridge\FirebaseBundle\Generator\TokenGenerator
+    fridge.firebase.task.refresh_podcast.class: Fridge\FirebaseBundle\Task\RefreshPodcast
+    fridge.firebase.consumer.read_node.class: Fridge\FirebaseBundle\Consumer\ReadNode
 
 services:
     fridge.firebase.generator.token_generator:
         class: %fridge.firebase.generator.token_generator.class%
         arguments: [%firebase_secret_key%]
+
+    fridge.firebase.task.refresh_podcast:
+        class: %fridge.firebase.task.refresh_podcast.class%
+        arguments:
+            - @old_sound_rabbit_mq.refresh_podcast_producer
+
+    fridge.firebase.consumer.read_node:
+        class: %fridge.firebase.consumer.read_node.class%
+        arguments:
+            - @logger

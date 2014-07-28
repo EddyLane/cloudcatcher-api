@@ -25,7 +25,6 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
-        cookie_domain: .firebaseapp.com
     fragments:       ~
     http_method_override: true
 
@@ -148,3 +147,22 @@ fos_rest:
             'Symfony\Component\HttpKernel\Exception\HttpException': true
             'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
 
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'localhost'
+            port:     5672
+            user:     'guest'
+            password: 'guest'
+            vhost:    '/'
+            lazy:     true
+    producers:
+        refresh_podcast:
+            connection:       default
+            exchange_options: { name: 'file_nodes', type: direct }
+    consumers:
+        read_node:
+            connection:       default
+            exchange_options: { name: 'file_nodes', type: direct }
+            queue_options:    { name: 'file_nodes' }
+            callback:         fridge.firebase.consumer.read_node

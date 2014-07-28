@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),
             new Fridge\ApiBundle\FridgeApiBundle(),
