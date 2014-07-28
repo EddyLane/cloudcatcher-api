@@ -17,3 +17,4 @@ parameters:
 
     stripe_test_secret_key: sk_test_EvKWOrdwqjnVKwmrZB4dEqfE
     stripe_prod_secret_key: ~
+    firebase_secret_key: ~
