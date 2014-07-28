@@ -70,7 +70,16 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "firebase_secret_key": "FIREBASE_SECRET_KEY",
+                "stripe_prod_secret_key": "STRIPE_PROD_KEY",
+                "stripe_test_secret_key": "STRIPE_TEST_KEY",
+                "database_host"         : "CLOUDCATCHER_DATABASE_HOST",
+                "database_name"         : "CLOUDCATCHER_DATABASE_NAME",
+                "database_user"         : "CLOUDCATCHER_DATABASE_USER",
+                "database_password"     : "CLOUDCATCHER_DATABASE_PASSWORD"
+            }
         },
         "branch-alias": {
             "dev-master": "2.4-dev"
