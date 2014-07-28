@@ -15,6 +15,7 @@ class RefreshPodcast
 {
     private $producer;
 
+
     public function __construct($producer)
     {
         $this->producer = $producer;
@@ -22,8 +23,7 @@ class RefreshPodcast
 
     public function process(User $user)
     {
-
-        $this->producer->publish('TEST');
+        $this->producer->publish($user);
     }
 
-} 
+}

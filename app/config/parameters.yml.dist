@@ -18,3 +18,4 @@ parameters:
     stripe_test_secret_key: ~
     stripe_prod_secret_key: ~
     firebase_secret_key: ~
+    firebase_base_url: ~

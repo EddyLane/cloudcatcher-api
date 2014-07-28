@@ -2,6 +2,7 @@ parameters:
     fridge.firebase.generator.token_generator.class: Fridge\FirebaseBundle\Generator\TokenGenerator
     fridge.firebase.task.refresh_podcast.class: Fridge\FirebaseBundle\Task\RefreshPodcast
     fridge.firebase.consumer.read_node.class: Fridge\FirebaseBundle\Consumer\ReadNode
+    fridge.firebase.client.firebase_client.class: Fridge\FirebaseBundle\Client\FirebaseClient
 
 services:
     fridge.firebase.generator.token_generator:
@@ -16,4 +17,11 @@ services:
     fridge.firebase.consumer.read_node:
         class: %fridge.firebase.consumer.read_node.class%
         arguments:
+            - @fridge.firebase.client.firebase_client
             - @logger
+
+    fridge.firebase.client.firebase_client:
+        class: %fridge.firebase.client.firebase_client.class%
+        arguments:
+            - %firebase_base_url%
+            - %firebase_secret_key%
