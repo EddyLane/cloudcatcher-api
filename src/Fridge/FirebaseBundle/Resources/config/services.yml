@@ -3,6 +3,7 @@ parameters:
     fridge.firebase.task.refresh_podcast.class: Fridge\FirebaseBundle\Task\RefreshPodcast
     fridge.firebase.consumer.read_node.class: Fridge\FirebaseBundle\Consumer\ReadNode
     fridge.firebase.client.firebase_client.class: Fridge\FirebaseBundle\Client\FirebaseClient
+    fridge.firebase.command.refresh_podcast.class: Fridge\FirebaseBundle\Command\RefreshPodcast
 
 services:
     fridge.firebase.generator.token_generator:
@@ -25,3 +26,11 @@ services:
         arguments:
             - %firebase_base_url%
             - %firebase_secret_key%
+
+    fridge.firebase.command.refresh_podcast:
+        class: %fridge.firebase.command.refresh_podcast.class%
+        arguments:
+            - @fridge.firebase.task.refresh_podcast
+            - @fos_user.user_manager
+        tags:
+            - { name: console.command }

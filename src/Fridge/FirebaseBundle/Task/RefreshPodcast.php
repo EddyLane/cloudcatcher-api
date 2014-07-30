@@ -23,7 +23,7 @@ class RefreshPodcast
 
     public function process(User $user)
     {
-        $this->producer->publish($user);
+        $this->producer->publish($user->getUsernameCanonical());
     }
 
 }

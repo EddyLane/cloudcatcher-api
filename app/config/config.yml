@@ -150,7 +150,7 @@ fos_rest:
 old_sound_rabbit_mq:
     connections:
         default:
-            host:     'localhost'
+            host:     'app.angular-symfony-stripe.local'
             port:     5672
             user:     'guest'
             password: 'guest'

@@ -27,7 +27,41 @@ class ReadNode implements ConsumerInterface
 
     public function execute(AMQPMessage $msg)
     {
-        $data = $this->client->getClient()->get('/users/' . $msg->body);
-        $this->logger->info(sprintf('Node processed: "%s". data: %s', $msg->body, json_encode($data)));
+        $data = $this->client->getClient()->get('/users/' . $msg->body . '/podcasts');
+        $this->logger->info(sprintf('Node processing:', $msg->body));
+
+        foreach ($data as $podcast) {
+
+            $this->logger->info(sprintf('Trying to get %s', $podcast['feed']));
+            $xmlReader = new \XMLReader();
+            $new = 0;
+            $heard = 0;
+
+            if ($xmlReader->open($podcast['feed'])) {
+
+                while ($xmlReader->read()) {
+
+                    if ($xmlReader->getAttribute('url')) {
+                        $this->logger->info('Episode:' . $xmlReader->getAttribute('url'));
+                        if (isset($podcast['heard']) && in_array($xmlReader->getAttribute('url'), $podcast['heard'])) {
+                            $heard++;
+                        } else {
+                            $new++;
+                        }
+                    }
+
+
+
+
+                }
+            }
+
+            $new = 0;
+            $heard = 0;
+            $this->logger->info(sprintf('For user "%s" we found %d new and %d heard episodes for podcast "%s"', $msg->body, $new, $heard, $podcast['name']));
+
+        }
+
+
     }
 }
