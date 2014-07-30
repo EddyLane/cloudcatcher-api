@@ -40,6 +40,7 @@ class ReadNode implements ConsumerInterface
 
             if (!$xmlReader->open($podcast['feed'])) {
                 $this->logger->error(sprintf('Could not get feed "%s"', $podcast['feed']));
+                continue;
             }
 
 
