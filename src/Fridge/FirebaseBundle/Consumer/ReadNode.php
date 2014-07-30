@@ -29,39 +29,61 @@ class ReadNode implements ConsumerInterface
     {
         $data = $this->client->getClient()->get('/users/' . $msg->body . '/podcasts');
         $this->logger->info(sprintf('Node processing:', $msg->body));
+        $xmlReader = new \XMLReader();
 
-        foreach ($data as $podcast) {
+        foreach ($data as $i => $podcast) {
 
-            $this->logger->info(sprintf('Trying to get %s', $podcast['feed']));
-            $xmlReader = new \XMLReader();
             $new = 0;
             $heard = 0;
+            $episodeIndex = 0;
+            $latest = null;
 
-            if ($xmlReader->open($podcast['feed'])) {
+            if (!$xmlReader->open($podcast['feed'])) {
+                $this->logger->error(sprintf('Could not get feed "%s"', $podcast['feed']));
+            }
 
-                while ($xmlReader->read()) {
 
-                    if ($xmlReader->getAttribute('url')) {
-                        $this->logger->info('Episode:' . $xmlReader->getAttribute('url'));
-                        if (isset($podcast['heard']) && in_array($xmlReader->getAttribute('url'), $podcast['heard'])) {
-                            $heard++;
-                        } else {
-                            $new++;
-                        }
+            while ($xmlReader->read() && $episodeIndex < 100) {
+
+                if ($xmlReader->localName === 'pubDate' && is_null($latest)) {
+                    $xmlReader->read();
+                    $latest = $xmlReader->value;
+                }
+
+                if ($xmlReader->getAttribute('url')) {
+
+                    $episodeIndex++;
+
+                    if (isset($podcast['heard']) && in_array($xmlReader->getAttribute('url'), $podcast['heard'])) {
+                        $heard++;
+                    } else {
+                        $new++;
                     }
-
-
-
-
                 }
             }
 
-            $new = 0;
-            $heard = 0;
-            $this->logger->info(sprintf('For user "%s" we found %d new and %d heard episodes for podcast "%s"', $msg->body, $new, $heard, $podcast['name']));
+            $this->logger->info(
+                sprintf(
+                    'For user "%s" we found %d new and %d heard episodes for podcast "%s"',
+                    $msg->body,
+                    $new,
+                    $heard,
+                    $podcast['name']
+                )
+            );
 
+            $this->logger->info(sprintf('Latest episode for podcast "%s" is "%s"', $podcast['name'], $latest));
+
+            $date = new \DateTime($latest);
+            $this->client->getClient()->update(
+                sprintf('/users/%s/podcasts/%s', $msg->body, $i),
+                [
+                    'newEpisodes' => $new,
+                    'latest' => $date->format(\DateTime::ISO8601)
+                ]
+            );
         }
 
-
     }
+
 }
