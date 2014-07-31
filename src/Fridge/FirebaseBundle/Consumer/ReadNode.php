@@ -44,28 +44,22 @@ class ReadNode implements ConsumerInterface
                     'query' => [
                         'q' => $podcast['feed'],
                         'v' => '1.0',
-                        'output' => 'json',
+                        'output' => 'json_xml',
                         'num' => -1
                     ]
                 ]
-            );
+            )->json()['responseData'];
 
-            $episodes = $responseJson->json()['responseData']['feed']['entries'];
-
-
-            foreach($episodes as $episode) {
-
-                $this->logger->warn(print_r(array_keys($episode)));
-
-                if (isset($podcast['heard']) && in_array($episode['link'], $podcast['heard'])) {
+            $xml = simplexml_load_string($responseJson['xmlString']);
+            foreach ($xml->xpath('//enclosure') as $episode) {
+                if (isset($podcast['heard']) && in_array($episode->attributes()->url, $podcast['heard'])) {
                     $heard++;
                 } else {
                     $new++;
                 }
-
             }
 
-            $date = new \DateTime($episodes[0]['publishedDate']);
+            $date = new \DateTime($responseJson['feed']['entries'][0]['publishedDate']);
             $latest = $date->format(\DateTime::ISO8601);
 
             $this->logger->info(
