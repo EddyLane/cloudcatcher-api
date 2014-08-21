@@ -1,8 +1,10 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
 fridge_subscription_routing:
     resource: "@FridgeSubscriptionBundle/Resources/config/routing.yml"
     type: rest
     prefix: /api/v1/
-
 
 fridge_user_routing:
     resource: "@FridgeUserBundle/Resources/config/routing.yml"
@@ -16,7 +18,11 @@ login_check:
     requirements:
         _format:  json
 
-# app/config/routing.yml
+api:
+    resource: "@FridgeApiBundle/Controller"
+    prefix: /api/v1/
+    type:     annotation
+
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
