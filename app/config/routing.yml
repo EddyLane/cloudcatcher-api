@@ -1,6 +1,11 @@
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
+fos_user_security_login_oauth:
+    pattern:  /oauth/v2/auth_login
+    defaults: { _controller: FOSUserBundle:Security:login }
+
+
 fridge_subscription_routing:
     resource: "@FridgeSubscriptionBundle/Resources/config/routing.yml"
     type: rest
@@ -11,8 +16,8 @@ fridge_user_routing:
     type: rest
     prefix: /api/v1/
 
-login_check:
-    path: /api/v1/security/login
+login_check_new:
+    pattern:  /oauth/v2/auth_login_check
     defaults: { _controller: FOSUserBundle:Security:check, _format: json }
     methods: [POST]
     requirements:

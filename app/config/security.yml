@@ -12,26 +12,24 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-
-        main:
-            pattern: ^/login$
-            security: false
-
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        login:
+            pattern:  ^/demo/secured/login$
+            security: false
 
         oauth_token:
             pattern:    ^/oauth/v2/token
             security:   false
 
         secured_area:
-            pattern:    ^/login/
+            pattern:    ^/demo/secured/
             form_login:
                 provider: fos_userbundle
-                check_path: login_check
-                login_path: fos_user_security_login
+                check_path: login_check_new
+                login_path: fos_user_security_login_oauth
             logout:
                 path:   _demo_logout
                 target: _demo
@@ -43,8 +41,8 @@ security:
             pattern:    ^/oauth/v2/auth
             form_login:
                 provider: fos_userbundle
-                check_path: fos_user_security_check
-                login_path: fos_user_security_login
+                check_path: login_check_new
+                login_path: fos_user_security_login_oauth
             anonymous: true
 
         api:
@@ -54,9 +52,60 @@ security:
 
     access_control:
         # You can omit this if /api can be accessed both authenticated and anonymously
-        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login_check$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+#    firewalls:
+#
+#        main:
+#            pattern: ^/login$
+#            security: false
+#
+#        dev:
+#            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+#            security: false
+#
+#
+#        oauth_token:
+#            pattern:    ^/oauth/v2/token
+#            security:   false
+#
+#        secured_area:
+#            pattern:    ^/login/
+#            form_login:
+#                provider: fos_userbundle
+#                check_path: login_check
+#                login_path: fos_user_security_login
+#            logout:
+#                path:   _demo_logout
+#                target: _demo
+#            #anonymous: ~
+#            #http_basic:
+#            #    realm: "Secured Demo Area"
+#
+#        oauth_authorize:
+#            pattern:    ^/oauth/v2/auth
+#            form_login:
+#                provider: fos_userbundle
+#                check_path: fos_user_security_check
+#                login_path: fos_user_security_login
+#            anonymous: true
+#
+#        api:
+#            pattern:    ^/api
+#            fos_oauth:  true
+#            stateless:  true
+#
+#    access_control:
+#        # You can omit this if /api can be accessed both authenticated and anonymously
+#        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+#        - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
 
 
 

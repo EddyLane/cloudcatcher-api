@@ -1,41 +1,40 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: edwardlane
- * Date: 21/08/2014
- * Time: 22:41
- */
 
 namespace Fridge\ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use FOS\OAuthServerBundle\Controller\TokenController;
+use Fridge\FirebaseBundle\Task\RefreshPodcast;
+use OAuth2\OAuth2;
+use Symfony\Component\HttpFoundation\Request;
 
-class ApiController extends Controller
+/**
+ * Class ApiController
+ * @package Fridge\ApiBundle\Controller
+ */
+class ApiController extends TokenController
 {
     /**
-     * @Route("/articles", name="api_articles")
+     * @var \Fridge\FirebaseBundle\Task\RefreshPodcast
      */
-    public function articlesAction()
+    private $refreshPodcastTask;
+
+    /**
+     * @param OAuth2 $server
+     * @param RefreshPodcast $refreshPodcastTask
+     */
+    public function __construct(OAuth2 $server, RefreshPodcast $refreshPodcastTask)
     {
-        $articles = array('article1', 'article2', 'article3');
-        return new JsonResponse($articles);
+        parent::__construct($server);
+        $this->refreshPodcastTask = $refreshPodcastTask;
     }
 
-    public function userAction()
+    /**
+     * @inheritdoc
+     */
+    public function tokenAction(Request $request)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if ($user) {
-            return new JsonResponse(array(
-                'id' => $user->getId(),
-                'username' => $user->getUsername()
-            ));
-        }
-
-        return new JsonResponse(array(
-            'message' => 'User is not identified'
-        ));
-
+        $response = parent::tokenAction($request);
     }
+
+
 }

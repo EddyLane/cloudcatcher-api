@@ -85,7 +85,7 @@ jms_serializer:
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
-    firewall_name: main
+    firewall_name: oauth_authorize
     user_class: Fridge\UserBundle\Entity\User
     group:
         group_class: Fridge\UserBundle\Entity\Group
