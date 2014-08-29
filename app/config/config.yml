@@ -152,11 +152,11 @@ fos_rest:
 old_sound_rabbit_mq:
     connections:
         default:
-            host:     'app.angular-symfony-stripe.local'
+            host:     "%rabbitmq_host%"
             port:     5672
-            user:     'guest'
-            password: 'guest'
-            vhost:    '/'
+            user:     "%rabbitmq_user%"
+            password: "%rabbitmq_pass%"
+            vhost:    "%rabbitmq_vhost%"
             lazy:     true
     producers:
         refresh_podcast:

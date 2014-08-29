@@ -19,3 +19,9 @@ parameters:
     stripe_prod_secret_key: ~
     firebase_secret_key: ~
     firebase_base_url: ~
+
+
+    rabbitmq_user: guest
+    rabbitmq_pass: guest
+    rabbitmq_host: app.angular-symfony-stripe.local
+    rabbitmq_vhost: /
