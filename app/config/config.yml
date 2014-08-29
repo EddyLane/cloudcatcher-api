@@ -161,10 +161,10 @@ old_sound_rabbit_mq:
     producers:
         refresh_podcast:
             connection:       default
-            exchange_options: { name: 'file_nodes', type: direct }
+            exchange_options: { name: 'amq.direct', type: direct }
     consumers:
         read_node:
             connection:       default
-            exchange_options: { name: 'file_nodes', type: direct }
-            queue_options:    { name: 'file_nodes' }
+            exchange_options: { name: 'amq.direct', type: direct }
+            queue_options:    { name: 'amq.direct' }
             callback:         fridge.firebase.consumer.read_node
