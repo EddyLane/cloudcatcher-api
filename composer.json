@@ -13,6 +13,7 @@
         "php": ">=5.3.3",
         "ext-mbstring": "*",
         "ext-intl": "*",
+        "ext-bcmath": "*",
         "symfony/symfony": "~2.4",
         "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "~1.2",
