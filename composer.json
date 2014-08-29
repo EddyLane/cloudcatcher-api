@@ -75,7 +75,8 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml",
             "env-map": {
-                "firebase_secret_key": "FIREBASE_SECRET_KEY",
+                "firebase_base_url"     : "FIREBASE_BASE_URL",
+                "firebase_secret_key"   : "FIREBASE_SECRET_KEY",
                 "stripe_prod_secret_key": "STRIPE_PROD_KEY",
                 "stripe_test_secret_key": "STRIPE_TEST_KEY",
                 "database_host"         : "CLOUDCATCHER_DATABASE_HOST",

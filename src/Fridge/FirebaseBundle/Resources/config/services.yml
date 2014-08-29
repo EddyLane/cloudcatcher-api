@@ -26,6 +26,7 @@ services:
         arguments:
             - %firebase_base_url%
             - %firebase_secret_key%
+            - @logger
 
     fridge.firebase.command.refresh_podcast:
         class: %fridge.firebase.command.refresh_podcast.class%
