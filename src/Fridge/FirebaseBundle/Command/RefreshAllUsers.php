@@ -34,6 +34,7 @@ class RefreshAllUsers extends Command
     {
         $this->userManager = $userManager;
         $this->refreshPodcast = $refreshPodcast;
+        parent::__construct();
     }
 
     protected function configure()
