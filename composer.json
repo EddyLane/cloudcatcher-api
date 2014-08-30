@@ -45,7 +45,8 @@
         "behat/mink-browserkit-driver": "*@dev",
         "kriswallsmith/buzz": "dev-master",
         "phpunit/phpunit": "3.7.*@dev",
-        "phpspec/phpspec": "2.0.*@dev"
+        "phpspec/phpspec": "2.0.*@dev",
+        "heroku/heroku-buildpack-php": "39"
     },
     "scripts": {
         "post-install-cmd": [

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "0f58a0eefb650ed715738699f2d05446",
+    "hash": "439f4ea6550065aa9f6b0b5cbf46fa45",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3743,6 +3743,50 @@
             "time": "2014-01-03 22:07:32"
         },
         {
+            "name": "heroku/heroku-buildpack-php",
+            "version": "v39",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heroku/heroku-buildpack-php.git",
+                "reference": "bbbb1b5d1df8d80bce25bf2bc5a64ede1286c4fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/bbbb1b5d1df8d80bce25bf2bc5a64ede1286c4fd",
+                "reference": "bbbb1b5d1df8d80bce25bf2bc5a64ede1286c4fd",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heroku-hhvm-apache2",
+                "bin/heroku-hhvm-nginx",
+                "bin/heroku-php-apache2",
+                "bin/heroku-php-nginx"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Zuelke",
+                    "email": "dz@heroku.com"
+                }
+            ],
+            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
+            "homepage": "http://github.com/heroku/heroku-buildpack-php",
+            "keywords": [
+                "apache",
+                "apache2",
+                "foreman",
+                "heroku",
+                "hhvm",
+                "nginx",
+                "php"
+            ],
+            "time": "2014-08-22 11:53:33"
+        },
+        {
             "name": "kriswallsmith/buzz",
             "version": "dev-master",
             "source": {
@@ -4342,7 +4386,8 @@
     "platform": {
         "php": ">=5.3.3",
         "ext-mbstring": "*",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "ext-bcmath": "*"
     },
     "platform-dev": [
 

@@ -9,7 +9,7 @@
 namespace Fridge\FirebaseBundle\Command;
 
 use FOS\UserBundle\Model\UserManagerInterface;
-use Fridge\FirebaseBundle\Task\RefreshPodcast;
+use Fridge\FirebaseBundle\Task\RefreshPodcast as RefreshPodcastTask;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -28,9 +28,9 @@ class RefreshAllUsers extends Command
 
     /**
      * @param UserManagerInterface $userManager
-     * @param RefreshPodcast $refreshPodcast
+     * @param RefreshPodcastTask $refreshPodcast
      */
-    public function __construct(UserManagerInterface $userManager, RefreshPodcast $refreshPodcast)
+    public function __construct(UserManagerInterface $userManager, RefreshPodcastTask $refreshPodcast)
     {
         $this->userManager = $userManager;
         $this->refreshPodcast = $refreshPodcast;
