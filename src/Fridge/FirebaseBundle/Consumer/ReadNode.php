@@ -71,7 +71,9 @@ class ReadNode implements ConsumerInterface
                 }
 
 
-                $xml = simplexml_load_string($responseJson['xmlString']);
+                if ($xml = simplexml_load_string($responseJson['xmlString'])) {
+                    continue;
+                }
 
                 foreach ($xml->xpath('//enclosure') as $episode) {
                     if (isset($podcast['heard']) && in_array($episode->attributes()->url, $podcast['heard'])) {
