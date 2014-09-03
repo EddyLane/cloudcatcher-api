@@ -71,7 +71,7 @@ class ReadNode implements ConsumerInterface
                 }
 
 
-                if ($xml = simplexml_load_string($responseJson['xmlString'])) {
+                if (!$xml = simplexml_load_string($responseJson['xmlString'])) {
                     continue;
                 }
 
