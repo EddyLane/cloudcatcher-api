@@ -72,6 +72,7 @@ class ReadNode implements ConsumerInterface
 
 
                 if (!$xml = simplexml_load_string($responseJson['xmlString'])) {
+                    $this->logger->warning('Could not parse xmlString for ' . $podcast['feed']);
                     continue;
                 }
 
