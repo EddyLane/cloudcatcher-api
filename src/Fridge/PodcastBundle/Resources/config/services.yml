@@ -1,0 +1,7 @@
+parameters:
+#    fridge_podcast.example.class: Fridge\PodcastBundle\Example
+
+services:
+#    fridge_podcast.example:
+#        class: %fridge_podcast.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Fridge\UserBundle\FridgeUserBundle(),
             new Fridge\ApiBundle\FridgeApiBundle(),
             new Fridge\FirebaseBundle\FridgeFirebaseBundle(),
+            new Fridge\PodcastBundle\FridgePodcastBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

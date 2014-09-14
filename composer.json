@@ -35,7 +35,8 @@
         "firebase/php-jwt": "dev-master",
         "firebase/token-generator": "dev-master",
         "oldsound/rabbitmq-bundle": "1.3.*",
-        "eelkevdbos/firebase-php": "dev-master"
+        "eelkevdbos/firebase-php": "dev-master",
+        "google/apiclient": "1.0.*@beta"
     },
     "require-dev": {
         "behat/behat": "~2.5",
@@ -45,7 +46,7 @@
         "behat/mink-browserkit-driver": "*@dev",
         "kriswallsmith/buzz": "dev-master",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "2.0.*@dev",
+        "phpspec/phpspec": "2.0.0",
         "heroku/heroku-buildpack-php": "39"
     },
     "scripts": {

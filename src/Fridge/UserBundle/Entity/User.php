@@ -2,7 +2,9 @@
 
 namespace Fridge\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
+use Fridge\ApiBundle\Entity\GcmId;
 use Fridge\SubscriptionBundle\Entity\StripeProfile;
 use JMS\Serializer\Annotation as Serializer;
 use Doctrine\ORM\Mapping as ORM;
@@ -45,6 +47,20 @@ class User extends BaseUser
     protected $firebaseToken;
 
     /**
+     * @ORM\OneToMany(targetEntity="Fridge\ApiBundle\Entity\GcmId", mappedBy="user", cascade={"all"}, fetch="EAGER")
+     * @Serializer\Expose()
+     */
+    protected $gcmIds;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->gcmIds = new ArrayCollection();
+    }
+
+    /**
      * @param $firebaseToken
      * @return $this
      */
@@ -79,11 +95,27 @@ class User extends BaseUser
      */
     public function getStripeProfile()
     {
-        if(!$this->stripeProfile) {
+        if (!$this->stripeProfile) {
             $this->setStripeProfile(new StripeProfile);
         }
 
         return $this->stripeProfile;
+    }
+
+    /**
+     * @param GcmId $gcmId
+     */
+    public function addGcmId(GcmId $gcmId)
+    {
+        $this->gcmIds->add($gcmId);
+    }
+
+    /**
+     * @param GcmId $gcmId
+     */
+    public function removeGcmId(GcmId $gcmId)
+    {
+        $this->gcmIds->remove($gcmId);
     }
 
 }

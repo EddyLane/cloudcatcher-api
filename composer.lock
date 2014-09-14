@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6e020d60925fee3d254658060a23596a",
+    "hash": "b984c437b0a242163c22e841faf3f903",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1365,6 +1365,51 @@
                 "uploadable"
             ],
             "time": "2014-01-12 16:34:06"
+        },
+        {
+            "name": "google/apiclient",
+            "version": "1.0.5-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/google-api-php-client.git",
+                "reference": "c05d454790460f0c851c42298ea239ec5e631d76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/google-api-php-client/zipball/c05d454790460f0c851c42298ea239ec5e631d76",
+                "reference": "c05d454790460f0c851c42298ea239ec5e631d76",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "include-path": [
+                "src/"
+            ],
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Client library for Google APIs",
+            "homepage": "http://developers.google.com/api-client-library/php",
+            "keywords": [
+                "google"
+            ],
+            "time": "2014-09-08 20:57:18"
         },
         {
             "name": "guzzle/guzzle",
@@ -4113,33 +4158,30 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "dev-master",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "6d5b9a0f20615df469299b30e4f707c184db5cf3"
+                "reference": "1aade5766ddf4f28fdcf0a34d6ed642393d6c43d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/6d5b9a0f20615df469299b30e4f707c184db5cf3",
-                "reference": "6d5b9a0f20615df469299b30e4f707c184db5cf3",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/1aade5766ddf4f28fdcf0a34d6ed642393d6c43d",
+                "reference": "1aade5766ddf4f28fdcf0a34d6ed642393d6c43d",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.1",
                 "php": ">=5.3.3",
                 "phpspec/php-diff": "~1.0.0",
                 "phpspec/prophecy": "~1.1",
-                "sebastian/exporter": "~1.0",
                 "symfony/console": "~2.1",
                 "symfony/event-dispatcher": "~2.1",
                 "symfony/finder": "~2.1",
-                "symfony/process": "~2.1",
                 "symfony/yaml": "~2.1"
             },
             "require-dev": {
-                "behat/behat": "~3.0",
-                "bossa/phpspec2-expect": "~1.0",
+                "behat/behat": "~2.5",
+                "bossa/phpspec2-expect": "dev-master",
                 "symfony/filesystem": "~2.1"
             },
             "suggest": {
@@ -4151,7 +4193,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -4185,7 +4227,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2014-09-04 18:59:14"
+            "time": "2014-03-19 14:23:43"
         },
         {
             "name": "phpspec/prophecy",
@@ -4904,11 +4946,11 @@
         "firebase/php-jwt": 20,
         "firebase/token-generator": 20,
         "eelkevdbos/firebase-php": 20,
+        "google/apiclient": 10,
         "behat/common-contexts": 20,
         "behat/mink-extension": 20,
         "behat/mink-browserkit-driver": 20,
-        "kriswallsmith/buzz": 20,
-        "phpspec/phpspec": 20
+        "kriswallsmith/buzz": 20
     },
     "prefer-stable": false,
     "platform": {
