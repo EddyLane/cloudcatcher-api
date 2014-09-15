@@ -2,6 +2,7 @@
 
 namespace Fridge\UserBundle\Controller;
 
+use Fridge\ApiBundle\Entity\GcmId;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
@@ -234,6 +235,25 @@ class UserController extends BaseController
         $profile = $this->getUserManager()->findUserByUsername($username)->getStripeProfile();
 
         return $this->container->get('fridge.subscription.factory.operation_factory')->get('customer.invoices.get')->getResult($profile);
+    }
+
+    /**
+     * @RequestParam(name="gcm_id", description="GCM Id.")
+     * @param ParamFetcher $paramFetcher
+     * @param $username
+     * @return \FOS\UserBundle\Model\UserInterface
+     */
+    public function postUserGcmAction(ParamFetcher $paramFetcher, $username)
+    {
+        $user = $this->getUserManager()->findUserByUsername($username);
+
+        $gcmId = new GcmId();
+        $gcmId->setGcmId($paramFetcher->get('gcm_id'));
+        $gcmId->setUser($user);
+        $user->addGcmId($gcmId);
+
+        $this->getUserManager()->updateUser($user);
+        return $user;
     }
 
 }

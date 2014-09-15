@@ -8,7 +8,7 @@ use Fridge\UserBundle\Entity\User;
 /**
  * GcmId
  *
- * @ORM\Table()
+ * @ORM\Table(name="fridge_api_gcm_id")
  * @ORM\Entity
  */
 class GcmId

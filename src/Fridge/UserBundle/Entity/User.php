@@ -118,4 +118,12 @@ class User extends BaseUser
         $this->gcmIds->remove($gcmId);
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getGcmIds()
+    {
+        return $this->gcmIds;
+    }
+
 }
