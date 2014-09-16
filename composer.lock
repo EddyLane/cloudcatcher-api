@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b984c437b0a242163c22e841faf3f903",
+    "hash": "4fdd801e4d11cb15fa4c6c533ba97dc2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -496,12 +496,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "3ffa2184c94d94477d5bb625b94597ed0d44ebe0"
+                "reference": "9a5b5289eb22079ec139ba1eb06043d4b89c6677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/3ffa2184c94d94477d5bb625b94597ed0d44ebe0",
-                "reference": "3ffa2184c94d94477d5bb625b94597ed0d44ebe0",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/9a5b5289eb22079ec139ba1eb06043d4b89c6677",
+                "reference": "9a5b5289eb22079ec139ba1eb06043d4b89c6677",
                 "shasum": ""
             },
             "require": {
@@ -545,7 +545,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2014-08-20 20:34:54"
+            "time": "2014-09-16 05:03:04"
         },
         {
             "name": "doctrine/inflector",
@@ -885,12 +885,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/firebase/firebase-token-generator-php.git",
-                "reference": "8c579e80afc10fd805d5eea8a62b75191b7ec6d1"
+                "reference": "47811b1228b14e4a603a098c672d7a124b922ee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/firebase/firebase-token-generator-php/zipball/8c579e80afc10fd805d5eea8a62b75191b7ec6d1",
-                "reference": "8c579e80afc10fd805d5eea8a62b75191b7ec6d1",
+                "url": "https://api.github.com/repos/firebase/firebase-token-generator-php/zipball/47811b1228b14e4a603a098c672d7a124b922ee2",
+                "reference": "47811b1228b14e4a603a098c672d7a124b922ee2",
                 "shasum": ""
             },
             "require": {
@@ -921,7 +921,7 @@
             ],
             "description": "A simple library to generate JWT tokens for authenticating to a Firebase.",
             "homepage": "https://github.com/firebase/firebase-token-generator-php",
-            "time": "2014-09-04 20:31:48"
+            "time": "2014-09-15 17:18:49"
         },
         {
             "name": "fridge/subscription-bundle",
@@ -979,12 +979,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSOAuthServerBundle.git",
-                "reference": "414f0e1a4beabf811e63e096f5b37305ceac7b41"
+                "reference": "18eac304b53a2fa16bca5e2f2bdcc6cf6a88aa03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/414f0e1a4beabf811e63e096f5b37305ceac7b41",
-                "reference": "414f0e1a4beabf811e63e096f5b37305ceac7b41",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSOAuthServerBundle/zipball/18eac304b53a2fa16bca5e2f2bdcc6cf6a88aa03",
+                "reference": "18eac304b53a2fa16bca5e2f2bdcc6cf6a88aa03",
                 "shasum": ""
             },
             "require": {
@@ -1039,7 +1039,7 @@
                 "oauth2",
                 "server"
             ],
-            "time": "2014-05-21 08:33:09"
+            "time": "2014-09-16 00:41:15"
         },
         {
             "name": "friendsofsymfony/oauth2-php",
@@ -1175,12 +1175,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "e009ce7e3d42ed0578544ad65ece869e2a7c9734"
+                "reference": "7001669bccb3fcedfc1c5411ecb2157715e92dd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/e009ce7e3d42ed0578544ad65ece869e2a7c9734",
-                "reference": "e009ce7e3d42ed0578544ad65ece869e2a7c9734",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7001669bccb3fcedfc1c5411ecb2157715e92dd6",
+                "reference": "7001669bccb3fcedfc1c5411ecb2157715e92dd6",
                 "shasum": ""
             },
             "require": {
@@ -1234,7 +1234,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-09-08 21:45:10"
+            "time": "2014-09-12 11:18:14"
         },
         {
             "name": "fzaninotto/faker",
@@ -1623,17 +1623,17 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v4.2.8",
+            "version": "v4.2.9",
             "target-dir": "Illuminate/Support",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "8702d655da1f7502037a2206df38399656ff35ae"
+                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/8702d655da1f7502037a2206df38399656ff35ae",
-                "reference": "8702d655da1f7502037a2206df38399656ff35ae",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/b6716d34afce6e69523725f2534a5c3a54dba964",
+                "reference": "b6716d34afce6e69523725f2534a5c3a54dba964",
                 "shasum": ""
             },
             "require": {
@@ -1667,7 +1667,7 @@
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2014-08-05 12:08:34"
+            "time": "2014-09-12 21:42:43"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -3816,60 +3816,6 @@
             "time": "2014-02-03 22:28:56"
         },
         {
-            "name": "doctrine/instantiator",
-            "version": "1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "26404e0c90565b614ee76b988b9bc8790d77f590"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/26404e0c90565b614ee76b988b9bc8790d77f590",
-                "reference": "26404e0c90565b614ee76b988b9bc8790d77f590",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~5.3"
-            },
-            "require-dev": {
-                "athletic/athletic": "~0.1.8",
-                "ext-pdo": "*",
-                "ext-phar": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "2.0.*@ALPHA"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Doctrine\\Instantiator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/"
-                }
-            ],
-            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
-            "homepage": "https://github.com/doctrine/instantiator",
-            "keywords": [
-                "constructor",
-                "instantiate"
-            ],
-            "time": "2014-08-25 15:09:25"
-        },
-        {
             "name": "heroku/heroku-buildpack-php",
             "version": "v39",
             "source": {
@@ -3919,12 +3865,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "43c355e7eb8b644db00f31f69e1ab32ce15b167a"
+                "reference": "487760b05d6269a4c2c374364325326cfa65b12c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/43c355e7eb8b644db00f31f69e1ab32ce15b167a",
-                "reference": "43c355e7eb8b644db00f31f69e1ab32ce15b167a",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/487760b05d6269a4c2c374364325326cfa65b12c",
+                "reference": "487760b05d6269a4c2c374364325326cfa65b12c",
                 "shasum": ""
             },
             "require": {
@@ -3959,7 +3905,7 @@
                 "curl",
                 "http client"
             ],
-            "time": "2014-08-11 18:42:16"
+            "time": "2014-09-15 12:42:36"
         },
         {
             "name": "ocramius/instantiator",
@@ -4536,16 +4482,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.5",
+            "version": "4.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7"
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
-                "reference": "c3abe5953d1e60a0bf23012b1bc8c4d07f4832d7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c28a790620fe30b049bb693be1ef9cd4e0fe906c",
+                "reference": "c28a790620fe30b049bb693be1ef9cd4e0fe906c",
                 "shasum": ""
             },
             "require": {
@@ -4606,7 +4552,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-09-06 18:38:27"
+            "time": "2014-09-14 09:31:24"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4954,7 +4900,7 @@
     },
     "prefer-stable": false,
     "platform": {
-        "php": ">=5.3.3",
+        "php": "~5.5.10",
         "ext-mbstring": "*",
         "ext-intl": "*",
         "ext-bcmath": "*"
