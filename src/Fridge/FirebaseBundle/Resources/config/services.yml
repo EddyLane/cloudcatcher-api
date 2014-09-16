@@ -21,6 +21,8 @@ services:
         arguments:
             - @fridge.firebase.client.firebase_client
             - @logger
+            - @fridge.user.manager.user_manager
+            - @fridge.api.notification.gcm_notification
 
     fridge.firebase.client.firebase_client:
         class: %fridge.firebase.client.firebase_client.class%

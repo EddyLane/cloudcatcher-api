@@ -8,55 +8,18 @@
 
 namespace Fridge\ApiBundle\Notification;
 
-use Monolog\Logger;
+use Fridge\ApiBundle\Client\GCMClient;
+use Fridge\ApiBundle\Message\Message;
 use GuzzleHttp\Client;
 
-class Notification extends Client
+abstract class Notification
 {
-    /**
-     * @var \Monolog\Logger
-     */
-    private $logger;
+    protected $client;
 
-    /**
-     * @var string
-     */
-    private $notificationUrl;
-
-    /**
-     * @var string
-     */
-    private $apiKey;
-
-    /**
-     * @param Logger $logger
-     * @param $notificationUrl
-     * @param $apiKey
-     */
-    public function __construct(Logger $logger, $notificationUrl, $apiKey)
+    public function __construct(GCMClient $client)
     {
-        $this->logger = $logger;
-        $this->notificationUrl = $notificationUrl;
-        $this->apiKey = $apiKey;
-
-        parent::__construct([
-            'base_url' => $this->notificationUrl,
-            'headers' => [
-                'Authorization: key=' . $apiKey,
-                'Content-Type: application/json'
-            ],
-            'curl' => [
-                CURLOPT_RETURNTRANSFER => true
-            ]
-        ]);
+        $this->client = $client;
     }
 
-    public function execute(array $recipients)
-    {
-
-
-
-    }
-
-
-} 
+    public abstract function execute(Message $message);
+}

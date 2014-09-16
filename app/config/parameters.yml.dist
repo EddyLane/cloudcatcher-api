@@ -25,3 +25,6 @@ parameters:
     rabbitmq_pass: guest
     rabbitmq_host: app.angular-symfony-stripe.local
     rabbitmq_vhost: /
+
+    gcm_url: https://android.googleapis.com/gcm/send
+    gcm_api_key: ~

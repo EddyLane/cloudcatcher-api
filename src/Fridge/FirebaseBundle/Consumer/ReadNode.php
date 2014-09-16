@@ -8,7 +8,10 @@
 
 namespace Fridge\FirebaseBundle\Consumer;
 
+use Fridge\ApiBundle\Message\Message;
+use Fridge\ApiBundle\Notification\GCMNotification;
 use Fridge\FirebaseBundle\Client\FirebaseClient;
+use Fridge\UserBundle\Manager\UserManager;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
@@ -20,14 +23,18 @@ class ReadNode implements ConsumerInterface
     private $logger;
     private $xmlReader;
     private $client;
+    private $userManager;
+    private $GCMNotification;
 
     public static $googleFeedApi = 'https://ajax.googleapis.com/ajax/services/feed/load';
 
-    public function __construct(FirebaseClient $client, LoggerInterface $logger)
+    public function __construct(FirebaseClient $client, LoggerInterface $logger, UserManager $userManager, GCMNotification $GCMNotification)
     {
         $this->logger = $logger;
         $this->client = $client;
         $this->xmlReader = new \XMLReader();
+        $this->userManager = $userManager;
+        $this->GCMNotification = $GCMNotification;
     }
 
     public function execute(AMQPMessage $msg)
@@ -38,8 +45,7 @@ class ReadNode implements ConsumerInterface
 
             try {
                 $data = $this->client->getClient()->get('/users/' . $msg->body . '/podcasts');
-            }
-            catch (RequestException $e) {
+            } catch (RequestException $e) {
                 $this->logger->error(sprintf('Curl failed to connect to firebase for user "%s". Request: "%s"', $msg->body, $e->getRequest()));
                 throw $e;
             }
@@ -64,8 +70,7 @@ class ReadNode implements ConsumerInterface
                 try {
                     $response = $guzzleClient->get(self::$googleFeedApi, $options);
                     $responseJson = $response->json()['responseData'];
-                }
-                catch(RequestException $e) {
+                } catch (RequestException $e) {
                     $this->logger->error(sprintf('Curl failed to url "%s" with feed "%s". Request: "%s"', self::$googleFeedApi, $podcast['feed'], $e->getRequest()));
                     throw $e;
                 }
@@ -87,6 +92,39 @@ class ReadNode implements ConsumerInterface
                 $date = new \DateTime($responseJson['feed']['entries'][0]['publishedDate']);
                 $latest = $date->format(\DateTime::ISO8601);
 
+                if (!isset($podcast['latest']) || strcmp($latest, $podcast['latest']) !== 0) {
+
+                    $user = $this->userManager->findOneBy([ 'username' => $msg->body ]);
+
+                    $clientIds = array_map(function ($id) {
+                        return $id->getGcmId();
+                    }, $user->getGcmIds()->toArray());
+
+                    if (count($clientIds) > 0) {
+
+                        $this->logger->info(sprintf(
+                            'For user "%s" with id %d emitting GCMs for clients "%s". Podcast "%s"',
+                            $user->getUsername(),
+                            $user->getId(),
+                            implode($clientIds, ', '),
+                            $podcast['name']
+                        ));
+
+                        $message = new Message($clientIds, [
+                            'slug' => $podcast['slug'],
+                            'podcast' => $podcast['name'],
+                            'timestamp' => $date->getTimestamp(),
+                            'date' => $date->format('d-m-Y h:i'),
+                            'title' => $responseJson['feed']['entries'][0]['title'],
+                            'icon' => $podcast['artwork']['100']
+                        ]);
+
+                        $this->GCMNotification->execute($message);
+
+                    }
+
+                }
+
                 $this->logger->info(
                     sprintf(
                         'For user "%s" we found %d new and %d heard episodes for podcast "%s". Latest episode was "%s"',
@@ -106,8 +144,7 @@ class ReadNode implements ConsumerInterface
                     ]
                 );
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error(sprintf('Consumption failed: Exception "%s", Code: "%s", Message: "%s"', get_class($e), $e->getCode(), $e->getMessage()));
             //return false;
         }
