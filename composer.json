@@ -90,7 +90,8 @@
                 "rabbitmq_host"         : "CLOUDAMQP_HOST",
                 "rabbitmq_user"         : "CLOUDAMQP_USER",
                 "rabbitmq_pass"         : "CLOUDAMQP_PASSWORD",
-                "rabbitmq_vhost"        : "CLOUDAMQP_VHOST"
+                "rabbitmq_vhost"        : "CLOUDAMQP_VHOST",
+                "gcm_api_key"           : "GCM_API_KEY"
             }
         },
         "branch-alias": {
