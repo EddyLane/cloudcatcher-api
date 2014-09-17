@@ -94,7 +94,7 @@ class ReadNode implements ConsumerInterface
 
                 if (!isset($podcast['latest']) || strcmp($latest, $podcast['latest']) !== 0) {
 
-                    $user = $this->userManager->findOneBy([ 'username' => $msg->body ]);
+                    $user = $this->userManager->findOneBy(['username' => $msg->body]);
 
                     $clientIds = array_map(function ($id) {
                         return $id->getGcmId();
@@ -111,12 +111,17 @@ class ReadNode implements ConsumerInterface
                         ));
 
                         $message = new Message($clientIds, [
+                            'feed' => $podcast['feed'],
                             'slug' => $podcast['slug'],
                             'podcast' => $podcast['name'],
                             'timestamp' => $date->getTimestamp(),
                             'date' => $date->format('d-m-Y h:i'),
                             'title' => $responseJson['feed']['entries'][0]['title'],
-                            'icon' => $podcast['artwork']['100']
+                            'icon' => $podcast['artwork']['100'],
+                            'media' => json_encode([
+                                'url' => $xml->xpath('//enclosure')[0]->attributes()->url,
+                            ]),
+                            'download' => $podcast['autoDownload'] == 1
                         ]);
 
                         $this->GCMNotification->execute($message);

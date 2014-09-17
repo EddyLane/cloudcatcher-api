@@ -92,9 +92,23 @@ class ChromePushNotificationCommand extends ContainerAwareCommand
             $this->error("Server API Key not set");
         }
 
+        $date = new \DateTime();
+
         $fields = array(
             'registration_ids'  => $this->devices,
-            'data'              => array( "message" => $message ),
+            'data'              => [
+                'feed' => 'http://javascriptjabber.com/podcast.rss',
+                'slug' => 'javascript-jabber',
+                'podcast' => "JavaScript Jabber",
+                'timestamp' => $date->format(\DateTime::ISO8601),
+                'date' => $date->format('d-m-Y h:i'),
+                'title' => 'JSJ Google Polymer with Rob Dodson and Eric Bidelman',
+                'icon' => "http://a4.mzstatic.com/us/r30/Podcasts/v4/42/f8/13/42f813c0-0de4-0609-e2c5-9954f543eaf9/mza_3131735023717016958.100x100-75.jpg",
+                'media' => json_encode([
+                    'url' => 'http://traffic.libsyn.com/jsjabber/JSJ100.mp3'
+                ]),
+                'download' => true
+            ]
         );
 
         if(is_array($data)){
