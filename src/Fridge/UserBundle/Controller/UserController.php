@@ -55,10 +55,10 @@ class UserController extends BaseController
         /** @var \Fridge\UserBundle\Entity\User $user */
         $user = $this->getUser();
 
-        /** @var \Fridge\FirebaseBundle\Task\RefreshPodcast $task */
-        $task = $this->get('fridge.firebase.task.refresh_podcast');
-
-        $task->process($user);
+//        /** @var \Fridge\FirebaseBundle\Task\RefreshPodcast $task */
+//        $task = $this->get('fridge.firebase.task.refresh_podcast');
+//
+//        $task->process($user);
 
         $user->setFirebaseToken($firebaseGenerator->generate($user));
 
