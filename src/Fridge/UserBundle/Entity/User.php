@@ -58,6 +58,7 @@ class User extends BaseUser
     public function __construct()
     {
         $this->gcmIds = new ArrayCollection();
+        parent::__construct();
     }
 
     /**
