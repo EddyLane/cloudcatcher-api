@@ -118,10 +118,10 @@ class ReadNode implements ConsumerInterface
                             'date' => $date->format('d-m-Y h:i'),
                             'title' => $responseJson['feed']['entries'][0]['title'],
                             'icon' => $podcast['artwork']['100'],
-                            'media' => json_encode([
+                            'media' => [
                                 'url' => $xml->xpath('//enclosure')[0]->attributes()->url,
-                            ]),
-                            'download' => $podcast['autoDownload'] == 1
+                            ],
+                            'download' => $podcast['autoDownload'] === 1
                         ]);
 
                         $this->GCMNotification->execute($message);
