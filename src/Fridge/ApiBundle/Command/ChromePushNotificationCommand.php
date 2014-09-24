@@ -97,6 +97,7 @@ class ChromePushNotificationCommand extends ContainerAwareCommand
         $fields = array(
             'registration_ids'  => $this->devices,
             'data'              => [
+                'id' => rand(),
                 'feed' => 'http://javascriptjabber.com/podcast.rss',
                 'slug' => 'javascript-jabber',
                 'podcast' => "JavaScript Jabber",

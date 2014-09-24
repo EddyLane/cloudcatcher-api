@@ -111,6 +111,7 @@ class ReadNode implements ConsumerInterface
                         ));
 
                         $message = new Message($clientIds, [
+                            'id' => rand(),
                             'feed' => $podcast['feed'],
                             'slug' => $podcast['slug'],
                             'podcast' => $podcast['name'],
