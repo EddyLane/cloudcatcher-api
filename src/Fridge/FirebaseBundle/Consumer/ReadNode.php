@@ -110,13 +110,13 @@ class ReadNode implements ConsumerInterface
                             $podcast['name']
                         ));
 
-                        $message = new Message($clientIds, [
+                        $message = new Message(array_unique($clientIds), [
                             'id' => rand(),
                             'feed' => $podcast['feed'],
                             'slug' => $podcast['slug'],
                             'podcast' => $podcast['name'],
-                            'timestamp' => $date->getTimestamp(),
-                            'date' => $date->format('d-m-Y h:i'),
+                            'timestamp' => $latest,
+                            'date' => $latest,
                             'title' => $responseJson['feed']['entries'][0]['title'],
                             'icon' => $podcast['artwork']['100'],
                             'media' => [

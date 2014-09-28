@@ -93,21 +93,21 @@ class ChromePushNotificationCommand extends ContainerAwareCommand
         }
 
         $date = new \DateTime();
-
+        $latest = new \DateTime('Wed, 17 Sep 2014 13:00:01 +0000');
         $fields = array(
-            'registration_ids'  => $this->devices,
+            'registration_ids'  => array_unique($this->devices),
             'data'              => [
                 'id' => rand(),
                 'feed' => 'http://javascriptjabber.com/podcast.rss',
                 'slug' => 'javascript-jabber',
                 'podcast' => "JavaScript Jabber",
                 'timestamp' => $date->format(\DateTime::ISO8601),
-                'date' => $date->format('d-m-Y h:i'),
+                'date' => $latest->format(\DateTime::ISO8601),
                 'title' => 'JSJ Google Polymer with Rob Dodson and Eric Bidelman',
                 'icon' => "http://a4.mzstatic.com/us/r30/Podcasts/v4/42/f8/13/42f813c0-0de4-0609-e2c5-9954f543eaf9/mza_3131735023717016958.100x100-75.jpg",
-                'media' => json_encode([
-                    'url' => 'http://traffic.libsyn.com/jsjabber/JSJ100.mp3'
-                ]),
+                'media' => [
+                    'url' => ['http://traffic.libsyn.com/jsjabber/JSJ100.mp3']
+                ],
                 'download' => true
             ]
         );
