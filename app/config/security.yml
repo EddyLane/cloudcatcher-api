@@ -45,6 +45,13 @@ security:
                 login_path: fos_user_security_login_oauth
             anonymous: true
 
+        api_register:
+            methods: [POST]
+            pattern: /api/v1/users
+            fos_oauth:  false
+            stateless:  true
+            anonymous: true
+
         api:
             pattern:    ^/api
             fos_oauth:  true
@@ -52,6 +59,7 @@ security:
 
     access_control:
         # You can omit this if /api can be accessed both authenticated and anonymously
+        - { path: ^/api/v1/users, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
