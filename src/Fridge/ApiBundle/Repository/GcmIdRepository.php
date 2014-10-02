@@ -31,10 +31,11 @@ class GcmIdRepository extends EntityRepository
         $qb
             ->delete($this->_entityName)
             ->where($qb->expr()->notIn('id', ':id'))
-            ->andWhere($qb->expr()->eq('g.user', $user))
+            ->andWhere($qb->expr()->eq('g.user', ':user'))
             ->setParameter('id', array_map(function (GcmId $e) {
                 return $e->getId();
             }, $toKeep))
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
         ;
