@@ -21,8 +21,9 @@ class GcmIdRepository extends EntityRepository
 
         $toKeep = $this->createQueryBuilder('g')
             ->orderBy('g.id', 'desc')
-            ->where($qb->expr()->eq('g.user', $user))
+            ->where($qb->expr()->eq('g.user', ':user'))
             ->setMaxResults($latest)
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
         ;
