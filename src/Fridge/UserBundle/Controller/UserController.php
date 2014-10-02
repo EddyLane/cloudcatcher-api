@@ -252,6 +252,11 @@ class UserController extends BaseController
         $gcmId->setUser($user);
         $user->addGcmId($gcmId);
 
+        /** @var \Fridge\ApiBundle\Repository\GcmIdRepository $repository */
+        $repository = $this->getDoctrine()->getRepository('FridgeApiBundle:GcmId');
+
+        $repository->deleteAllButNLatest($user, 5);
+
         $this->getUserManager()->updateUser($user);
         return $user;
     }
