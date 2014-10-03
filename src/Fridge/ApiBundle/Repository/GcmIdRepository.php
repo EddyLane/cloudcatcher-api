@@ -28,17 +28,20 @@ class GcmIdRepository extends EntityRepository
             ->getResult()
         ;
 
-        $qb
-            ->delete($this->_entityName, 'g')
-            ->where($qb->expr()->notIn('g.id', ':id'))
-            ->andWhere($qb->expr()->eq('g.user', ':user'))
-            ->setParameter('id', array_map(function (GcmId $e) {
-                return $e->getId();
-            }, $toKeep))
-            ->setParameter('user', $user)
-            ->getQuery()
-            ->getResult()
-        ;
+        if (count($toKeep) > 0) {
+            $qb
+                ->delete($this->_entityName, 'g')
+                ->where($qb->expr()->notIn('g.id', ':id'))
+                ->andWhere($qb->expr()->eq('g.user', ':user'))
+                ->setParameter('id', array_map(function (GcmId $e) {
+                    return $e->getId();
+                }, $toKeep))
+                ->setParameter('user', $user)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
     }
 
     public function deleteAll()
