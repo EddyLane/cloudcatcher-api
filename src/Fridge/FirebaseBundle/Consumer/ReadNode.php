@@ -115,6 +115,7 @@ class ReadNode implements ConsumerInterface
                             'feed' => $podcast['feed'],
                             'slug' => $podcast['slug'],
                             'podcast' => $podcast['name'],
+                            'content' => $responseJson['feed']['entries'][0]['summary'],
                             'timestamp' => $latest,
                             'date' => $latest,
                             'title' => $responseJson['feed']['entries'][0]['title'],
