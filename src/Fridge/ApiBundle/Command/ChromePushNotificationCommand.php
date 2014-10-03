@@ -99,6 +99,7 @@ class ChromePushNotificationCommand extends ContainerAwareCommand
             'data'              => [
                 'id' => rand(),
                 'feed' => 'http://javascriptjabber.com/podcast.rss',
+                'content' => 'Testing the summary of the episode',
                 'slug' => 'javascript-jabber',
                 'podcast' => "JavaScript Jabber",
                 'timestamp' => $date->format(\DateTime::ISO8601),
