@@ -17,14 +17,14 @@ Feature: GET get_user_payments
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    And I send a POST request to "/users/bob/cards" with the generated token
-    And I send a POST request to "/users/bob/subscriptions" with body:
+    And I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a POST request to "/api/v1/users/bob/subscriptions" with body:
     """
     {
         "subscription": "small"
     }
     """
-    When I send a GET request to "/users/bob/payments"
+    When I send a GET request to "/api/v1/users/bob/payments"
     Then the response code should be 200
     And the response should contain json with created_at replaced with todays date:
     """

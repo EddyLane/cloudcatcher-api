@@ -20,16 +20,48 @@ class WebContext extends WebApiContext
     protected $stripePk;
     protected $stripeSk;
     protected $stripeClient;
+    private $baseUrl;
+    private $accessToken;
 
     public function __construct($parameters)
     {
         $this->stripePk = $parameters['stripe_pk'];
         $this->stripeSk = $parameters['stripe_sk'];
         $this->parameters = $parameters;
-
+        $this->baseUrl = $parameters['base_url'];
         $this->stripeClient = new \ZfrStripe\Client\StripeClient($this->stripeSk);
 
         parent::__construct($parameters['base_url']);
+    }
+
+    /**
+     * Sends HTTP request to specific relative URL.
+     *
+     * @param string $method request method
+     * @param string $url    relative url
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" with access token$/
+     */
+    public function iSendARequest($method, $url)
+    {
+        $url = $this->baseUrl.ltrim($this->replacePlaceHolder($url), '/') . '?access_token=' . $this->accessToken;
+
+        parent::getBrowser()->call($url, $method, $this->getHeaders());
+    }
+
+    /**
+     * Adds Basic Authentication header to next request.
+     *
+     * @param string $username
+     * @param string $password
+     *
+     * @Given /^I am authenticating as "([^"]*)" with "([^"]*)" password via oauth2$/
+     */
+    public function iAmAuthenticatingAs($username, $password)
+    {
+        $client = $this->getMainContext()->client;
+        parent::iSendARequest('get', '/oauth/v2/token?username=' . $username . '&password=' . $password . '&grant_type=password&client_secret=' . $client->getSecret() . '&client_id=' . $client->getPublicId());
+        $this->accessToken = json_decode(parent::getBrowser()->getLastResponse()->getContent(), true)['access_token'];
     }
 
     /**
@@ -58,7 +90,11 @@ class WebContext extends WebApiContext
 
         $stripeResponse = json_decode($resp, true);
 
-        $this->stripeToken = $stripeResponse['id'];
+        if (isset($stripeResponse['id'])) {
+            $this->stripeToken = $stripeResponse['id'];
+        } else {
+            throw new \Exception(json_encode($stripeResponse));
+        }
     }
 
     /**
@@ -111,7 +147,9 @@ class WebContext extends WebApiContext
      */
     public function iSendAPostRequestToWithTheGeneratedToken($url)
     {
-        $url  = $this->parameters['base_url'].'/'.ltrim($this->replacePlaceHolder($url), '/');
+        $url  = $this->parameters['base_url'] . ltrim($this->replacePlaceHolder($url), '/') . '?access_token=' . $this->accessToken;
+
+//        $this->addHeader('Authorization: Bearer ' . $this->accessToken);
 
         $this->getBrowser()->call($url, 'POST', $this->getHeaders(), json_encode([
             'token' => $this->stripeToken
@@ -181,6 +219,17 @@ class WebContext extends WebApiContext
             assertArrayHasKey($key, $etalon);
             assertEquals($etalon[$key], $actual[$key]);
         }
+    }
+
+    /**
+     * @When /^I send a GET request to "([^"]*)" with the client id and secret$/
+     */
+    public function iSendAGetRequestToWithTheClientIdAndSecret($url)
+    {
+        /** @var \Fridge\ApiBundle\Entity\Client $client */
+        $client = $this->getMainContext()->client;
+        $url .= '&client_secret=' . $client->getSecret() . '&client_id=' . $client->getPublicId();
+        parent::iSendARequest('get', $url);
     }
 
     /**

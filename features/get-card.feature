@@ -15,8 +15,8 @@ Feature: GET get_user_card single
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/bob/cards" with the generated token
-    And I send a GET request to "/users/bob/cards/1"
+    When I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a GET request to "/api/v1/users/bob/cards/1"
     Then the response code should be 200
     And the response should contain json:
     """
@@ -35,9 +35,9 @@ Feature: GET get_user_card single
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/john/cards" with the generated token
+    When I send a POST request to "/api/v1/users/john/cards" with the generated token
     Given I am authenticating as "bob" with "bob" password
-    And I send a GET request to "/users/john/cards/1"
+    And I send a GET request to "/api/v1/users/john/cards/1"
     Then the response code should be 403
     And the response should contain json:
     """
@@ -52,8 +52,8 @@ Feature: GET get_user_card single
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/bob/cards" with the generated token
-    And I send a GET request to "/users/bob/cards/1"
+    When I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a GET request to "/api/v1/users/bob/cards/1"
     Then the response code should be 200
     And the response should contain json:
     """
@@ -72,8 +72,8 @@ Feature: GET get_user_card single
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/bob/cards" with the generated token
-    And I send a GET request to "/users/missing/cards/1"
+    When I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a GET request to "/api/v1/users/missing/cards/1"
     Then the response code should be 404
     And the response should contain json:
     """
@@ -85,7 +85,7 @@ Feature: GET get_user_card single
 
   Scenario: Will return 404 when no card exists
     Given I am authenticating as "bob" with "bob" password
-    And I send a GET request to "/users/bob/cards/1"
+    And I send a GET request to "/api/v1/users/bob/cards/1"
     Then the response code should be 404
     And the response should contain json:
     """

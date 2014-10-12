@@ -15,13 +15,13 @@ Feature: PUT put_user_card
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 5555 5555 5555 4444 | 123 | 08        | 2014     |
-    And I send a POST request to "/users/bob/cards" with the generated token
+    And I send a POST request to "/api/v1/users/bob/cards" with the generated token
     Then the response code should be 201
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 08        | 2014     |
-    And I send a POST request to "/users/bob/cards" with the generated token
-    And I send a GET request to "/users/bob/cards"
+    And I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a GET request to "/api/v1/users/bob/cards"
     Then the response should contain json:
     """
     [
@@ -43,7 +43,7 @@ Feature: PUT put_user_card
         }
     ]
     """
-    When I send a PUT request to "/users/bob/cards/1" with body:
+    When I send a PUT request to "/api/v1/users/bob/cards/1" with body:
     """
     {
         "card_type_name": "MasterCard",
@@ -66,7 +66,7 @@ Feature: PUT put_user_card
         "default": true
     }
     """
-    And I send a GET request to "/users/bob/cards"
+    And I send a GET request to "/api/v1/users/bob/cards"
     Then the response should contain json:
     """
     [

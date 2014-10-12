@@ -18,9 +18,9 @@ Feature: POST post_user_subscription
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/bob/cards" with the generated token
+    When I send a POST request to "/api/v1/users/bob/cards" with the generated token
     Then the response code should be 201
-    When I send a POST request to "/users/bob/subscriptions" with body:
+    When I send a POST request to "/api/v1/users/bob/subscriptions" with body:
     """
     {
         "subscription": "small"
@@ -56,7 +56,7 @@ Feature: POST post_user_subscription
 
   Scenario: Will return a 403 when the user has no cards
     Given I am authenticating as "tom" with "tom" password
-    When I send a POST request to "/users/tom/subscriptions" with body:
+    When I send a POST request to "/api/v1/users/tom/subscriptions" with body:
     """
     {
         "subscription": "small"

@@ -9,6 +9,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\Query;
 use ZfrStripe\Exception\NotFoundException;
 
+require __DIR__. '/../../../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+
 /**
  * Data context.
  */
@@ -17,8 +19,8 @@ class DataContext extends BehatContext implements KernelAwareInterface
     protected $loader;
     protected $executor;
     protected $parameters;
-
     protected $kernel;
+
 
     /**
      * Initializes context with parameters from behat.yml.
@@ -145,33 +147,52 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $userManager = $this->getUserManager();
         $em = $this->getEntityManager();
 
-        foreach($em->getRepository('FridgeUserBundle:User')->findAll() as $user) {
-            try {
-                $em->remove($user);
-                $em->flush();
-            }
-            catch(\Exception $e) {}
-        }
 
-        foreach($em->getRepository('FridgeSubscriptionBundle:StripeProfile')->findAll() as $user) {
-            try {
-                $em->remove($user);
-                $em->flush();
-            }
-            catch(\Exception $e) {}
-        }
-        foreach($em->getRepository('FridgeSubscriptionBundle:Card')->findAll() as $user) {
-            try {
-                $em->remove($user);
-                $em->flush();
-            }
-            catch(\Exception $e) {}
-        }
+//        foreach($em->getRepository('FridgeApiBundle:GcmId')->findAll() as $token) {
+//                $em->remove($token);
+//                $em->flush();
+//        }
+//
+//        foreach($em->getRepository('FridgeApiBundle:AccessToken')->findAll() as $token) {
+//            try {
+//                $em->remove($token);
+//                $em->flush();
+//            }
+//            catch(\Exception $e) {}
+//        }
+//
+//        foreach($em->getRepository('FridgeUserBundle:User')->findAll() as $user) {
+//            try {
+//                $em->remove($user);
+//                $em->flush();
+//            }
+//            catch(\Exception $e) {}
+//        }
+//
+//        foreach($em->getRepository('FridgeSubscriptionBundle:StripeProfile')->findAll() as $user) {
+//            try {
+//                $em->remove($user);
+//                $em->flush();
+//            }
+//            catch(\Exception $e) {}
+//        }
+//        foreach($em->getRepository('FridgeSubscriptionBundle:Card')->findAll() as $user) {
+//            try {
+//                $em->remove($user);
+//                $em->flush();
+//            }
+//            catch(\Exception $e) {}
+//        }
 
+        $this->removeAll('FridgeApiBundle:GcmId');
+        $this->removeAll('FridgeApiBundle:RefreshToken');
+        $this->removeAll('FridgeApiBundle:AccessToken');
+        $this->removeAll('FridgeUserBundle:User');
         $this->removeAll('FridgeUserBundle:User');
         $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
         $this->removeAll('FridgeSubscriptionBundle:Card');
 
+        $em->getConnection()->exec("ALTER TABLE fridge_user_user AUTO_INCREMENT = 1; ");
         $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
         $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
         $em->flush();
@@ -313,6 +334,25 @@ class DataContext extends BehatContext implements KernelAwareInterface
             ;
             $subscriptionManager->save($subscription, true);
         }
+    }
+
+    /**
+     * @Given /^the default client exists$/
+     */
+    public function theDefaultClientExists()
+    {
+        $clientManager = $this->getKernel()->getContainer()->get('fos_oauth_server.client_manager.default');
+        $client = $clientManager->createClient();
+        $client->setRedirectUris(['http://app.angular-symfony-stripe.local:8080/app_dev.php/']);
+        $client->setAllowedGrantTypes([
+            'password',
+            'refresh_token',
+            'authorization_code',
+            'token',
+            'client_credentials'
+        ]);
+        $clientManager->updateClient($client);
+        $this->getMainContext()->client = $client;
     }
 
 }

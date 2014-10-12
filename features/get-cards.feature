@@ -15,8 +15,8 @@ Feature: GET get_user_cards
     And I generate a stripe token from the following card details:
       | number              | cvc | exp_month | exp_year |
       | 4242 4242 4242 4242 | 123 | 07        | 2014     |
-    When I send a POST request to "/users/bob/cards" with the generated token
-    And I send a GET request to "/users/bob/cards"
+    When I send a POST request to "/api/v1/users/bob/cards" with the generated token
+    And I send a GET request to "/api/v1/users/bob/cards"
     Then the response code should be 200
     And the response should contain json:
     """
@@ -34,7 +34,7 @@ Feature: GET get_user_cards
 
   Scenario: Will return 403 when not the user
     Given I am authenticating as "bob" with "bob" password
-    And I send a GET request to "/users/john/cards"
+    And I send a GET request to "/api/v1/users/john/cards"
     Then the response code should be 403
     And the response should contain json:
     """
@@ -46,7 +46,7 @@ Feature: GET get_user_cards
 
   Scenario: Will return 404 when no user exists
     Given I am authenticating as "fridge" with "fridge" password
-    And I send a GET request to "/users/missing/cards"
+    And I send a GET request to "/api/v1/users/missing/cards"
     And the response code should be 404
     And the response should contain json:
     """
@@ -58,7 +58,7 @@ Feature: GET get_user_cards
 
   Scenario: Will return 200 when not the user but is an admin
     Given I am authenticating as "fridge" with "fridge" password
-    And I send a GET request to "/users/john/cards"
+    And I send a GET request to "/api/v1/users/john/cards"
     Then the response code should be 200
     And the response should contain json:
     """
