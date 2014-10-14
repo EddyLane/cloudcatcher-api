@@ -35,3 +35,6 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+
+fridge_firebase:
+    firebase_base_url: 'http://127.0.0.1:8124'

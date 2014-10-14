@@ -1,3 +1,4 @@
-fridge_podcast_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: FridgePodcastBundle:Default:index }
+fridge_user_podcasts:
+    resource: Fridge\PodcastBundle\Controller\PodcastController
+    type:     rest
+    prefix:   /

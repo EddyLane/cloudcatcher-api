@@ -8,10 +8,13 @@
 
 namespace Acceptance\Context\Web;
 
+require __DIR__ . '/../../../../vendor/guzzlehttp/guzzle/tests/Server.php';
+
+use Behat\Behat\Event\FeatureEvent;
 use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
-use Buzz\Browser;
 use Behat\Gherkin\Node\PyStringNode;
+use GuzzleHttp\Tests\Server;
 
 class WebContext extends WebApiContext
 {
@@ -239,4 +242,72 @@ class WebContext extends WebApiContext
     {
         sleep($seconds);
     }
+
+    public static function startApi()
+    {
+        Server::flush();
+        Server::enqueue([new \GuzzleHttp\Message\Response(200)]);
+    }
+
+    public static function stopApi()
+    {
+        Server::flush();
+        Server::stop();
+    }
+
+    /**
+     * @Given /^the mock api server should have received a ([^"]*) request to "([^"]*)" with JSON content:$/
+     */
+    public function theMockApiServerShouldHaveReceivedAPostRequestToWithJsonContent($method, $path, PyStringNode $jsonString)
+    {
+        /** @var \GuzzleHttp\Message\Request $request */
+        $request = Server::received(true)[0];
+
+        assertEquals($request->getMethod(), $method);
+
+        assertEquals($request->getPath(), $path);
+
+        $etalon = json_decode($jsonString->getRaw(), true);
+        if (null === $etalon) {
+            throw new \RuntimeException(
+                "Can not convert etalon to json:\n".$this->replacePlaceHolder($jsonString->getRaw())
+            );
+        }
+        $actual = json_decode($request->getBody(), true);
+
+        assertCount(count($etalon), $actual);
+        foreach ($actual as $key => $needle) {
+            assertArrayHasKey($key, $etalon);
+            assertEquals($etalon[$key], $actual[$key]);
+        }
+
+    }
+
+    /**
+     * @When /^I send a POST request to "([^"]*)" with the access token and body:$/
+     */
+    public function iSendAPostRequestToWithTheAccessTokenAndBody($url, PyStringNode $body)
+    {
+        $url  = $this->parameters['base_url'] . ltrim($this->replacePlaceHolder($url), '/') . '?access_token=' . $this->accessToken;
+        $body = $this->replacePlaceHolder(trim($body));
+
+        $this->getBrowser()->call($url, 'POST', $this->getHeaders(), $body);
+    }
+
+    /** @BeforeFeature */
+    public static function setupFeature(FeatureEvent $event)
+    {
+        if ($event->getFeature()->getTitle() === 'POST podcast') {
+            self::startApi();
+        }
+    }
+
+    /** @AfterFeature */
+    public static function teardownFeature(FeatureEvent $event)
+    {
+        if ($event->getFeature()->getTitle() === 'POST podcast') {
+            self::stopApi();
+        }
+    }
+
 }

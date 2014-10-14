@@ -23,3 +23,6 @@ monolog:
             level: debug
         console:
             type:  console
+
+fridge_firebase:
+    firebase_base_url: '%firebase_base_url%'

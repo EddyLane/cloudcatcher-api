@@ -14,3 +14,6 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+fridge_firebase:
+    firebase_base_url: 'http://127.0.0.1:8124'

@@ -15,6 +15,11 @@ fridge_subscription_routing:
     type: rest
     prefix: /api/v1/
 
+fridge_podcast_routing:
+    resource: "@FridgePodcastBundle/Resources/config/routing.yml"
+    type: rest
+    prefix: /api/v1/
+
 fridge_user_routing:
     resource: "@FridgeUserBundle/Resources/config/routing.yml"
     type: rest

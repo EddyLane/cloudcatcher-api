@@ -19,8 +19,19 @@ class FridgeFirebaseExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        if (!isset($configs[0]['firebase_base_url'])) {
+            throw new \InvalidArgumentException(
+                'The "firebase_base_url" option must be set for the "firebase_bundle" bundle'
+            );
+        }
+
+        $container->setParameter(
+            'fridge_firebase.firebase_base_url',
+            $configs[0]['firebase_base_url']
+        );
+
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

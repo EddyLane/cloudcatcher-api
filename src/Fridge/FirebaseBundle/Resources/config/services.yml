@@ -27,7 +27,7 @@ services:
     fridge.firebase.client.firebase_client:
         class: %fridge.firebase.client.firebase_client.class%
         arguments:
-            - %firebase_base_url%
+            - %fridge_firebase.firebase_base_url%
             - %firebase_secret_key%
             - @logger
 
