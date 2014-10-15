@@ -12,30 +12,18 @@ Feature: POST podcast
     When I send a POST request to "/api/v1/podcasts" with the access token and body:
     """
     {
-      "itunesId": 123456,
-      "feed": "http://eddylane.co.uk/feed",
-      "name": "Eddys Podcast",
-      "artist": "Eddy Lane",
-      "country": "United Kingdom",
-      "slug": "eddys-podcast",
-      "genres": [
-        "comedy", "banter"
-      ]
+      "feed": "http://eddylane.co.uk/feed"
     }
     """
     Then print response
     Then the response code should be 201
+    And redis should have the following data stored under "something":
+    """
+    yes
+    """
     And the mock api server should have received a POST request to "/users/bob/podcasts.json" with JSON content:
     """
     {
-      "itunesId": 123456,
-      "feed": "http://eddylane.co.uk/feed",
-      "name": "Eddys Podcast",
-      "artist": "Eddy Lane",
-      "country": "United Kingdom",
-      "slug": "eddys-podcast",
-      "genres": [
-        "comedy", "banter"
-      ]
+      "feed": "http://eddylane.co.uk/feed"
     }
     """

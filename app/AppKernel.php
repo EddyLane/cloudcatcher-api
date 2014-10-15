@@ -28,11 +28,13 @@ class AppKernel extends Kernel
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new Snc\RedisBundle\SncRedisBundle(),
+
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),
             new Fridge\ApiBundle\FridgeApiBundle(),
             new Fridge\FirebaseBundle\FridgeFirebaseBundle(),
-            new Fridge\PodcastBundle\FridgePodcastBundle(),
+            new Fridge\PodcastBundle\FridgePodcastBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

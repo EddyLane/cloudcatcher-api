@@ -5,18 +5,13 @@ namespace Fridge\PodcastBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use Redis;
 
 class PodcastController extends FOSRestController
 {
 
     /**
-     * @RequestParam(name="itunesId", requirements="\d+")
      * @RequestParam(name="feed")
-     * @RequestParam(name="name")
-     * @RequestParam(name="artist")
-     * @RequestParam(name="country")
-     * @RequestParam(name="slug")
-     * @RequestParam(array=true, name="genres", requirements="[a-z]+")
      *
      * @param ParamFetcher $paramFetcher
      * @return array
@@ -29,8 +24,13 @@ class PodcastController extends FOSRestController
         /** @var \Fridge\UserBundle\Entity\User $user */
         $user = $this->getUser();
 
+
         $client->getClient()->push('/users/' . $user->getUsernameCanonical() . '/podcasts', $paramFetcher->all());
 
+        /** @var \Redis $redis */
+        $redis = $this->container->get('snc_redis.default');
+
+        $redis->set('something', 'yes');
 
         return $this->view($client->getClient()->getOptions(), 201);
     }

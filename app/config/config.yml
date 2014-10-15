@@ -168,3 +168,11 @@ old_sound_rabbit_mq:
             exchange_options: { name: 'file_nodes', type: direct }
             queue_options:    { name: 'file_nodes' }
             callback:         fridge.firebase.consumer.read_node
+
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: redis://localhost
+            logging: %kernel.debug%

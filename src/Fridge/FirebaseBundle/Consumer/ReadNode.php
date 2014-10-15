@@ -25,16 +25,24 @@ class ReadNode implements ConsumerInterface
     private $client;
     private $userManager;
     private $GCMNotification;
+    private $redis;
 
     public static $googleFeedApi = 'https://ajax.googleapis.com/ajax/services/feed/load';
 
-    public function __construct(FirebaseClient $client, LoggerInterface $logger, UserManager $userManager, GCMNotification $GCMNotification)
+    public function __construct(
+        FirebaseClient $client,
+        LoggerInterface $logger,
+        UserManager $userManager,
+        GCMNotification $GCMNotification,
+        $redis
+    )
     {
         $this->logger = $logger;
         $this->client = $client;
         $this->xmlReader = new \XMLReader();
         $this->userManager = $userManager;
         $this->GCMNotification = $GCMNotification;
+        $this->redis = $redis;
     }
 
     public function execute(AMQPMessage $msg)

@@ -8,6 +8,7 @@ use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\Query;
 use ZfrStripe\Exception\NotFoundException;
+use Behat\Gherkin\Node\PyStringNode;
 
 require __DIR__. '/../../../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
 
@@ -353,6 +354,18 @@ class DataContext extends BehatContext implements KernelAwareInterface
         ]);
         $clientManager->updateClient($client);
         $this->getMainContext()->client = $client;
+    }
+
+    /**
+     * @Given /^redis should have the following data stored under "([^"]*)":$/
+     */
+    public function redisShouldHaveTheFollowingDataStoredUnderSomething($key, PyStringNode $string)
+    {
+        $redis = $this->getKernel()->getContainer()->get('snc_redis.default');
+
+        assertEquals($string->getRaw(), $redis->get($key));
+
+
     }
 
 }
