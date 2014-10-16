@@ -46,13 +46,13 @@ class GCMClient extends Client
 
     /**
      * @param Logger $logger
-     * @param $notificationUrl
+     * @param $baseUrl
      * @param $apiKey
      */
-    public function __construct(Logger $logger, $notificationUrl, $apiKey)
+    public function __construct(Logger $logger, $baseUrl, $apiKey)
     {
         $this->logger = $logger;
-        $this->notificationUrl = $notificationUrl;
+        $this->notificationUrl = $baseUrl;
         $this->apiKey = $apiKey;
 
         $this->logger->info('GCM client created with key: ' . $apiKey);

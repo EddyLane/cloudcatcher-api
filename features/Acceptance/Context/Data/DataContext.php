@@ -363,9 +363,29 @@ class DataContext extends BehatContext implements KernelAwareInterface
     {
         $redis = $this->getKernel()->getContainer()->get('snc_redis.default');
 
-        assertEquals($string->getRaw(), $redis->get($key));
+        $expected = json_decode($string, true);
+        $actual = json_decode($redis->get($key), true);
 
+        assertCount(count($expected), $actual);
+        foreach ($actual as $key => $needle) {
+            assertArrayHasKey($key, $expected);
+            assertEquals($expected[$key], $actual[$key]);
+        }
+    }
 
+    /**
+     * @Given /^redis key "([^"]*)" should have a ttl of (\d+)$/
+     */
+    public function redisKeyShouldHaveATtlOf($key, $expected)
+    {
+        $redis = $this->getKernel()->getContainer()->get('snc_redis.default');
+
+        try {
+            assertEquals($expected, $redis->ttl($key));
+        }
+        catch(\Exception $e) {
+            assertEquals($expected - 1, $redis->ttl($key));
+        }
     }
 
 }

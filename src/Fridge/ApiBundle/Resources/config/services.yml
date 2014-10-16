@@ -1,6 +1,7 @@
 parameters:
     fridge.api.client.gcm_client.class: Fridge\ApiBundle\Client\GCMClient
     fridge.api.notification.gcm_notification.class: Fridge\ApiBundle\Notification\GCMNotification
+    fridge.api.client.google_feed.class: Fridge\ApiBundle\Client\GoogleFeedClient
 
 services:
     fridge.api.client.gcm_client:
@@ -9,6 +10,12 @@ services:
             - @logger
             - %gcm_url%
             - %gcm_api_key%
+
+    fridge.api.client.google_feed:
+        class: %fridge.api.client.google_feed.class%
+        arguments:
+            - @logger
+            - %fridge_api.google_feed_url%
 
     fridge.api.notification.gcm_notification:
         class: %fridge.api.notification.gcm_notification.class%

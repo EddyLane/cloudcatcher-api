@@ -19,8 +19,19 @@ class FridgeApiExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        if (!isset($configs[0]['google_feed_url'])) {
+            throw new \InvalidArgumentException(
+                'The "google_feed_url" option must be set for the "fridge_api" bundle'
+            );
+        }
+
+        $container->setParameter(
+            'fridge_api.google_feed_url',
+            $configs[0]['google_feed_url']
+        );
+
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

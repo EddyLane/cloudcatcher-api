@@ -38,3 +38,6 @@ assetic:
 
 fridge_firebase:
     firebase_base_url: 'http://127.0.0.1:8124'
+
+fridge_api:
+    google_feed_url: 'http://127.0.0.1:8124'

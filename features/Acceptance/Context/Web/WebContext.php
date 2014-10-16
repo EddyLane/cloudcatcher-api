@@ -14,6 +14,8 @@ use Behat\Behat\Event\FeatureEvent;
 use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Gherkin\Node\PyStringNode;
+use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Tests\Server;
 
 class WebContext extends WebApiContext
@@ -243,6 +245,23 @@ class WebContext extends WebApiContext
         sleep($seconds);
     }
 
+    /**
+     * @Given /^the mock API server will respond with the following responses:$/
+     */
+    public function theMockApiServerWillRespondWithTheFollowingResponses(TableNode $table)
+    {
+        Server::flush();
+
+        Server::enqueue(array_map(function ($e) {
+            return new Response(
+                $e['Status'],
+                [],
+                Stream::factory($e['Body'])
+            );
+        }, $table->getHash()));
+
+    }
+
     public static function startApi()
     {
         Server::flush();
@@ -256,12 +275,35 @@ class WebContext extends WebApiContext
     }
 
     /**
-     * @Given /^the mock api server should have received a ([^"]*) request to "([^"]*)" with JSON content:$/
-     */
-    public function theMockApiServerShouldHaveReceivedAPostRequestToWithJsonContent($method, $path, PyStringNode $jsonString)
+     * @Given /^the mock api server request at index (\d+) should have received a ([^"]*) request to "([^"]*)"$/
+     * */
+    public function theMockApiServerShouldHaveReceivedAGetRequestTo($index, $method, $path)
     {
         /** @var \GuzzleHttp\Message\Request $request */
-        $request = Server::received(true)[0];
+        $request = Server::received(true)[$index];
+        assertEquals($method, $request->getMethod());
+
+
+        $actualPath = $request->getPath();
+
+        if (strlen($request->getQuery()) > 0) {
+            $actualPath .= '?' . $request->getQuery();
+        }
+
+        assertEquals($path, $actualPath);
+
+
+        //array_pop(Server::received((true)));
+    }
+
+
+    /**
+     * @Given /^the mock api server request at index (\d+) should have received a ([^"]*) request to "([^"]*)" with JSON content:$/
+     */
+    public function theMockApiServerShouldHaveReceivedAPostRequestToWithJsonContent($index, $method, $path, PyStringNode $jsonString)
+    {
+        /** @var \GuzzleHttp\Message\Request $request */
+        $request = Server::received(true)[$index];
 
         assertEquals($request->getMethod(), $method);
 
