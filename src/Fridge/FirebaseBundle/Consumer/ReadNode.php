@@ -55,7 +55,7 @@ class ReadNode implements ConsumerInterface
         LoggerInterface $logger,
         UserManager $userManager,
         GCMNotification $GCMNotification,
-        \Redis $redis
+        \Predis\Client $redis
     )
     {
         $this->logger = $logger;
