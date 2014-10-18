@@ -174,5 +174,5 @@ snc_redis:
         default:
             type: predis
             alias: default
-            dsn: %redis_dsn%
+            dsn: "%redis_dsn%"
             logging: %kernel.debug%
