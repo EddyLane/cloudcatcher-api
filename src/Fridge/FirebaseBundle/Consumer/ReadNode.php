@@ -130,7 +130,7 @@ class ReadNode implements ConsumerInterface
                 $date = new \DateTime($responseJson['feed']['entries'][0]['publishedDate']);
                 $latest = $date->format(\DateTime::ISO8601);
 
-                if (!isset($podcast['latest']) || strcmp($latest, $podcast['latest']) !== 0) {
+                if ((!isset($podcast['latest']) || strcmp($latest, $podcast['latest']) !== 0) && isset($xml->xpath('//enclosure')[0])) {
 
                     $user = $this->userManager->findOneBy(['username' => $msg->body]);
 
