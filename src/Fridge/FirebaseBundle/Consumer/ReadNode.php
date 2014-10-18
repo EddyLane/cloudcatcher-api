@@ -81,6 +81,10 @@ class ReadNode implements ConsumerInterface
 
             $guzzleClient = new Client();
 
+            if (!$data || !is_array($data)) {
+                return true;
+            }
+
             foreach ($data as $i => $podcast) {
 
                 $new = 0;
