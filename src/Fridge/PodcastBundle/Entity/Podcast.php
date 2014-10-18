@@ -4,32 +4,48 @@ namespace Fridge\PodcastBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
+use Cocur\Slugify\Slugify;
 
 /**
  * Podcast
  *
  * @ORM\Table()
  * @ORM\Entity
- *
+ * @Serializer\ExclusionPolicy("all")
  */
 class Podcast
 {
     /**
-     * @param array $feedData
+     * @param array $podcastData
      * @return Podcast
      */
-    public static function factory(array $feedData)
+    public static function create(array $podcastData)
     {
-        $podcastData = $feedData['responseData']['feed'];
-
         $podcast = new Podcast();
+        $slugify = new Slugify();
+
+        $date = new \DateTime($podcastData['entries'][0]['publishedDate']);
+
         $podcast
             ->setFeed($podcastData['feedUrl'])
             ->setName($podcastData['title'])
+            ->setAmount(count($podcastData['entries']))
+            ->setNewEpisodes(count($podcastData['entries']))
+            ->setArtist($podcastData['artistName'])
+            ->setImageUrl30($podcastData['artworkUrl30'])
+            ->setImageUrl100($podcastData['artworkUrl100'])
+            ->setExplicit($podcastData['collectionExplicitness'] !== 'notExplicit')
+            ->setCountry($podcastData['country'])
+            ->setSlug($slugify->slugify($podcastData['title']))
+            ->setGenres($podcastData['genres'])
+            ->setItunesId($podcastData['collectionId'])
+            ->setLatest($date)
+            ->setLatestEpisode($podcastData['entries'][0])
         ;
 
         return $podcast;
     }
+
 
     /**
      * @var integer
@@ -43,20 +59,21 @@ class Podcast
     /**
      * @var integer
      *
+     * @Serializer\Expose()
      * @ORM\Column(name="amount", type="integer")
      */
     private $amount;
 
     /**
      * @var string
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="feed", type="string", length=255)
      */
     private $feed;
 
     /**
      * @var string
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="artist", type="string", length=255)
      */
     private $artist;
@@ -77,63 +94,73 @@ class Podcast
 
     /**
      * @var string
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 
     /**
      * @var boolean
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="explicit", type="boolean")
      */
     private $explicit;
 
     /**
      * @var array
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="genres", type="simple_array")
      */
     private $genres;
 
     /**
      * @var array
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="heard", type="simple_array")
      */
     private $heard;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="itunesId", type="integer")
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("itunesId")
+     * @ORM\Column(name="itunes_id", type="integer")
      */
     private $itunesId;
 
     /**
      * @var \DateTime
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="latest", type="datetimetz")
      */
     private $latest;
 
     /**
+     * @var \DateTime
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("latestEpisode")
+     * @ORM\Column(name="latest_episode", type="array")
+     */
+    private $latestEpisode;
+
+    /**
      * @var string
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="newEpisodes", type="integer")
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("newEpisodes")
+     * @ORM\Column(name="new_episodes", type="integer")
      */
     private $newEpisodes;
 
     /**
      * @var string
-     *
+     * @Serializer\Expose()
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
@@ -401,6 +428,25 @@ class Podcast
     }
 
     /**
+     * @param $latestEpisode
+     * @return $this
+     */
+    public function setLatestEpisode($latestEpisode)
+    {
+        $this->latestEpisode = $latestEpisode;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatestEpisode()
+    {
+        return $this->latestEpisode;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -467,5 +513,18 @@ class Podcast
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Get artwork
+     * @Serializer\VirtualProperty
+     * @return array
+     */
+    public function getArtwork()
+    {
+        return [
+            '30' => $this->getImageUrl30(),
+            '100' => $this->getImageUrl100()
+        ];
     }
 }

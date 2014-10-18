@@ -20,13 +20,34 @@ use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 class ReadNode implements ConsumerInterface
 {
+    /**
+     * @var \Symfony\Component\HttpKernel\Log\LoggerInterface
+     */
     private $logger;
+    /**
+     * @var \XMLReader
+     */
     private $xmlReader;
+    /**
+     * @var \Fridge\FirebaseBundle\Client\FirebaseClient
+     */
     private $client;
+    /**
+     * @var \Fridge\UserBundle\Manager\UserManager
+     */
     private $userManager;
+    /**
+     * @var \Fridge\ApiBundle\Notification\GCMNotification
+     */
     private $GCMNotification;
+    /**
+     * @var \Redis
+     */
     private $redis;
 
+    /**
+     * @var string
+     */
     public static $googleFeedApi = 'https://ajax.googleapis.com/ajax/services/feed/load';
 
     public function __construct(
@@ -34,7 +55,7 @@ class ReadNode implements ConsumerInterface
         LoggerInterface $logger,
         UserManager $userManager,
         GCMNotification $GCMNotification,
-        $redis
+        \Redis $redis
     )
     {
         $this->logger = $logger;
@@ -65,22 +86,31 @@ class ReadNode implements ConsumerInterface
                 $new = 0;
                 $heard = 0;
 
-                $options = [
-                    'query' => [
-                        'q' => $podcast['feed'],
-                        'v' => '1.0',
-                        'output' => 'json_xml',
-                        'num' => -1
-                    ]
-                ];
 
+                if (!$googleFeedData = $this->redis->get('feed:' . $podcast['feed'])) {
 
-                try {
-                    $response = $guzzleClient->get(self::$googleFeedApi, $options);
-                    $responseJson = $response->json()['responseData'];
-                } catch (RequestException $e) {
-                    $this->logger->error(sprintf('Curl failed to url "%s" with feed "%s". Request: "%s"', self::$googleFeedApi, $podcast['feed'], $e->getRequest()));
-                    throw $e;
+                    $options = [
+                        'query' => [
+                            'q' => $podcast['feed'],
+                            'v' => '1.0',
+                            'output' => 'json_xml',
+                            'num' => -1
+                        ]
+                    ];
+
+                    try {
+                        $response = $guzzleClient->get(self::$googleFeedApi, $options);
+                        $responseJson = $response->json()['responseData'];
+                    } catch (RequestException $e) {
+                        $this->logger->error(sprintf('Curl failed to url "%s" with feed "%s". Request: "%s"', self::$googleFeedApi, $podcast['feed'], $e->getRequest()));
+                        throw $e;
+                    }
+
+                    $this->redis->setex('feed:' . $podcast['feed'], 3600, (String) $response->getBody());
+                } else {
+
+                    $responseJson = json_decode($googleFeedData, true)['responseData'];
+                    
                 }
 
 

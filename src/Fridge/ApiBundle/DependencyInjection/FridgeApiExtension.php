@@ -25,9 +25,20 @@ class FridgeApiExtension extends Extension
             );
         }
 
+        if (!isset($configs[0]['itunes_search_url'])) {
+            throw new \InvalidArgumentException(
+                'The "itunes_search_url" option must be set for the "fridge_api" bundle'
+            );
+        }
+
         $container->setParameter(
             'fridge_api.google_feed_url',
             $configs[0]['google_feed_url']
+        );
+
+        $container->setParameter(
+            'fridge_api.itunes_search_url',
+            $configs[0]['itunes_search_url']
         );
 
         $configuration = new Configuration();

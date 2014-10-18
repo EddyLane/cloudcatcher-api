@@ -38,7 +38,8 @@
         "eelkevdbos/firebase-php": "dev-master",
         "google/apiclient": "1.0.*@beta",
         "snc/redis-bundle": "1.1.x-dev",
-        "predis/predis": "0.8.x-dev"
+        "predis/predis": "0.8.x-dev",
+        "cocur/slugify": "@stable"
     },
     "require-dev": {
         "behat/behat": "~2.5",

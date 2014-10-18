@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
 
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),

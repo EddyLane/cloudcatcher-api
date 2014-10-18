@@ -20,4 +20,4 @@ fridge_firebase:
 
 fridge_api:
     google_feed_url: 'http://127.0.0.1:8124'
-
+    itunes_search_url: 'http://127.0.0.1:8124'

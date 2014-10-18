@@ -1,9 +1,12 @@
 parameters:
+
     fridge.api.client.gcm_client.class: Fridge\ApiBundle\Client\GCMClient
     fridge.api.notification.gcm_notification.class: Fridge\ApiBundle\Notification\GCMNotification
     fridge.api.client.google_feed.class: Fridge\ApiBundle\Client\GoogleFeedClient
+    fridge.api.client.itunes_search.class: Fridge\ApiBundle\Client\ItunesSearchClient
 
 services:
+
     fridge.api.client.gcm_client:
         class: %fridge.api.client.gcm_client.class%
         arguments:
@@ -16,6 +19,12 @@ services:
         arguments:
             - @logger
             - %fridge_api.google_feed_url%
+
+    fridge.api.client.itunes_search:
+        class: %fridge.api.client.itunes_search.class%
+        arguments:
+            - @logger
+            - %fridge_api.itunes_search_url%
 
     fridge.api.notification.gcm_notification:
         class: %fridge.api.notification.gcm_notification.class%

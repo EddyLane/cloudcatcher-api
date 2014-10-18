@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->scalarNode('google_feed_url')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('itunes_search_url')->isRequired()->cannotBeEmpty()->end()
             ->end()
         ;
         // Here you should define the parameters that are allowed to

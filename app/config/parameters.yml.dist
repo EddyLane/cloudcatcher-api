@@ -20,7 +20,6 @@ parameters:
     firebase_secret_key: ~
     firebase_base_url: ~
 
-
     rabbitmq_user: guest
     rabbitmq_pass: guest
     rabbitmq_host: app.angular-symfony-stripe.local
@@ -28,3 +27,6 @@ parameters:
 
     gcm_url: https://android.googleapis.com/gcm/send
     gcm_api_key: ~
+
+    google_feed_api_url: http://ajax.googleapis.com/ajax/services/feed/
+    itunes_search_url: https://itunes.apple.com/
