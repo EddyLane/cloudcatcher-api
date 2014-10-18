@@ -174,5 +174,5 @@ snc_redis:
         default:
             type: predis
             alias: default
-            dsn: redis://localhost
+            dsn: %redis_dsn%
             logging: %kernel.debug%
