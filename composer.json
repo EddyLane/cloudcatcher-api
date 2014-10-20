@@ -39,7 +39,8 @@
         "google/apiclient": "1.0.*@beta",
         "snc/redis-bundle": "1.1.x-dev",
         "predis/predis": "0.8.x-dev",
-        "cocur/slugify": "@stable"
+        "cocur/slugify": "@stable",
+        "ekino/newrelic-bundle": "~1.2"
     },
     "require-dev": {
         "behat/behat": "~2.5",
@@ -95,7 +96,8 @@
                 "rabbitmq_pass"         : "CLOUDAMQP_PASSWORD",
                 "rabbitmq_vhost"        : "CLOUDAMQP_VHOST",
                 "gcm_api_key"           : "GCM_API_KEY",
-                "redis_dsn"             : "REDIS_DSN"
+                "redis_dsn"             : "REDIS_DSN",
+                "new_relic_license_key" : "NEW_RELIC_LICENSE_KEY"
             }
         },
         "branch-alias": {

@@ -30,7 +30,7 @@ class AppKernel extends Kernel
             new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
             new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
-
+            new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),
             new Fridge\ApiBundle\FridgeApiBundle(),
