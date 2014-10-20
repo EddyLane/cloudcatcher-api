@@ -29,8 +29,8 @@ class AddPodcast extends AbstractTask
     public function execute(User $user, $feed, $itunesId)
     {
         $podcast = Podcast::create(array_merge(
-            $googleFeedData = $this->getGoogleFeedData($feed),
-            $itunesFeedData = $this->getItunesLookupData($itunesId)
+            $this->getGoogleFeedData($feed),
+            $this->getItunesLookupData($itunesId)
         ));
 
         $this->getFirebaseClient()->addPodcast($user, $podcast);

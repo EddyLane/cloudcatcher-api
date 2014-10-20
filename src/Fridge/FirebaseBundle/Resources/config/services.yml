@@ -31,6 +31,7 @@ services:
             - %fridge_firebase.firebase_base_url%
             - %firebase_secret_key%
             - @logger
+            - @jms_serializer
 
     fridge.firebase.command.refresh_podcast:
         class: %fridge.firebase.command.refresh_podcast.class%

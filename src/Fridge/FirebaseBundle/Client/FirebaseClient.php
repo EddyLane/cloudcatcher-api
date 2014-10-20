@@ -12,6 +12,7 @@ use Firebase\Firebase;
 use Fridge\PodcastBundle\Entity\Podcast;
 use Fridge\UserBundle\Entity\User;
 use GuzzleHttp\Client;
+use JMS\Serializer\Serializer;
 use Monolog\Logger;
 
 /**
@@ -26,13 +27,21 @@ class FirebaseClient
     protected $client;
 
     /**
+     * @var \JMS\Serializer\Serializer
+     */
+    private $serializer;
+
+    /**
      * @param $baseUrl
      * @param $secret
      * @param Logger $logger
+     * @param Serializer $serializer
      */
-    public function __construct($baseUrl, $secret, Logger $logger)
+    public function __construct($baseUrl, $secret, Logger $logger, Serializer $serializer)
     {
         $logger->debug(sprintf('Connecting to firebase base_url "%s" secret "%s"', $baseUrl, $secret));
+
+        $this->serializer = $serializer;
 
         $this->client = new Firebase([
             'base_url' => $baseUrl,
@@ -57,7 +66,7 @@ class FirebaseClient
     {
         return $this->getClient()->push(
             sprintf('/users/%s/podcasts', $user->getUsernameCanonical()),
-            json_decode($this->getSerializer()->serialize($podcast, 'json')),
+            json_decode($this->serializer->serialize($podcast, 'json')),
             true
         );
     }
