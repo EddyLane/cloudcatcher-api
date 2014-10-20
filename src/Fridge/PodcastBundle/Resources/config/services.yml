@@ -5,11 +5,16 @@ services:
         arguments:
             - @fridge.podcast.task.add_podcast
 
-    fridge.podcast.task.add_podcast:
-        class: Fridge\PodcastBundle\Task\AddPodcast
+    fridge.podcast.task.abstract_task:
+        class: Fridge\PodcastBundle\Task\AbstractTask
+        abstract: true
         arguments:
             - @fridge.firebase.client.firebase_client
             - @fridge.api.client.google_feed
             - @fridge.api.client.itunes_search
             - @jms_serializer
             - @snc_redis.default
+
+    fridge.podcast.task.add_podcast:
+        class: Fridge\PodcastBundle\Task\AddPodcast
+        parent: fridge.podcast.task.abstract_task
