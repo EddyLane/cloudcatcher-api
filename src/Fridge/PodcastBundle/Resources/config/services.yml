@@ -1,7 +1,15 @@
-parameters:
-#    fridge_podcast.example.class: Fridge\PodcastBundle\Example
-
 services:
-#    fridge_podcast.example:
-#        class: %fridge_podcast.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    fride.podcast.server.podcast_add_server:
+        class: Fridge\PodcastBundle\Server\PodcastAddServer
+        arguments:
+            - @fridge.podcast.task.add_podcast
+
+    fridge.podcast.task.add_podcast:
+        class: Fridge\PodcastBundle\Task\AddPodcast
+        arguments:
+            - @fridge.firebase.client.firebase_client
+            - @fridge.api.client.google_feed
+            - @fridge.api.client.itunes_search
+            - @jms_serializer
+            - @snc_redis.default

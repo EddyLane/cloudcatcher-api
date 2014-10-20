@@ -16,7 +16,7 @@ Feature: POST podcast
     When I send a POST request to "/api/v1/podcasts" with the access token and body:
     """
     {
-      "feed": "http://eddylane.co.uk/feed"
+      "feed": "http://eddylane.co.uk/feed",
     }
     """
     And print response
@@ -55,3 +55,19 @@ Feature: POST podcast
         "name": "Eddys Podcast"
     }
     """
+
+
+  Scenario: RPC test
+    Given the mock API server will respond with the following responses:
+      | Status | Body                                                                                                                                                                                                                                                                                                                              |
+      | 200    | { "responseData": { "feed": { "feedUrl": "http://eddylane.co.uk/feed", "link": "eddylane.co.uk", "title": "Eddys Podcast", "entries": [{ "author": "", "categories": [], "content": "Some content", "contentSnippet": "Content", "link": "", "publishedData": "Thu, 16 Oct 2014 07:00:00 -0700", "title": "PodcastTitle" }] } } } |
+      | 200    |                                                                                                                                                                                                                                                                                                                                   |
+    When I send a POST request to "/api/v1/podcasts" with the access token and body:
+    """
+    {
+      "feed": "http://eddylane.co.uk/feed",
+      "itunesId": 214356
+    }
+    """
+    And print response
+    Then the response code should be 201
