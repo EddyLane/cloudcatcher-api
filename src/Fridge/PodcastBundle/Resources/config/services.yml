@@ -5,6 +5,11 @@ services:
         arguments:
             - @fridge.podcast.task.add_podcast
 
+    fride.podcast.server.podcast_refresh_server:
+        class: Fridge\PodcastBundle\Server\PodcastRefreshServer
+        arguments:
+            - @fridge.podcast.task.refresh_podcasts
+
     fridge.podcast.task.abstract_task:
         class: Fridge\PodcastBundle\Task\AbstractTask
         abstract: true
@@ -12,9 +17,21 @@ services:
             - @fridge.firebase.client.firebase_client
             - @fridge.api.client.google_feed
             - @fridge.api.client.itunes_search
+            - @fridge.api.notification.gcm_notification
             - @jms_serializer
             - @snc_redis.default
+            - @logger
 
     fridge.podcast.task.add_podcast:
         class: Fridge\PodcastBundle\Task\AddPodcast
         parent: fridge.podcast.task.abstract_task
+
+    fridge.podcast.task.refresh_podcast:
+        class: Fridge\PodcastBundle\Task\RefreshPodcast
+        parent: fridge.podcast.task.abstract_task
+
+    fridge.podcast.task.refresh_podcasts:
+        class: Fridge\PodcastBundle\Task\RefreshPodcasts
+        parent: fridge.podcast.task.abstract_task
+        calls:
+            - [setRefreshPodcastTask, [@fridge.podcast.task.refresh_podcast]]

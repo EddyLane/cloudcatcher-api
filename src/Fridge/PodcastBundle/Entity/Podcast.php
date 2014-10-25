@@ -27,6 +27,7 @@ class Podcast
         $date = new \DateTime($podcastData['entries'][0]['publishedDate']);
 
         $podcast
+            ->setHeard(array_key_exists('heard', $podcastData))
             ->setFeed($podcastData['feedUrl'])
             ->setName($podcastData['title'])
             ->setAmount(count($podcastData['entries']))
@@ -165,6 +166,18 @@ class Podcast
      */
     private $slug;
 
+    /**
+     * @var string
+     */
+    private $firebaseKey;
+
+    /**
+     * @var integer
+     * @Serializer\Expose()
+     * @Serializer\SerializedName("auto_download")
+     * @ORM\Column(name="auto_download", type="integer")
+     */
+    private $autoDownload;
 
     /**
      * Get id
@@ -527,4 +540,44 @@ class Podcast
             '100' => $this->getImageUrl100()
         ];
     }
+
+
+    /**
+     * @param $firebaseKey
+     * @return $this
+     */
+    public function setFirebaseKey($firebaseKey)
+    {
+        $this->firebaseKey = $firebaseKey;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirebaseKey()
+    {
+        return $this->firebaseKey;
+    }
+
+    /**
+     * @param $autoDownload
+     * @return $this
+     */
+    public function setAutoDownload($autoDownload)
+    {
+        $this->autoDownload = $autoDownload;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAutoDownload()
+    {
+        return $this->autoDownload;
+    }
+
 }

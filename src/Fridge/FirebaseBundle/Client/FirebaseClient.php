@@ -71,4 +71,16 @@ class FirebaseClient
         );
     }
 
+    public function updatePodcastLatest(User $user, Podcast $podcast)
+    {
+        $this->getClient()->update(
+            sprintf('/users/%s/podcasts/%s', $user->getUsernameCanonical(), $podcast->getFirebaseKey()),
+            [
+                'newEpisodes' => $podcast->getNewEpisodes(),
+                'latest' => $podcast->getLatest(),
+                'latestEpisode' => $podcast->getLatestEpisode()
+            ]
+        );
+    }
+
 } 
