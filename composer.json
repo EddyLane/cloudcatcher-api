@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "fridge/cloudcatcher-api",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "The \"Cloudcatcher\" api",
     "autoload": {
         "psr-0": {
             "": "src/" ,
@@ -10,7 +10,7 @@
         }
     },
     "require": {
-        "php": "~5.5.10",
+        "php": ">=5.4",
         "ext-mbstring": "*",
         "ext-intl": "*",
         "ext-bcmath": "*",
@@ -27,10 +27,10 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "fridge/subscription-bundle": "dev-master",
-        "nelmio/alice":                         "1.4.*@dev",
+        "nelmio/alice": "1.4.*@dev",
         "nelmio/cors-bundle": "~1.0",
-        "doctrine/data-fixtures":              "@dev",
-        "doctrine/doctrine-fixtures-bundle":   "dev-master@dev",
+        "doctrine/data-fixtures": "@dev",
+        "doctrine/doctrine-fixtures-bundle": "dev-master@dev",
         "friendsofsymfony/oauth-server-bundle": "dev-master",
         "firebase/php-jwt": "dev-master",
         "firebase/token-generator": "dev-master",
