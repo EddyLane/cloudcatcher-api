@@ -21,27 +21,31 @@ class Podcast
      */
     public static function create(array $podcastData)
     {
-        $podcast = new Podcast();
+        /** @var \Fridge\PodcastBundle\Entity\Podcast $podcast */
+        $podcast = new static();
         $slugify = new Slugify();
+        $entries = $podcastData['feed']['entries'];
 
-        $date = new \DateTime($podcastData['entries'][0]['publishedDate']);
+        if (isset($entries[0]['publishedDate'])) {
+            $date = new \DateTime($entries[0]['publishedDate']);
+        }
 
         $podcast
-            ->setHeard(array_key_exists('heard', $podcastData))
+            ->setHeard([])
             ->setFeed($podcastData['feedUrl'])
-            ->setName($podcastData['title'])
-            ->setAmount(count($podcastData['entries']))
-            ->setNewEpisodes(count($podcastData['entries']))
+            ->setName($podcastData['collectionName'])
+            ->setAmount(count($entries))
+            ->setNewEpisodes(count($entries))
             ->setArtist($podcastData['artistName'])
             ->setImageUrl30($podcastData['artworkUrl30'])
             ->setImageUrl100($podcastData['artworkUrl100'])
             ->setExplicit($podcastData['collectionExplicitness'] !== 'notExplicit')
             ->setCountry($podcastData['country'])
-            ->setSlug($slugify->slugify($podcastData['title']))
+            ->setSlug($slugify->slugify($podcastData['collectionName']))
             ->setGenres($podcastData['genres'])
             ->setItunesId($podcastData['collectionId'])
-            ->setLatest($date)
-            ->setLatestEpisode($podcastData['entries'][0])
+            ->setLatest(isset($date) ? $date : null)
+            ->setLatestEpisode(isset($entries[0]) ? $entries[0] : null)
         ;
 
         return $podcast;
@@ -216,7 +220,7 @@ class Podcast
      * Set feed
      *
      * @param $feed
-     * @return $this
+     * @return Podcast
      */
     public function setFeed($feed)
     {

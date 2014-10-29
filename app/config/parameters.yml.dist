@@ -32,3 +32,5 @@ parameters:
 
     google_feed_api_url: http://ajax.googleapis.com/ajax/services/feed/
     itunes_search_url: https://itunes.apple.com/
+    new_relic_license_key: ~
+    new_relic_api_key: ~

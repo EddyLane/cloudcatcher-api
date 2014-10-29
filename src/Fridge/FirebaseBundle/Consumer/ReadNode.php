@@ -157,7 +157,7 @@ class ReadNode implements ConsumerInterface
                             'feed' => $podcast['feed'],
                             'slug' => $podcast['slug'],
                             'podcast' => $podcast['name'],
-                            'content' => $responseJson['feed']['entries'][0]['summary'],
+                            'content' => isset($responseJson['feed']['entries'][0]['summary']) ? $responseJson['feed']['entries'][0]['summary'] : '',
                             'timestamp' => $latest,
                             'date' => $latest,
                             'title' => $responseJson['feed']['entries'][0]['title'],
@@ -165,7 +165,7 @@ class ReadNode implements ConsumerInterface
                             'media' => [
                                 'url' => $xml->xpath('//enclosure')[0]->attributes()->url,
                             ],
-                            'download' => $podcast['autoDownload'] === 1
+                            'download' => isset($podcast['autoDownload']) && $podcast['autoDownload']  === 1
                         ]);
 
                         $this->GCMNotification->execute($message);

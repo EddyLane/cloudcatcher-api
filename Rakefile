@@ -1,5 +1,5 @@
 #OVERRIDE THIS FOR EVERY PROJECT
-$project_name = 'angular-symfony-stripe'
+$project_name = 'cloucatcher'
 
 $project_dir = File.dirname(__FILE__)
 

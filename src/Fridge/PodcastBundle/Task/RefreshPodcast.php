@@ -23,7 +23,7 @@ class RefreshPodcast extends AbstractTask
      * @param $xml
      * @return RefreshResult
      */
-    private function getNewAndHeardResult($xml)
+    private function getNewAndHeardResult(\SimpleXMLElement $xml)
     {
         $new = 0;
         $heard = 0;
@@ -45,14 +45,17 @@ class RefreshPodcast extends AbstractTask
      */
     public function execute(User $user, Podcast $podcast)
     {
-        $googleFeedEntries = $this->getGoogleFeedData($podcast);
+        $googleFeedEntries = $this->getGoogleFeedData($podcast->getFeed());
 
         if (!$xml = simplexml_load_string($googleFeedEntries['xmlString'])) {
             $this->getLogger()->warning('Could not parse xmlString for ' . $podcast->getFeed());
             throw new ParseException('Could not parse XML');
+        } else {
+            $this->getLogger()->debug(sprintf('Parsed xmlString for "%s"', $podcast->getFeed()));
         }
 
-        $latestEpisodeData = $googleFeedEntries['feed']['entries'][0];
+        $entries = $googleFeedEntries['feed']['entries'];
+        $latestEpisodeData = $entries[0];
         $latestDateTime = new \DateTime($latestEpisodeData['publishedDate']);
 
         if ((!$podcast->getLatest()) || $latestDateTime->format(\DateTime::ISO8601) !== $podcast->getLatest()->format(\DateTime::ISO8601) && isset($xml->xpath('//enclosure')[0])) {
@@ -60,7 +63,7 @@ class RefreshPodcast extends AbstractTask
             $newAndHeard = $this->getNewAndHeardResult($xml);
 
             $podcast->setLatest($latestDateTime);
-            $podcast->setLatestEpisode($googleFeedEntries['feed']['entries'][0]);
+            $podcast->setLatestEpisode($latestEpisodeData);
             $podcast->setNewEpisodes($newAndHeard->getNew());
 
             $this->getLogger()->info(
@@ -81,10 +84,10 @@ class RefreshPodcast extends AbstractTask
                 'feed' => $podcast->getFeed(),
                 'slug' => $podcast->getSlug(),
                 'podcast' => $podcast->getName(),
-                'content' => $googleFeedEntries['feed']['entries'][0]['summary'],
+                'content' => isset($latestEpisodeData['summary']) ? $latestEpisodeData['summary'] : '',
                 'timestamp' => $podcast->getLatest()->format(\DateTime::ISO8601),
                 'date' => $podcast->getLatest()->format(\DateTime::ISO8601),
-                'title' => $googleFeedEntries['feed']['entries'][0]['title'],
+                'title' => $latestEpisodeData['title'],
                 'icon' => $podcast->getImageUrl100(),
                 'media' => [
                     'url' => $xml->xpath('//enclosure')[0]->attributes()->url,

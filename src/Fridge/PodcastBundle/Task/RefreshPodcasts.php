@@ -13,6 +13,7 @@ use Fridge\PodcastBundle\Entity\Podcast;
 use Fridge\UserBundle\Entity\User;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use GuzzleHttp\Exception\ParseException;
 
 /**
  * Class RefreshPodcasts
@@ -44,30 +45,39 @@ class RefreshPodcasts extends AbstractTask
 
     /**
      * @param User $user
+     * @return \Fridge\PodcastBundle\Entity\Podcast[]
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\RequestException
      * @throws \Symfony\Component\Security\Core\Exception\UsernameNotFoundException
      */
     public function execute(User $user)
     {
-
         $this->getLogger()->info(sprintf('Refreshing podcasts for: %s', $user->getUsername()));
 
         try {
 
-            $podcastFirebase = $this
-                ->getFirebaseClient()
-                ->getClient()
-                ->get(sprintf('/users/%s/podcasts', $user->getUsernameCanonical()))
-            ;
+            $podcastFirebase = $this->getFirebase($user);
 
         } catch (RequestException $e) {
 
             $this->getLogger()->error(
                 sprintf(
-                    'Curl failed to connect to firebase for user "%s". Request: "%s"',
+                    'Curl failed to connect to firebase for user "%s". Request: "%s". Error: "%s"',
                     $user->getUsernameCanonical(),
-                    $e->getRequest()
+                    $e->getRequest(),
+                    $e->getMessage()
+                )
+            );
+
+            throw $e;
+
+        } catch (\Exception $e) {
+
+            $this->getLogger()->error(
+                sprintf(
+                    'Unknown error getting firebase for user "%s". Error: "%s"',
+                    $user->getUsernameCanonical(),
+                    $e->getMessage()
                 )
             );
 
@@ -77,16 +87,26 @@ class RefreshPodcasts extends AbstractTask
         if (!$podcastFirebase || !is_array($podcastFirebase)) {
             $exception = new UsernameNotFoundException();
             $exception->setUsername($user->getUsernameCanonical());
+            $this->getLogger()->error(sprintf('Failed firebase for user "%s"', $user->getUsernameCanonical()));
             throw $exception;
         }
 
+        $this->getLogger()->debug(sprintf('Got firebase for user "%s"', $user->getUsernameCanonical()));
+
         $podcasts = $this->deserializePodcasts($podcastFirebase);
 
+        $this->getLogger()->debug(sprintf('Successfully converted firebase to entities for user "%s"', $user->getUsernameCanonical()));
+
         foreach ($podcasts as $podcast) {
-            $this->getRefreshPodcastResult($user, $podcast);
+            try {
+                $this->getRefreshPodcastResult($user, $podcast);
+            }
+            catch (ParseException $e) {
+                continue;
+            }
         }
 
-        return $podcasts;
+        return array_values($podcasts);
 
     }
 

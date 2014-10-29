@@ -9,6 +9,7 @@
 namespace Fridge\PodcastBundle\Server;
 
 use Fridge\PodcastBundle\Task\AddPodcast;
+use Monolog\Logger;
 use PhpAmqpLib\Message\AMQPMessage;
 
 class PodcastAddServer
@@ -19,22 +20,18 @@ class PodcastAddServer
     private $addPodcast;
 
     /**
-     * @param AddPodcast $addPodcast
+     * @var \Monolog\Logger
      */
-    public function __construct(AddPodcast $addPodcast)
-    {
-        $this->addPodcast = $addPodcast;
-    }
+    private $logger;
 
     /**
-     * @param $n
-     * @return string
+     * @param AddPodcast $addPodcast
+     * @param Logger $logger]
      */
-    public function call($n)
+    public function __construct(AddPodcast $addPodcast, Logger $logger)
     {
-        $unserialized = unserialize($n);
-        $result = $this->addPodcast->execute($unserialized['user'], $unserialized['feed'], $unserialized['itunesId']);
-        return serialize($result);
+        $this->addPodcast = $addPodcast;
+        $this->logger = $logger;
     }
 
     /**
@@ -43,8 +40,12 @@ class PodcastAddServer
      */
     public function execute(AMQPMessage $message)
     {
+        $this->logger->debug('Started add_podcast RPC task');
+
         $unserialized = unserialize($message->body);
+
         $result = $this->addPodcast->execute($unserialized['user'], $unserialized['feed'], $unserialized['itunesId']);
+
         return serialize($result);
     }
 

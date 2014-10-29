@@ -8,7 +8,6 @@
 
 namespace Fridge\PodcastBundle\Task;
 
-use Fridge\ApiBundle\Client\GCMClient;
 use Fridge\ApiBundle\Client\GoogleFeedClient;
 use Fridge\ApiBundle\Client\ItunesSearchClient;
 use Fridge\ApiBundle\Message\Message;
@@ -86,26 +85,37 @@ abstract class AbstractTask
 
 
     /**
-     * @param Podcast $podcast
+     * @param $feed
      * @return mixed
      */
-    protected function getGoogleFeedData (Podcast $podcast)
+    protected function getGoogleFeedData ($feed)
     {
-        if (!$googleFeedData = $this->redis->get('feed:' . $podcast->getFeed())) {
+        $this->getLogger()->debug(sprintf('Attempting to get redis data for "%s"', $feed));
+
+        if (!$googleFeedData = $this->redis->get('feed:' . $feed)) {
+
+            $this->getLogger()->debug(sprintf('Redis failure for "%s". Attempting to get live RSS data', $feed));
 
             $googleFeedData = $this->googleFeedClient->get('load', [
                 'query' => [
-                    'q' => $podcast->getFeed(),
+                    'q' => $feed,
                     'v' => '1.0',
                     'num' => -1,
                     'output' => 'json_xml'
                 ]
             ])->getBody();
 
-            $this->redis->setex('feed:' . $podcast, 3600, $googleFeedData);
+            $this->redis->setex('feed:' . $feed, 3600, (String) $googleFeedData);
+
+            $this->getLogger()->debug(sprintf('Got live RSS data for "%s" setting in redis', $feed));
+
+        } else {
+
+            $this->getLogger()->debug(sprintf('Redis success for "%s"', $feed));
+
         }
 
-        return json_decode((String) $googleFeedData, true)['responseData']['feed'];
+        return json_decode((String) $googleFeedData, true)['responseData'];
     }
 
     /**
@@ -131,6 +141,14 @@ abstract class AbstractTask
     }
 
 
+    protected function getFirebase(User $user)
+    {
+        return $this
+            ->getFirebaseClient()
+            ->getClient()
+            ->get(sprintf('/users/%s/podcasts', $user->getUsernameCanonical()))
+        ;
+    }
 
     /**
      * @return FirebaseClient
@@ -147,11 +165,27 @@ abstract class AbstractTask
     protected function deserializePodcasts(array $podcasts)
     {
         $serializer = $this->getSerializer();
-        return array_map(function ($podcastData, $firebaseKey) use ($serializer) {
-            $podcast = $serializer->deserialize($podcastData, 'Fridge\PodcastBundle\Entity\Podcast', 'json');
-            $podcast->setFirebaseIndex($firebaseKey);
+        $logger = $this->getLogger();
 
-        }, $podcasts, array_keys($podcasts));
+        return array_filter(array_map(function ($key) use ($serializer, $podcasts, $logger) {
+
+            $podcastData = json_encode($podcasts[$key]);
+
+            try {
+                /** @var \Fridge\PodcastBundle\Entity\Podcast $podcast */
+                $podcast = $serializer->deserialize($podcastData, 'Fridge\PodcastBundle\Entity\Podcast', 'json');
+                $logger->debug(sprintf('Succesfully deserialized podcast at key "%s"', $key));
+            }
+            catch (\Exception $e) {
+                $logger->error(sprintf('Failed deserialized podcast at key "%s". Error: "%s"', $key, $e->getMessage()));
+                return false;
+            }
+
+            $podcast->setFirebaseKey($key);
+
+            return $podcast;
+
+        }, array_keys($podcasts)));
     }
 
     /**

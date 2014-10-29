@@ -4,11 +4,14 @@ services:
         class: Fridge\PodcastBundle\Server\PodcastAddServer
         arguments:
             - @fridge.podcast.task.add_podcast
+            - @logger
 
     fride.podcast.server.podcast_refresh_server:
         class: Fridge\PodcastBundle\Server\PodcastRefreshServer
         arguments:
             - @fridge.podcast.task.refresh_podcasts
+            - @logger
+            - @fridge.user.manager.user_manager
 
     fridge.podcast.task.abstract_task:
         class: Fridge\PodcastBundle\Task\AbstractTask

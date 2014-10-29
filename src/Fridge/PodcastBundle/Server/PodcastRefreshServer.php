@@ -8,33 +8,39 @@
 
 namespace Fridge\PodcastBundle\Server;
 
-
 use Fridge\PodcastBundle\Task\RefreshPodcasts;
+use Fridge\UserBundle\Manager\UserManager;
+use Monolog\Logger;
 use PhpAmqpLib\Message\AMQPMessage;
 
-class PodcastRefreshServer {
+class PodcastRefreshServer
+{
+
     /**
      * @var \Fridge\PodcastBundle\Task\RefreshPodcasts
      */
-    private $addPodcast;
+    private $refreshPodcasts;
 
     /**
-     * @param RefreshPodcasts $addPodcast
+     * @var \Monolog\Logger
      */
-    public function __construct(RefreshPodcasts $addPodcast)
-    {
-        $this->addPodcast = $addPodcast;
-    }
+    private $logger;
 
     /**
-     * @param $n
-     * @return string
+     * @var \Fridge\UserBundle\Manager\UserManager
      */
-    public function call($n)
+    private $userManager;
+
+    /**
+     * @param RefreshPodcasts $refreshPodcasts
+     * @param Logger $logger
+     * @param UserManager $userManager
+     */
+    public function __construct(RefreshPodcasts $refreshPodcasts, Logger $logger, UserManager $userManager)
     {
-        $unserialized = unserialize($n);
-        $result = $this->addPodcast->execute($unserialized['user']);
-        return serialize($result);
+        $this->refreshPodcasts = $refreshPodcasts;
+        $this->logger = $logger;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -43,9 +49,9 @@ class PodcastRefreshServer {
      */
     public function execute(AMQPMessage $message)
     {
-        $unserialized = unserialize($message->body);
-        $result = $this->addPodcast->execute($unserialized['user']);
-        return serialize($result);
+        $this->logger->debug('Started refresh_podcast RPC task');
+        $result = $this->refreshPodcasts->execute($this->userManager->find($message->body));
+        return $result;
     }
 
 }

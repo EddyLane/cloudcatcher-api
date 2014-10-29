@@ -172,10 +172,16 @@ old_sound_rabbit_mq:
     rpc_clients:
         podcast_get_server:
             connection: default
+        podcast_refresh:
+            connection: default
     rpc_servers:
         podcast_get:
             connection: default
             callback:   fride.podcast.server.podcast_add_server
+            qos_options: { prefetch_size: 0, prefetch_count: 1, global: false }
+        podcast_refresh:
+            connection: default
+            callback:   fride.podcast.server.podcast_refresh_server
             qos_options: { prefetch_size: 0, prefetch_count: 1, global: false }
 
 snc_redis:
@@ -187,12 +193,12 @@ snc_redis:
             logging: %kernel.debug%
 
 ekino_new_relic:
-    enabled: true                                             # Defaults to true
-    application_name: cloudcatcherApi                         # default value in newrelic is "PHP Application", or whatever is set
-    api_key: e827c103ff83a2cb9380f551c3413bf21c52c055061ae85  # New Relic API
+    enabled: false                                             # Defaults to true
+    application_name: "PHP Application on Heroku"             # default value in newrelic is "PHP Application", or whatever is set
+    api_key: %new_relic_api_key%                  # New Relic API
     license_key: %new_relic_license_key%                      # New Relic license key
     xmit: false                           # if you want to record the metric data up to the point newrelic_set_appname is called, set this to true
-    logging: false                        # If true, logs all New Relic interactions to the Symfony log
+    logging: true                         # If true, logs all New Relic interactions to the Symfony log
     instrument: false                     # If true, uses enhanced New Relic RUM instrumentation (see below)
     log_exceptions: true                  # If true, sends exceptions to New Relic
     log_commands: true                    # If true, logs CLI commands to New Relic as Background jobs (>2.3 only)
