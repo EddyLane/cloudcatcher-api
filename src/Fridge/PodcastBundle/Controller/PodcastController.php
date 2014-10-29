@@ -27,18 +27,18 @@ class PodcastController extends FOSRestController
     public function postPodcastAction(ParamFetcher $paramFetcher)
     {
         /** @var \OldSound\RabbitMqBundle\RabbitMq\RpcClient $client */
-        $client = $this->get('old_sound_rabbit_mq.podcast_get_server_rpc');
+        $client = $this->get('old_sound_rabbit_mq.podcast_rpc');
 
         $id = rand();
 
         $requestData = serialize([
-            'user' => $this->getUser(),
+            'id' => $this->getUser()->getId(),
             'feed' => $paramFetcher->get('feed'),
             'itunesId' => $paramFetcher->get('itunesId'),
-            'action' => 'post_podcast'
+            'type' => 'add'
         ]);
 
-        $client->addRequest($requestData, 'podcast_get', $id);
+        $client->addRequest($requestData, 'podcast', $id);
 
         return $this->view($client->getReplies()[$id], 201);
     }
@@ -51,9 +51,16 @@ class PodcastController extends FOSRestController
     public function getPodcastsAction()
     {
         /** @var \OldSound\RabbitMqBundle\RabbitMq\RpcClient $client */
-        $client = $this->get('old_sound_rabbit_mq.podcast_refresh_rpc');
+        $client = $this->get('old_sound_rabbit_mq.podcast_rpc');
         $user = $this->getUser();
-        $client->addRequest($user->getId(), 'podcast_refresh', $user->getId());
+
+        $requestData = serialize([
+            'type' => 'refresh',
+            'id' => $user->getId()
+        ]);
+
+        $client->addRequest($requestData, 'podcast', $user->getId());
+
         return $this->view($client->getReplies()[$user->getId()], 200);
     }
 

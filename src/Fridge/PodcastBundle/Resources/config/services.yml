@@ -13,6 +13,14 @@ services:
             - @logger
             - @fridge.user.manager.user_manager
 
+    fride.podcast.server.podcast_server:
+        class: Fridge\PodcastBundle\Server\PodcastServer
+        arguments:
+            - @fridge.podcast.task.refresh_podcasts
+            - @fridge.podcast.task.add_podcast
+            - @logger
+            - @fridge.user.manager.user_manager
+
     fridge.podcast.task.abstract_task:
         class: Fridge\PodcastBundle\Task\AbstractTask
         abstract: true

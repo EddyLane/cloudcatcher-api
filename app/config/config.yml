@@ -170,18 +170,12 @@ old_sound_rabbit_mq:
             qos_options:      { prefetch_size: 0, prefetch_count: 1, global: false }
             callback:         fridge.firebase.consumer.read_node
     rpc_clients:
-        podcast_get_server:
-            connection: default
-        podcast_refresh:
+        podcast:
             connection: default
     rpc_servers:
-        podcast_get:
+        podcast:
             connection: default
-            callback:   fride.podcast.server.podcast_add_server
-            qos_options: { prefetch_size: 0, prefetch_count: 1, global: false }
-        podcast_refresh:
-            connection: default
-            callback:   fride.podcast.server.podcast_refresh_server
+            callback:   fride.podcast.server.podcast_server
             qos_options: { prefetch_size: 0, prefetch_count: 1, global: false }
 
 snc_redis:
