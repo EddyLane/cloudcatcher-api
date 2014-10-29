@@ -193,8 +193,8 @@ snc_redis:
             logging: %kernel.debug%
 
 ekino_new_relic:
-    enabled: false                                             # Defaults to true
-    application_name: "PHP Application on Heroku"             # default value in newrelic is "PHP Application", or whatever is set
+    enabled: %new_relic_enabled%                                             # Defaults to true
+    application_name: %new_relic_name%             # default value in newrelic is "PHP Application", or whatever is set
     api_key: %new_relic_api_key%                  # New Relic API
     license_key: %new_relic_license_key%                      # New Relic license key
     xmit: false                           # if you want to record the metric data up to the point newrelic_set_appname is called, set this to true
