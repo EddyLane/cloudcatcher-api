@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d788170e022b2e242e90e953da5ca24d",
+    "hash": "fa4a5cccc8ca5399586e1338f5b5d540",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -786,12 +786,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eelkevdbos/firebase-php.git",
-                "reference": "fa5b1047b80f288efd7bfdd5daf58e9e08b46f8c"
+                "reference": "dff969a6ba276d40261e986ebac92af5eeef3c4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eelkevdbos/firebase-php/zipball/fa5b1047b80f288efd7bfdd5daf58e9e08b46f8c",
-                "reference": "fa5b1047b80f288efd7bfdd5daf58e9e08b46f8c",
+                "url": "https://api.github.com/repos/eelkevdbos/firebase-php/zipball/dff969a6ba276d40261e986ebac92af5eeef3c4b",
+                "reference": "dff969a6ba276d40261e986ebac92af5eeef3c4b",
                 "shasum": ""
             },
             "require": {
@@ -827,7 +827,7 @@
                 "rest",
                 "wrapper"
             ],
-            "time": "2014-06-16 12:13:17"
+            "time": "2014-10-25 11:55:16"
         },
         {
             "name": "ekino/newrelic-bundle",

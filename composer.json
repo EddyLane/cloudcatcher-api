@@ -97,7 +97,10 @@
                 "rabbitmq_vhost"        : "CLOUDAMQP_VHOST",
                 "gcm_api_key"           : "GCM_API_KEY",
                 "redis_dsn"             : "REDIS_DSN",
-                "new_relic_license_key" : "NEW_RELIC_LICENSE_KEY"
+                "new_relic_license_key" : "NEW_RELIC_LICENSE_KEY",
+                "new_relic_api_key"     : "NEW_RELIC_API_KEY",
+                "new_relic_enabled"     : "NEW_RELIC_ENABLED",
+                "new_relic_name"        : "NEW_RELIC_NAME"
             }
         },
         "branch-alias": {
