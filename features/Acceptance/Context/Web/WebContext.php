@@ -336,6 +336,15 @@ class WebContext extends WebApiContext
         $this->getBrowser()->call($url, 'POST', $this->getHeaders(), $body);
     }
 
+    /**
+     * @When /^I send a GET request to "([^"]*)" with the access token and body$/
+     */
+    public function iSendAPogetstRequestToWithTheAccessTokenAndBody($url)
+    {
+        $url  = $this->parameters['base_url'] . ltrim($this->replacePlaceHolder($url), '/') . '?access_token=' . $this->accessToken;
+        $this->getBrowser()->call($url, 'GET', $this->getHeaders());
+    }
+
     /** @BeforeFeature */
     public static function setupFeature(FeatureEvent $event)
     {
@@ -351,5 +360,7 @@ class WebContext extends WebApiContext
             self::stopApi();
         }
     }
+
+
 
 }
