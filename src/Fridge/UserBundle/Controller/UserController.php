@@ -3,6 +3,7 @@
 namespace Fridge\UserBundle\Controller;
 
 use Fridge\ApiBundle\Entity\GcmId;
+use Fridge\UserBundle\Entity\UserPreference;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
@@ -15,10 +16,10 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\View\View;
 use JWT;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 /**
  * Class UserController
  * @package Fridge\UserBundle\Controller
@@ -66,6 +67,21 @@ class UserController extends BaseController
     }
 
     /**
+     * @Annotations\Put("/preferences")
+     * @ParamConverter("preferences", converter="fos_rest.request_body")
+     * @param UserPreference $userPreference
+     * @return UserPreference
+     */
+    public function putPreferencesAction(UserPreference $userPreference)
+    {
+        /** @var \Fridge\UserBundle\Entity\User $user */
+        $user = $this->getUser();
+        $user->setPreferences($userPreference);
+        $this->getUserManager()->updateUser($user);
+        return $userPreference;
+    }
+
+    /**
      * Get users if admin
      *
      * @return mixed
@@ -110,7 +126,7 @@ class UserController extends BaseController
 
     /**
      * Subscribe to a subscription
-     * @RequestParam(name="subscription", description="Name of the subscription you wish to subscribe to")
+     * @Annotations\RequestParam(name="subscription", description="Name of the subscription you wish to subscribe to")
      *
      * @param $username
      * @param ParamFetcher $paramFetcher
@@ -238,7 +254,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @RequestParam(name="gcm_id", description="GCM Id.")
+     * @Annotations\RequestParam(name="gcm_id", description="GCM Id.")
      * @param ParamFetcher $paramFetcher
      * @param $username
      * @return \FOS\UserBundle\Model\UserInterface

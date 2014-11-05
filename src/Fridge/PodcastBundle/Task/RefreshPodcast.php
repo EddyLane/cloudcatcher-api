@@ -58,13 +58,16 @@ class RefreshPodcast extends AbstractTask
         $latestEpisodeData = $entries[0];
         $latestDateTime = new \DateTime($latestEpisodeData['publishedDate']);
 
-        if ((!$podcast->getLatest()) || $latestDateTime->format(\DateTime::ISO8601) !== $podcast->getLatest()->format(\DateTime::ISO8601) && isset($xml->xpath('//enclosure')[0])) {
+        if (!$podcast->getLatest() || ($latestDateTime->format(\DateTime::ISO8601) !== $podcast->getLatest() && isset($xml->xpath('//enclosure')[0]))) {
 
+            echo (sprintf('|%s - %s |', $latestDateTime->format(\DateTime::ISO8601), $podcast->getLatest()));
             $newAndHeard = $this->getNewAndHeardResult($xml);
 
-            $podcast->setLatest($latestDateTime);
-            $podcast->setLatestEpisode($latestEpisodeData);
-            $podcast->setNewEpisodes($newAndHeard->getNew());
+            $podcast
+                ->setLatest($latestDateTime)
+                ->setLatestEpisode($latestEpisodeData)
+                ->setNewEpisodes($newAndHeard->getNew())
+            ;
 
             $this->getLogger()->info(
                 sprintf(
@@ -73,7 +76,7 @@ class RefreshPodcast extends AbstractTask
                     $newAndHeard->getNew(),
                     $newAndHeard->getHeard(),
                     $podcast->getName(),
-                    $podcast->getLatest()->format(\DateTime::ISO8601)
+                    $podcast->getLatest()
                 )
             );
 
@@ -85,8 +88,8 @@ class RefreshPodcast extends AbstractTask
                 'slug' => $podcast->getSlug(),
                 'podcast' => $podcast->getName(),
                 'content' => isset($latestEpisodeData['summary']) ? $latestEpisodeData['summary'] : '',
-                'timestamp' => $podcast->getLatest()->format(\DateTime::ISO8601),
-                'date' => $podcast->getLatest()->format(\DateTime::ISO8601),
+                'timestamp' => $podcast->getLatest(),
+                'date' => $podcast->getLatest(),
                 'title' => $latestEpisodeData['title'],
                 'icon' => $podcast->getImageUrl100(),
                 'media' => [

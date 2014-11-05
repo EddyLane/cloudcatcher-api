@@ -135,8 +135,7 @@ class Podcast
 
     /**
      * @var \DateTime
-     * @Serializer\Expose()
-     * @ORM\Column(name="latest", type="datetimetz")
+     * @ORM\Column(name="latest", type="string")
      */
     private $latest;
 
@@ -429,19 +428,19 @@ class Podcast
      */
     public function setLatest($latest)
     {
-        $this->latest = $latest;
+        $this->latest = $latest instanceof \Datetime ? $latest->format(\DateTime::ISO8601) : $latest;
 
         return $this;
     }
 
     /**
      * Get latest
-     *
-     * @return \DateTime 
+     * @Serializer\VirtualProperty
+     * @return string
      */
     public function getLatest()
     {
-        return $this->latest;
+        return $this->latest instanceof \Datetime ? $this->latest->format(\DateTime::ISO8601) : $this->latest;
     }
 
     /**

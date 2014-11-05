@@ -158,7 +158,7 @@ abstract class AbstractTask
         return $this->firebaseClient;
     }
 
-    /**
+/**±
      * @param array $podcasts
      * @return \Fridge\PodcastBundle\Entity\Podcast[]
      */

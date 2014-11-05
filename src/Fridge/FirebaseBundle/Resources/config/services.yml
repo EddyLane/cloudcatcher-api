@@ -25,6 +25,12 @@ services:
             - @fridge.api.notification.gcm_notification
             - @snc_redis.default
 
+    fridge.firebase.consumer.refresh_podcasts:
+        class: Fridge\FirebaseBundle\Consumer\RefreshPodcasts
+        arguments:
+            - @fridge.podcast.task.refresh_podcasts
+            - @fridge.user.manager.user_manager
+
     fridge.firebase.client.firebase_client:
         class: %fridge.firebase.client.firebase_client.class%
         arguments:

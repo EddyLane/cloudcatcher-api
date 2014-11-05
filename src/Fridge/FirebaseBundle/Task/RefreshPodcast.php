@@ -8,19 +8,31 @@
 
 namespace Fridge\FirebaseBundle\Task;
 
-
 use Fridge\UserBundle\Entity\User;
+use OldSound\RabbitMqBundle\RabbitMq\Producer;
 
+/**
+ * Class RefreshPodcast
+ * @package Fridge\FirebaseBundle\Task
+ */
 class RefreshPodcast
 {
+    /**
+     * @var \OldSound\RabbitMqBundle\RabbitMq\Producer
+     */
     private $producer;
 
-
-    public function __construct($producer)
+    /**
+     * @param Producer $producer
+     */
+    public function __construct(Producer $producer)
     {
         $this->producer = $producer;
     }
 
+    /**
+     * @param User $user
+     */
     public function process(User $user)
     {
         $this->producer->publish($user->getUsernameCanonical());

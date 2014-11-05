@@ -33,6 +33,13 @@ class User extends BaseUser
     protected $stripeProfile;
 
     /**
+     * @ORM\OneToOne(targetEntity="Fridge\UserBundle\Entity\UserPreference", cascade={"all"}, orphanRemoval=true, fetch="EAGER")
+     * @ORM\JoinColumn(name="user_preference_id", referencedColumnName="id", onDelete="CASCADE")
+     * @Serializer\Expose()
+     */
+    protected $preferences;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Fridge\UserBundle\Entity\Group")
      * @ORM\JoinTable(name="fridge_user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -59,6 +66,26 @@ class User extends BaseUser
     {
         $this->gcmIds = new ArrayCollection();
         parent::__construct();
+    }
+
+
+    /**
+     * @param UserPreference $preferences
+     * @return $this
+     */
+    public function setPreferences(UserPreference $preferences)
+    {
+        $this->preferences = $preferences;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreferences()
+    {
+        return $this->preferences;
     }
 
     /**

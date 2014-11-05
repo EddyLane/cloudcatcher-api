@@ -129,6 +129,8 @@ fos_rest:
     param_fetcher_listener: true
     body_listener: true
     format_listener: true
+    body_converter:
+        enabled: true
     view:
         view_response_listener: 'force'
     routing_loader:
@@ -168,7 +170,7 @@ old_sound_rabbit_mq:
             exchange_options: { name: 'file_nodes', type: direct }
             queue_options:    { name: 'file_nodes' }
             qos_options:      { prefetch_size: 0, prefetch_count: 1, global: false }
-            callback:         fridge.firebase.consumer.read_node
+            callback:         fridge.firebase.consumer.refresh_podcasts
     rpc_clients:
         podcast:
             connection: default
