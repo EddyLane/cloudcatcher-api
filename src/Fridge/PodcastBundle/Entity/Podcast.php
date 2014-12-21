@@ -44,7 +44,7 @@ class Podcast
             ->setSlug($slugify->slugify($podcastData['collectionName']))
             ->setGenres($podcastData['genres'])
             ->setItunesId($podcastData['collectionId'])
-            ->setLatest(isset($date) ? $date : null)
+            ->setLatest(isset($date) ? $date->format(\DateTime::ISO8601) : null)
             ->setLatestEpisode(isset($entries[0]) ? $entries[0] : null)
         ;
 
@@ -135,6 +135,7 @@ class Podcast
 
     /**
      * @var \DateTime
+     * @Serializer\Expose()
      * @ORM\Column(name="latest", type="string")
      */
     private $latest;
@@ -181,6 +182,28 @@ class Podcast
      * @ORM\Column(name="auto_download", type="integer")
      */
     private $autoDownload;
+
+    /**
+     * @var integer
+     * @Serializer\Expose()
+     */
+    private $subscriptions;
+
+    /**
+     * @param int $subscriptions
+     */
+    public function setSubscriptions($subscriptions)
+    {
+        $this->subscriptions = $subscriptions;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSubscriptions()
+    {
+        return $this->subscriptions;
+    }
 
     /**
      * Get id
@@ -423,24 +446,23 @@ class Podcast
     /**
      * Set latest
      *
-     * @param \DateTime $latest
+     * @param string $latest
      * @return Podcast
      */
     public function setLatest($latest)
     {
-        $this->latest = $latest instanceof \Datetime ? $latest->format(\DateTime::ISO8601) : $latest;
+        $this->latest = $latest;
 
         return $this;
     }
 
     /**
      * Get latest
-     * @Serializer\VirtualProperty
      * @return string
      */
     public function getLatest()
     {
-        return $this->latest instanceof \Datetime ? $this->latest->format(\DateTime::ISO8601) : $this->latest;
+        return $this->latest;
     }
 
     /**
@@ -581,6 +603,15 @@ class Podcast
     public function getAutoDownload()
     {
         return $this->autoDownload;
+    }
+
+    public function getLeaderboardData()
+    {
+        return [
+            'name' => $this->getName(),
+            'slug' => $this->getSlug(),
+            'artwork' => $this->getArtwork()
+        ];
     }
 
 }

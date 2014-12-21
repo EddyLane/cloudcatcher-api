@@ -33,7 +33,26 @@ class AddPodcast extends AbstractTask
             $this->getItunesLookupData($itunesId)
         ));
 
-        $this->getFirebaseClient()->addPodcast($user, $podcast);
+        $this
+            ->getFirebaseClient()
+            ->addPodcast($user, $podcast)
+        ;
+
+        $leaderboardJson = json_encode($podcast->getLeaderboardData());
+
+        foreach($podcast->getGenres() as $genre) {
+            $this
+                ->getRedis()
+                ->zIncrBy(sprintf('leaderboard:%s', strtolower($genre)), 1, $leaderboardJson)
+            ;
+        }
+
+        $subscriptions = $this
+            ->getRedis()
+            ->zIncrBy('leaderboard:top', 1, $leaderboardJson)
+        ;
+
+        $podcast->setSubscriptions(intval($subscriptions));
 
         return $podcast;
     }

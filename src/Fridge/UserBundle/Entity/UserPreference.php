@@ -14,6 +14,12 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class UserPreference
 {
+
+    const LIMIT_NONE = 0;
+    const LIMIT_1 = 1;
+    const LIMIT_2 = 2;
+    const LIMIT_3 = 3;
+
     /**
      * @var integer
      *
@@ -47,7 +53,6 @@ class UserPreference
      * @Serializer\Expose()
      */
     private $deletePlayedEpisodes;
-
 
     /**
      * Get id

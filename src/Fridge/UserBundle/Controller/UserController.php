@@ -68,16 +68,30 @@ class UserController extends BaseController
 
     /**
      * @Annotations\Put("/preferences")
-     * @ParamConverter("preferences", converter="fos_rest.request_body")
-     * @param UserPreference $userPreference
-     * @return UserPreference
+     * @Annotations\RequestParam(name="delete_played_episodes")
+     * @Annotations\RequestParam(name="download_episodes")
+     * @Annotations\RequestParam(name="limit_episodes")
+     * @param ParamFetcher $paramFetcher
+     * @return mixed
      */
-    public function putPreferencesAction(UserPreference $userPreference)
+    public function putPreferencesAction(ParamFetcher $paramFetcher)
     {
         /** @var \Fridge\UserBundle\Entity\User $user */
         $user = $this->getUser();
-        $user->setPreferences($userPreference);
+
+        if (!$userPreference = $user->getPreferences()) {
+            $userPreference = new UserPreference();
+            $user->setPreferences($userPreference);
+        }
+
+        $userPreference
+            ->setDeletePlayedEpisodes($paramFetcher->get('delete_played_episodes'))
+            ->setDownloadEpisodes($paramFetcher->get('download_episodes'))
+            ->setLimitEpisodes($paramFetcher->get('limit_episodes'))
+        ;
+
         $this->getUserManager()->updateUser($user);
+
         return $userPreference;
     }
 
@@ -208,6 +222,9 @@ class UserController extends BaseController
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
             $userManager->updateUser($user);
+
+
+
 
             if (null === $response = $event->getResponse()) {
                 return $user;

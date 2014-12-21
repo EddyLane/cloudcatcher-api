@@ -57,10 +57,10 @@ class RefreshPodcast extends AbstractTask
         $entries = $googleFeedEntries['feed']['entries'];
         $latestEpisodeData = $entries[0];
         $latestDateTime = new \DateTime($latestEpisodeData['publishedDate']);
+        $latestDateTime = $latestDateTime->format(\DateTime::ISO8601);
 
-        if (!$podcast->getLatest() || ($latestDateTime->format(\DateTime::ISO8601) !== $podcast->getLatest() && isset($xml->xpath('//enclosure')[0]))) {
+        if (!$podcast->getLatest() || ($latestDateTime !== $podcast->getLatest() && isset($xml->xpath('//enclosure')[0]))) {
 
-            echo (sprintf('|%s - %s |', $latestDateTime->format(\DateTime::ISO8601), $podcast->getLatest()));
             $newAndHeard = $this->getNewAndHeardResult($xml);
 
             $podcast

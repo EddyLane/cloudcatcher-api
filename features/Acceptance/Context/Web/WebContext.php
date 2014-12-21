@@ -8,7 +8,6 @@
 
 namespace Acceptance\Context\Web;
 
-require __DIR__ . '/../../../../vendor/guzzlehttp/guzzle/tests/Server.php';
 
 use Behat\Behat\Event\FeatureEvent;
 use Behat\CommonContexts\WebApiContext;
@@ -17,6 +16,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Tests\Server;
+use GuzzleHttp\Tests\Ring\Client\Server as RingServer;
 
 class WebContext extends WebApiContext
 {
@@ -251,13 +251,16 @@ class WebContext extends WebApiContext
     public function theMockApiServerWillRespondWithTheFollowingResponses(TableNode $table)
     {
         Server::flush();
+        Server::start();
 
         Server::enqueue(array_map(function ($e) {
+
             return new Response(
                 $e['Status'],
-                [],
+                ['Content-Type' => 'application/json'],
                 Stream::factory($e['Body'])
             );
+
         }, $table->getHash()));
 
     }

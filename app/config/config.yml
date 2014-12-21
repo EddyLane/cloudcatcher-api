@@ -97,7 +97,7 @@ sensio_framework_extra:
 fridge_subscription:
     user_class: Fridge\UserBundle\Entity\User
     stripe_sk: "%stripe_test_secret_key%"
-    enable_listeners: true
+    enable_listeners: false
 
 nelmio_cors:
     defaults:
@@ -187,6 +187,23 @@ snc_redis:
             alias: default
             dsn: "%redis_dsn%"
             logging: %kernel.debug%
+        cache:
+            type: predis
+            alias: cache
+            dsn: "%redis_dsn%"
+            logging: true
+    doctrine:
+        metadata_cache:
+            client: cache
+            entity_manager: default          # the name of your entity_manager connection
+            document_manager: default        # the name of your document_manager connection
+        result_cache:
+            client: cache
+            entity_manager: [default]  # you may specify multiple entity_managers
+            namespace: "dcrc:"
+        query_cache:
+            client: cache
+            entity_manager: default
 
 ekino_new_relic:
     enabled: %new_relic_enabled%                                             # Defaults to true

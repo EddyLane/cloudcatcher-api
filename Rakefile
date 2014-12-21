@@ -1,9 +1,9 @@
 #OVERRIDE THIS FOR EVERY PROJECT
-$project_name = 'cloucatcher'
+$project_name = 'cloudcatcher'
 
 $project_dir = File.dirname(__FILE__)
 
-$LOAD_PATH.unshift(ENV['BUILD_TOOLS'])
+$LOAD_PATH.unshift($project_dir+'/.build-tools')
 
 load "rake/database.rb"
 load "rake/dependencies.rb"

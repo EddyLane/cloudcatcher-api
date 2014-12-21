@@ -16,8 +16,8 @@ swiftmailer:
     disable_delivery: true
 
 fridge_firebase:
-    firebase_base_url: 'http://127.0.0.1:8124'
+    firebase_base_url: 'http://127.0.0.1:8125'
 
 fridge_api:
-    google_feed_url: 'http://127.0.0.1:8124'
-    itunes_search_url: 'http://127.0.0.1:8124'
+    google_feed_url: 'http://127.0.0.1:8125'
+    itunes_search_url: 'http://127.0.0.1:8125'

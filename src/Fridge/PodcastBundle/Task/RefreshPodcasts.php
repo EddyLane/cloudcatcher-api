@@ -93,6 +93,7 @@ class RefreshPodcasts extends AbstractTask
 
         $this->getLogger()->debug(sprintf('Got firebase for user "%s"', $user->getUsernameCanonical()));
 
+
         $podcasts = $this->deserializePodcasts($podcastFirebase);
 
         $this->getLogger()->debug(sprintf('Successfully converted firebase to entities for user "%s"', $user->getUsernameCanonical()));

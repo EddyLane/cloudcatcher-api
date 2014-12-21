@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Snc\RedisBundle\SncRedisBundle(),
             new Cocur\Slugify\Bridge\Symfony\CocurSlugifyBundle(),
             new Ekino\Bundle\NewRelicBundle\EkinoNewRelicBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             ////src
             new Fridge\UserBundle\FridgeUserBundle(),
             new Fridge\ApiBundle\FridgeApiBundle(),

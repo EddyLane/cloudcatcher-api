@@ -5,12 +5,18 @@ namespace Acceptance\Context\Data;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
+use OldSound\RabbitMqBundle\Command\RpcServerCommand;
+use Snc\RedisBundle\Command\RedisFlushallCommand;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\Query;
 use ZfrStripe\Exception\NotFoundException;
 use Behat\Gherkin\Node\PyStringNode;
+use Symfony\Component\Console\Tester\CommandTester;
 
 require __DIR__. '/../../../../vendor/phpunit/phpunit/src/Framework/Assert/Functions.php';
+require __DIR__ . '/../../../../vendor/guzzlehttp/guzzle/tests/Server.php';
+require __DIR__ . '/../../../../vendor/guzzlehttp/ringphp/tests/Client/Server.php';
 
 /**
  * Data context.
@@ -193,9 +199,9 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $this->removeAll('FridgeSubscriptionBundle:StripeProfile');
         $this->removeAll('FridgeSubscriptionBundle:Card');
 
-        $em->getConnection()->exec("ALTER TABLE fridge_user_user AUTO_INCREMENT = 1; ");
-        $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
-        $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
+//        $em->getConnection()->exec("ALTER TABLE fridge_user_user AUTO_INCREMENT = 1; ");
+//        $em->getConnection()->exec("ALTER TABLE fridge_subscription_stripe_profile AUTO_INCREMENT = 1; ");
+//        $em->getConnection()->exec("ALTER TABLE fridge_subscription_card AUTO_INCREMENT = 1; ");
         $em->flush();
 
         foreach($userTable->getHash() as $userHash) {
@@ -344,7 +350,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
     {
         $clientManager = $this->getKernel()->getContainer()->get('fos_oauth_server.client_manager.default');
         $client = $clientManager->createClient();
-        $client->setRedirectUris(['http://app.angular-symfony-stripe.local:8080/app_dev.php/']);
+        $client->setRedirectUris(['http://cloudcatcher.local:8080/app_dev.php/']);
         $client->setAllowedGrantTypes([
             'password',
             'refresh_token',
@@ -356,6 +362,44 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $this->getMainContext()->client = $client;
     }
 
+    /**
+     * @Given /^I flush redis$/
+     */
+    public function iFlushRedis()
+    {
+        $this->runCommand('redis:flushall', [
+            '--no-interaction' => true
+        ]);
+    }
+
+    /**
+     * @Given /^I start the podcast RPC server expecting (\d+) message$/
+     */
+    public function iStartThePodcastRpcServerExpectingMessage($messages)
+    {
+        $this->runCommand('rabbitmq:rpc-server', [
+            'name' => 'podcast',
+            '--messages' => $messages,
+            '--no-interaction' => true
+        ]);
+    }
+
+    private function runCommand($name, $arguments = [])
+    {
+        $application = new Application($this->getKernel());
+
+        $application->add(new RedisFlushallCommand());
+        $application->add(new RpcServerCommand());
+
+        $command = $application->find($name);
+        $tester = new CommandTester($command);
+
+        $executeArgs = [
+            'command' => $command->getName()
+        ];
+
+        return $tester->execute(array_merge($executeArgs, $arguments));
+    }
     /**
      * @Given /^redis should have the following data stored under "([^"]*)":$/
      */
@@ -374,7 +418,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
-     * @Given /^redis key "([^"]*)" should have a ttl of (\d+)$/
+     * @Given /^redis key "([^"]*)" should have a ttl of ([^"]*)$/
      */
     public function redisKeyShouldHaveATtlOf($key, $expected)
     {
@@ -387,6 +431,20 @@ class DataContext extends BehatContext implements KernelAwareInterface
             assertEquals($expected - 1, $redis->ttl($key));
         }
     }
+
+    /**
+     * @Given /^the following leaderboard exists:$/
+     */
+    public function theFollowingLeaderboardExists(TableNode $table)
+    {
+        $redis = $this->getKernel()->getContainer()->get('snc_redis.default');
+
+        foreach ($table->getHash() as $tableRow) {
+            $redis->zIncrBy('top', intval($tableRow['Score']), $tableRow['Data']);
+        }
+
+    }
+
 
 }
 

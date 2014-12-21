@@ -110,7 +110,6 @@ abstract class AbstractTask
             $this->getLogger()->debug(sprintf('Got live RSS data for "%s" setting in redis', $feed));
 
         } else {
-
             $this->getLogger()->debug(sprintf('Redis success for "%s"', $feed));
 
         }
@@ -158,7 +157,7 @@ abstract class AbstractTask
         return $this->firebaseClient;
     }
 
-/**±
+    /**
      * @param array $podcasts
      * @return \Fridge\PodcastBundle\Entity\Podcast[]
      */
@@ -260,6 +259,14 @@ abstract class AbstractTask
     protected function getGcmNotification()
     {
         return $this->GCMNotification;
+    }
+
+    /**
+     * @return Client
+     */
+    protected function getRedis()
+    {
+        return $this->redis;
     }
 
 } 

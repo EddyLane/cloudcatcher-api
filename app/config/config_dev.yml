@@ -42,3 +42,10 @@ fridge_firebase:
 fridge_api:
     google_feed_url: '%google_feed_api_url%'
     itunes_search_url: '%itunes_search_url%'
+#
+#fridge_firebase:
+#    firebase_base_url: 'http://127.0.0.1:8125'
+#
+#fridge_api:
+#    google_feed_url: 'http://127.0.0.1:8125'
+#    itunes_search_url: 'http://127.0.0.1:8125'
